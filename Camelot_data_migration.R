@@ -8,3 +8,4 @@
 
 
 #LOAD WWF CANADA DATA
+ct_data <- read.csv("data/South Chilcotins Wildlife Survey.csv")

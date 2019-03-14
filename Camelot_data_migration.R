@@ -9,3 +9,18 @@
 
 #LOAD WWF CANADA DATA
 ct_data <- read.csv("data/South Chilcotins Wildlife Survey.csv")
+
+############
+# Rename Camelot attributes to WI attributes
+ct_data$Absolute.Path <-setNames("Location")
+
+
+
+
+############
+# Fill in empty but required WI Atributes
+
+
+
+
+# write.csv

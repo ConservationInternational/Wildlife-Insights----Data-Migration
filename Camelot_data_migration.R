@@ -22,6 +22,8 @@ ct_data <- read.csv("data/South Chilcotins Wildlife Survey.csv")
 
 ######
 # Rename Camelot attributes to WI attributes
+# Reconsider whether to rename or whether we should start building each of the Batch
+# Upload Templates directly. This seems more direct- EHF:3/15
 ct_data <- ct_data %>% rename(Location= Absolute.Path, Date_Time_Captured = Date.Time,
                               Image_ID = Media.Filename,Deployment_Location_id = Site.Name,
                               Project_ID = Survey.Name, Genus_Species = Species,

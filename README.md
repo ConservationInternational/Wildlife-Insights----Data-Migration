@@ -7,3 +7,9 @@ We should aim to have software migration to function with all the software progr
 
 A directory with the Source Name will be created for each camera trap data source. Custom scripts for non-standardized data sources should be included in the Custom Sources Directory
 
+# Setting things up
+1. Install R: You can download the latest version of R [here](https://cran.rstudio.com).
+2. Install Rstudio: [Rstudio Download link](https://www.rstudio.com/products/rstudio/download/)
+3. Install Git: [See these installation notes](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN)
+4. Get the URL for this repository and you are ready to go!
+

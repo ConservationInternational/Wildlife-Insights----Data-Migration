@@ -20,6 +20,36 @@ library(googlesheets)
 ######
 ct_data <- read.csv("data/South Chilcotins Wildlife Survey.csv")
 
+
+######
+# Create and write out the batch upload templates as csv's: Project, Camera, Deployment, Images
+# Load the template-- Might use this for QA/QC or for creating the final data frames that we write out.
+# Or maybe not...TBD.
+wi_batch<- gs_url("https://docs.google.com/spreadsheets/d/1PE5Zl-HUG4Zt0PwSfj-gJRJVbZ__LgH3VuiDW3-BKQg", visibility = "public")
+project_batch <- wi_batch %>% gs_read_csv(ws="Projectv1.0")
+prj_df_colnames <- project_batch$`Form Value`
+prj_df_colnames <- gsub(" ","_",prj_df_colnames)
+prj_dff <- data.frame(matrix(ncol = length(prj_df_colnames),nrow=0))
+colnames(prj_dff) <- prj_df_colnames 
+#prj_dff is now an empty dataframe
+
+#Camerav1.0
+cam_batch <- wi_batch %>% gs_read_csv(ws="Camerav1.0")
+cam_df_colnames <- cam_batch$`Form Value`
+cam_df_colnames <- gsub(" ","_",cam_df_colnames)
+
+#Deploymentv1.0
+dep_batch <- wi_batch %>% gs_read_csv(ws="Deploymentv1.0")
+dep_df_colnames <- dep_batch$`Form Value`
+dep_df_colnames <- gsub(" ","_",dep_df_colnames)
+
+#Imagev1.0
+image_batch <- wi_batch %>% gs_read_csv(ws="Imagev1.0")
+image_df_colnames <- image_batch$`Form Value`
+image_df_colnames <- gsub(" ","_",image_df_colnames)
+
+
+
 ######
 # Rename Camelot attributes to WI attributes
 # Reconsider whether to rename or whether we should start building each of the Batch
@@ -53,31 +83,3 @@ ct_data <- ct_data %>% rename(Location= Absolute.Path, Date_Time_Captured = Date
 
 
 
-######
-# Create and write out the batch upload templates as csv's: Project, Camera, Deployment, Images
-# Load the template-- Might use this for QA/QC or for creating the final data frames that we write out.
-# Or maybe not...TBD.
-wi_batch<- gs_url("https://docs.google.com/spreadsheets/d/1PE5Zl-HUG4Zt0PwSfj-gJRJVbZ__LgH3VuiDW3-BKQg", visibility = "public")
-project_batch <- wi_batch %>% gs_read_csv(ws="Projectv1.0")
-prj_df_colnames <- project_batch$`Form Value`
-prj_df_colnames <- gsub(" ","_",prj_df_colnames)
-prj_dff <- data.frame(matrix(ncol = length(prj_df_colnames),nrow=0))
-colnames(prj_dff) <- prj_df_colnames 
-#prj_dff is now an empty dataframe
-
-#Camerav1.0
-cam_batch <- wi_batch %>% gs_read_csv(ws="Camerav1.0")
-cam_df_colnames <- cam_batch$`Form Value`
-cam_df_colnames <- gsub(" ","_",cam_df_colnames)
-
-#Deploymentv1.0
-dep_batch <- wi_batch %>% gs_read_csv(ws="Deploymentv1.0")
-dep_df_colnames <- dep_batch$`Form Value`
-dep_df_colnames <- gsub(" ","_",dep_df_colnames)
-
-#Imagev1.0
-image_batch <- wi_batch %>% gs_read_csv(ws="Imagev1.0")
-image_df_colnames <- image_batch$`Form Value`
-image_df_colnames <- gsub(" ","_",image_df_colnames)
-
-# write.csv

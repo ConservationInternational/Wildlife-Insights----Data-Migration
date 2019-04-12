@@ -122,9 +122,13 @@ dep_dff$Sensitivity_Setting
 dep_dff$Restriction_on_access
 dep_dff$Camera_Failure_Details
 
-# Rename Camelot attributes to WI attributes
-# Reconsider whether to rename or whether we should start building each of the Batch
-# Upload Templates directly. This seems more direct- EHF:3/15
+
+
+
+######
+# Image .csv template
+# 1.rename columns
+# 2. create any others that are needed
 ct_data <- ct_data %>% rename(Location= Absolute.Path, Date_Time_Captured = Date.Time,
                               Image_ID = Media.Filename,Deployment_Location_id = Site.Name,
                               Project_ID = Survey.Name, Genus_Species = Species,
@@ -135,22 +139,9 @@ ct_data <- ct_data %>% rename(Location= Absolute.Path, Date_Time_Captured = Date
 # Color: interesting attribute to consider adding to batch upload.
 # Altitude: Do we want to get this? or generate globally?
 
+
 ######
-# Fill in empty but required WI Atributes
-#Project
-# Project ID
-# Publish Date
-# Project Name
-# Project Objectives (WI Event Objectives)
-# Project Methodology
-# Project Admin
-# Project Admin Email
-# Project Admin Organization
-# Country Code
-# Project Data Use and Constraints
-# Embargo Period
-######
-# Create any custom fields to meet the data dictionary requirements
+# Write out the 4 csv files
 
 
 

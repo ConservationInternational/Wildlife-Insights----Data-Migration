@@ -69,8 +69,8 @@ colnames(cam_dff) <- cam_df_colnames
 dep_batch <- wi_batch %>% gs_read_csv(ws="Deploymentv1.0")
 dep_df_colnames <- dep_batch$`Form Value`
 dep_df_colnames <- gsub(" ","_",dep_df_colnames)
-# Make cam_df_length unique to the number of cameras in the project
-dep_df_length <- length(unique(ct_data$Site.Name))
+# Make dep_df_length unique to the number of cameras in the project
+dep_df_length <- length(unique(paste(ct_data$Site.Name,ct_data$Session.Start.Date,ct_data$Session.End.Date,sep="-")))
 dep_dff <- data.frame(matrix(ncol = length(dep_df_colnames),nrow=dep_df_length))
 colnames(dep_dff) <- dep_df_colnames 
 
@@ -101,6 +101,11 @@ cam_dff$Camera_ID <- unique(ct_data$Camera.ID)
 
 ######
 # Deployment .csv template
+# 1. Establish unique deployments - Should be Site.Name + pair(SessionStart.Date--> Session.End.Date)
+deployments <- unique(paste(ct_data$Site.Name,ct_data$Session.Start.Date,ct_data$Session.End.Date,sep="-"))
+# 2. Create a distinct dataframe based on deployments
+
+
 
 dep_dff$Project_ID <- unique(prj_dff$Project_ID) # If more than one error for now
 dep_dff$Deployment_ID <-
@@ -108,7 +113,7 @@ dep_dff$Deployment_ID <-
 dep_dff$Deployment_ID <- 
 #dep_dff$Array_Name
 dep_dff$Deployment_Location__ID  <- unique(ct_data$Site.Name)
-dep_dff$Longitude <-
+dep_dff$Longitude <- ct_data$
 dep_dff$Latitude
 dep_dff$Camera_Deployment_Begin_Date
 dep_dff$Camera_Deployment_End_Date

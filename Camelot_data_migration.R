@@ -78,7 +78,10 @@ colnames(dep_dff) <- dep_df_colnames
 image_batch <- wi_batch %>% gs_read_csv(ws="Imagev1.0")
 image_df_colnames <- image_batch$`Form Value`
 image_df_colnames <- gsub(" ","_",image_df_colnames)
-
+# Set number of rows to full dataset.
+image_df_length <- nrow(ct_data)
+image_dff <- data.frame(matrix(ncol = length(image_df_colnames),nrow=image_df_length))
+colnames(image_dff) <- image_df_colnames 
 ######
 # Create each batch upload template
 # Project .csv template
@@ -100,53 +103,66 @@ cam_dff$Project_ID <- unique(prj_dff$Project_ID) # If more than one error for no
 cam_dff$Camera_ID <- unique(ct_data$Camera.ID)
 
 ######
-# Deployment .csv template
+# Deployment .csv template - TODO - Review all of these to see what else will map?
 # 1. Establish unique deployments - Should be Site.Name + pair(SessionStart.Date--> Session.End.Date)
-deployments <- unique(paste(ct_data$Site.Name,ct_data$Session.Start.Date,ct_data$Session.End.Date,sep="-"))
+ct_data$deployments <- paste(ct_data$Site.Name,ct_data$Session.Start.Date,ct_data$Session.End.Date,sep="-")
 # 2. Create a distinct dataframe based on deployments
-
-
-
+dep_temp<-distinct(ct_data,deployments,.keep_all = TRUE )
+# 3. Create the final dataframe
 dep_dff$Project_ID <- unique(prj_dff$Project_ID) # If more than one error for now
-dep_dff$Deployment_ID <-
-#dep_dff$Event
-dep_dff$Deployment_ID <- 
-#dep_dff$Array_Name
-dep_dff$Deployment_Location__ID  <- unique(ct_data$Site.Name)
-dep_dff$Longitude <- ct_data$
-dep_dff$Latitude
-dep_dff$Camera_Deployment_Begin_Date
-dep_dff$Camera_Deployment_End_Date
-dep_dff$Bait_Type
+dep_dff$Deployment_ID <- dep_temp$deployments
+dep_dff$Event
+dep_dff$Array_Name
+dep_dff$Deployment_Location__ID  <- dep_temp$Site.Name
+dep_dff$Longitude <- dep_temp$Camelot.GPS.Longitude
+dep_dff$Latitude <- dep_temp$Camelot.GPS.Latitude
+dep_dff$Camera_Deployment_Begin_Date <- dep_temp$Session.Start.Date
+dep_dff$Camera_Deployment_End_Date <- dep_temp$Session.End.Date
+dep_dff$Bait_Type 
 dep_dff$Bait_Description
 dep_dff$Feature_Type
 dep_dff$Feature_Type_Methodology
-dep_dff$Camera_ID
+dep_dff$Camera_ID <- dep_temp$Camera.ID
 dep_dff$Quiet_Period_Setting
 dep_dff$Sensitivity_Setting
-dep_dff$Restriction_on_access
+#dep_dff$Restriction_on_access - Remove this
 dep_dff$Camera_Failure_Details
-
 
 
 
 ######
 # Image .csv template
-# 1.rename columns
-# 2. create any others that are needed
-ct_data <- ct_data %>% rename(Location= Absolute.Path, Date_Time_Captured = Date.Time,
-                              Image_ID = Media.Filename,Deployment_Location_id = Site.Name,
-                              Project_ID = Survey.Name, Genus_Species = Species,
-                              Latitude_Resolution = Camelot.GPS.Latitude, Longitude_Resolution = Camelot.GPS.Longitude,
-                              Camera_Deployment_End_Date = Session.End.Date, Camera_Deployment_Begin_Date = Session.Start.Date,
-                              Sex = Sex,Age = Life.stage
-                              )
+# 1. Rename columns
+image_dff$Project_ID <- prj_dff$Project_ID
+image_dff$Deployment_ID <- ct_data$deploymentsc
+image_dff$Image_ID <- ct_data$Media.Filename
+image_dff$Location <- ct_data$Absolute.Path
+image_dff$Blank <- # Need some logic here
+image_dff$Photo_Type_Identified_by # What to do here? It is required
+image_dff$Genus_Species <- ct_data$Species # Lots of quality control to do here.
+image_dff$Species_Common_Name <- ct_data$Species.Common.Name  # Lots of quality control to do here.
+image_dff$Uncertainty
+image_dff$IUCN_Identification_Number
+image_dff$TSN_Identification_Number
+image_dff$Date_Time_Captured  # Which one to use? QC to ensure date/time correct. Many dates included...do we need to capture more that one?
+image_dff$Age <- ct_data$Life.stage
+image_dff$Sex <- ct_data$Sex
+image_dff$Individual_ID
+image_dff$Count  # Is there a count column?  It looks like this file is normalized by animal per image
+image_dff$`Animal_recognizable_(Y/N)`
+image_dff$Individual_Animal_Notes
+image_dff$Image_Favorite
+image_dff$Color <- ct_data$Colour
+
 # Color: interesting attribute to consider adding to batch upload.
 # Altitude: Do we want to get this? or generate globally?
 
 
 ######
-# Write out the 4 csv files
-
+# Write out the 4 csv files for batch upload
+write.csv(prj_dff,file=paste(PrjName,"_project.csv",sep=""))
+write.csv(cam_dff,file=paste(PrjName,"_camera.csv",sep=""))
+write.csv(dep_dff,file=paste(PrjName,"_deployment.csv",sep=""))
+write.csv(image_dff,file=paste(PrjName,"_image.csv",sep=""))
 
 

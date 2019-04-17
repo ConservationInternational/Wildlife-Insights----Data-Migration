@@ -1,10 +1,9 @@
-# Camelot to Wildlife Insights Data Migration Tool
+# Camelot_data_migration.R Eric Fegraus 4/17/2019
+# Purpose: Camelot to Wildlife Insights Data Migration Tool
+# ARNO- How was the data exported out of camelot?
 # We are starting this based on a dataset from WWF Canada
 # Goal: Build a mapping from Camelot export (.csv file) into 
 # WI Batch Upload Template
-# 1. Do the mappings
-# 2. Fill in data attributes as needed.
-# 3. Load the Batch Upload Template and conduct QA/QC (need to define.)
 
 ######
 # Clear workspace
@@ -16,31 +15,43 @@ library(dplyr)
 library(googlesheets)
 
 ######
-# Load your data
-######
+# Load your data and type in any information that cannot be captured from the dataset directly. 
 ct_data <- read.csv("data/South Chilcotins Wildlife Survey.csv")
 # Establish any variables needed for each project (i.e. not found in the datafile)
-# Project Level Metadata
-PrjPubDate <- 24 # REVIEW
+
+#PROJECT METADATA- UPDATE ALL INFORMATION HERE
+PrjPubDate <- 24 # we may delete this as it is the same PrjEmbargo
 PrjName<-"South Chilcotins"
 PrjObj <-" Here is my objective"
-PrjMethod <-" Here are my methods"
+PrjMethod <-" Here are my methods" 
 PrjAdmin <- "Arno"
 PrjAdminEmail <- "arno@wwf.org"
 PrjAdminOrg <- "WWF" # This should be pulled from WI database (if the organization is already registered)
 PrjCC <- "?" #unique(ct_data$Country.Primary.Location.Name) # Make this text input by user..otherwise need to build function to find three leter ISO country code
 PrjDataUse <- "?"
 PrjEmbargo <- 24
-# Camera Level Metadata
-# Make is required
+# Project - We will need to add more fields for the new project level questions
 
-# Questions
-# CAMERA
-# Camera Name - What is this? Put in cam_dff?
-# DEPLOYMENTS
-# Trap station ID - what is it?
-# Trap Station Session Camera ID ..what is it?
-# Relationship of Camera Name with Camera ID?
+# CAMERA QUESTIONS
+  # None
+  # For now we will assume we will get Make and Model information from EXIF reader upon data ingestion into WI.
+
+#DEPLOYMENT QUESTIONS
+  # Dataset question: Trap station ID - what is it?
+  # Dataset question: Trap Station Session Camera ID ..what is it?
+  # Dataset question: Relationship of Camera Name with Camera ID?
+  # Dataset question: Bait Type - Was bait used in this project? 
+  # Dataset question: Quite Period and Camera Failure Details are required. Are these in the dataaset?
+
+#IMAGE QUESTIONS
+  # Dataset question: Location - tell me what to limit the string and i'll include this into the script. It will be useful in other situations.
+  # Dataset question: Blanks - where are all the blank images?
+  # Dataset question: Photo_Type_Identified_by - this is required. Can you find out this person(s)? Alternative is we make it not required.
+  # Count: Do we want this normalized to one row per image or one row per observation?
+  # Image_use_restrictions,IUCN_Identification_Numbe, TSN_Identification_Number: we will probably delete
+  # Date: We will need to reformat this prior to upload.
+
+
 
 ######################
 # Move everything below into a function
@@ -142,9 +153,9 @@ image_dff$Photo_Type_Identified_by # What to do here? It is required
 image_dff$Genus_Species <- ct_data$Species # Lots of quality control to do here.
 image_dff$Species_Common_Name <- ct_data$Species.Common.Name  # Lots of quality control to do here.
 image_dff$Uncertainty
-image_dff$IUCN_Identification_Number
-image_dff$TSN_Identification_Number
-image_dff$Date_Time_Captured  # Which one to use? QC to ensure date/time correct. Many dates included...do we need to capture more that one?
+image_dff$IUCN_Identification_Number # potentially delete
+image_dff$TSN_Identification_Number  # potentially delete
+image_dff$Date_Time_Captured  <- ct_data$Date.Time
 image_dff$Age <- ct_data$Life.stage
 image_dff$Sex <- ct_data$Sex
 image_dff$Individual_ID

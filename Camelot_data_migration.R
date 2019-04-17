@@ -20,6 +20,7 @@ ct_data <- read.csv("data/South Chilcotins Wildlife Survey.csv")
 # Establish any variables needed for each project (i.e. not found in the datafile)
 
 #PROJECT METADATA- UPDATE ALL INFORMATION HERE
+# Setting up many variables that are not found in the dataset itself.
 PrjPubDate <- 24 # we may delete this as it is the same PrjEmbargo
 PrjName<-"South Chilcotins"
 PrjObj <-" Here is my objective"
@@ -30,7 +31,7 @@ PrjAdminOrg <- "WWF" # This should be pulled from WI database (if the organizati
 PrjCC <- "?" #unique(ct_data$Country.Primary.Location.Name) # Make this text input by user..otherwise need to build function to find three leter ISO country code
 PrjDataUse <- "?"
 PrjEmbargo <- 24
-# Project - We will need to add more fields for the new project level questions
+# Project Notes - We will need to add more fields for the new project level questions
 
 # CAMERA QUESTIONS
   # None

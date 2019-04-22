@@ -22,16 +22,26 @@ ct_data <- read.csv("data/South Chilcotins Wildlife Survey.csv")
 #PROJECT METADATA- UPDATE ALL INFORMATION HERE
 # Setting up many variables that are not found in the dataset itself.
 PrjPubDate <- 24 # we may delete this as it is the same PrjEmbargo
-PrjName<-"South Chilcotins"
-PrjObj <-" Here is my objective"
-PrjMethod <-" Here are my methods" 
-PrjAdmin <- "Arno"
-PrjAdminEmail <- "arno@wwf.org"
+PrjName<-"South Chilcotins Wildlife Survey 2018"
+PrjObj <-"Comparison of camera trapping vs. eDNA mammal abundance estimates"
+PrjSpecies <-"Multiple" # Multiple or Single Species
+PrjSpeciesInd <- NA # If single list out the species (Genus species and comma separated)
+PrjSensorLayout <- "Systematic" # Options:Systematic, Randomized, Convenience,  Targeted 
+PrjSensorLayoutTarget <- NA
+PrjBaitUse <- "No"  #Options: Yes,Some, No
+PrjBaitUseType <- NA
+PrjStrata <- "No" #Options: Yes, No
+PrjStrataType <- NA
+PrjSensorMethod <- "Sensor detection"
+PrjIndAnimals <- "No" #Options: Yes, No
+PrjBlankImages <- "Yes"
+PrjSensorCluster <- "No"
+PrjAdmin <- "Robin Naidoo"
+PrjAdminEmail <- "Robin.Naidoo@wwfus.org"
 PrjAdminOrg <- "WWF" # This should be pulled from WI database (if the organization is already registered)
 PrjCC <- "?" #unique(ct_data$Country.Primary.Location.Name) # Make this text input by user..otherwise need to build function to find three leter ISO country code
 PrjDataUse <- "?"
 PrjEmbargo <- 24
-# Project Notes - We will need to add more fields for the new project level questions
 
 # CAMERA QUESTIONS
   # None
@@ -45,6 +55,12 @@ PrjEmbargo <- 24
   # Dataset question: Quite Period and Camera Failure Details are required. Are these in the dataaset?
 
 #IMAGE QUESTIONS
+# Change the file path names for your images. Supply what your original path (original_path) with a replacement string (sub_path)
+#original_path <- 'D:\N\personal\investments\3909 Gun Creek Road\research\Camelot_DB\Media'
+#original_path <- dQuote(D:\N\personal\investments\3909 Gun Creek Road\research\Camelot_DB\Media)
+#sub_path <- "D:/BritishColumbia-CT"
+# If all images were identified by one person, set this here. Otherwise comment this out.
+image_identified_by <- " Robin Naidoo"
   # Dataset question: Location - tell me what to limit the string and i'll include this into the script. It will be useful in other situations.
   # Dataset question: Blanks - where are all the blank images?
   # Dataset question: Photo_Type_Identified_by - this is required. Can you find out this person(s)? Alternative is we make it not required.
@@ -100,8 +116,19 @@ colnames(image_dff) <- image_df_colnames
 prj_dff$Project_ID <- unique(ct_data$Survey.Name)
 prj_dff$Publish_Date <- PrjPubDate # Should we keep this?
 prj_dff$Project_Name <- PrjName  
-prj_dff$`Project_Objectives_(WI_Event_Objectives)` <- PrjObj
-prj_dff$Project_Methodology <- PrjMethod
+prj_dff$Project_Objectives <- PrjObj
+prj_dff$Project_Species <- PrjSpecies
+prj_dff$Project_Species_Individual  <- PrjSpeciesInd
+prj_dff$Project_Sensor_Layout <- PrjSensorLayout
+prj_dff$Project_Sensor_Layout_Targeted <- PrjSensorLayoutTarget
+prj_dff$Project_Bait_Use <- PrjBaitUse
+prj_dff$Project_Bait_Type <- PrjBaitUseType
+prj_dff$Project_Stratification <- PrjStrata
+prj_dff$Project_Stratification_Type <- PrjStrataType
+prj_dff$Project_Sensor_Method <- PrjSensorMethod
+prj_dff$Project_Individual_Animals <- PrjIndAnimals
+prj_dff$Project_Blank_Images <- PrjBlankImages
+prj_dff$Project_Sensor_Cluster <- PrjSensorCluster
 prj_dff$Project_Admin <- PrjAdmin
 prj_dff$Project_Admin_Email <- PrjAdminEmail 
 prj_dff$Project_Admin_Organization <- PrjAdminOrg
@@ -139,6 +166,11 @@ dep_dff$Quiet_Period_Setting
 dep_dff$Sensitivity_Setting
 #dep_dff$Restriction_on_access - Remove this
 dep_dff$Camera_Failure_Details
+dep_dff$Altitude
+dep_dff$Height
+dep_dff$Height_Other
+dep_dff$Angle
+dep_dff$Angle_Other
 
 
 
@@ -150,7 +182,7 @@ image_dff$Deployment_ID <- ct_data$deploymentsc
 image_dff$Image_ID <- ct_data$Media.Filename
 image_dff$Location <- ct_data$Absolute.Path
 image_dff$Blank <- # Need some logic here
-image_dff$Photo_Type_Identified_by # What to do here? It is required
+image_dff$Photo_Type_Identified_by <- image_identified_b
 image_dff$Genus_Species <- ct_data$Species # Lots of quality control to do here.
 image_dff$Species_Common_Name <- ct_data$Species.Common.Name  # Lots of quality control to do here.
 image_dff$Uncertainty

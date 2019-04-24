@@ -21,7 +21,6 @@ ct_data <- read.csv("data/South Chilcotins Wildlife Survey.csv")
 
 #PROJECT METADATA- UPDATE ALL INFORMATION HERE
 # Setting up many variables that are not found in the dataset itself.
-PrjPubDate <- 24 # we may delete this as it is the same PrjEmbargo
 PrjName<-"South Chilcotins Wildlife Survey 2018"
 PrjObj <-"Comparison of camera trapping vs. eDNA mammal abundance estimates"
 PrjSpecies <-"Multiple" # Multiple or Single Species
@@ -34,13 +33,13 @@ PrjStrata <- "No" #Options: Yes, No
 PrjStrataType <- NA
 PrjSensorMethod <- "Sensor detection"
 PrjIndAnimals <- "No" #Options: Yes, No
+PrjBlankRemovalMethod <- NA
 PrjBlankImages <- "Yes"
 PrjSensorCluster <- "No"
 PrjAdmin <- "Robin Naidoo"
 PrjAdminEmail <- "Robin.Naidoo@wwfus.org"
 PrjAdminOrg <- "WWF" # This should be pulled from WI database (if the organization is already registered)
 PrjCC <- "?" #unique(ct_data$Country.Primary.Location.Name) # Make this text input by user..otherwise need to build function to find three leter ISO country code
-PrjDataUse <- "?"
 PrjEmbargo <- 24
 
 # CAMERA QUESTIONS
@@ -56,7 +55,6 @@ PrjEmbargo <- 24
 
 #IMAGE QUESTIONS
 # Change the file path names for your images. Supply what your original path (original_path) with a replacement string (sub_path)
-#original_path <- 'D:\N\personal\investments\3909 Gun Creek Road\research\Camelot_DB\Media'
 #original_path <- dQuote(D:\N\personal\investments\3909 Gun Creek Road\research\Camelot_DB\Media)
 #sub_path <- "D:/BritishColumbia-CT"
 # If all images were identified by one person, set this here. Otherwise comment this out.
@@ -114,7 +112,6 @@ colnames(image_dff) <- image_df_colnames
 # Create each batch upload template
 # Project .csv template
 prj_dff$Project_ID <- unique(ct_data$Survey.Name)
-prj_dff$Publish_Date <- PrjPubDate # Should we keep this?
 prj_dff$Project_Name <- PrjName  
 prj_dff$Project_Objectives <- PrjObj
 prj_dff$Project_Species <- PrjSpecies
@@ -128,12 +125,12 @@ prj_dff$Project_Stratification_Type <- PrjStrataType
 prj_dff$Project_Sensor_Method <- PrjSensorMethod
 prj_dff$Project_Individual_Animals <- PrjIndAnimals
 prj_dff$Project_Blank_Images <- PrjBlankImages
+prj_dff$Project_Blank_Removal_Method <- PrjBlankRemovalMethod
 prj_dff$Project_Sensor_Cluster <- PrjSensorCluster
 prj_dff$Project_Admin <- PrjAdmin
 prj_dff$Project_Admin_Email <- PrjAdminEmail 
 prj_dff$Project_Admin_Organization <- PrjAdminOrg
 prj_dff$Country_Code <- PrjCC
-prj_dff$Project_Data_Use_and_Constraints <- PrjDataUse
 prj_dff$Embargo_Period <- PrjEmbargo
 
 ######
@@ -150,21 +147,19 @@ dep_temp<-distinct(ct_data,deployments,.keep_all = TRUE )
 # 3. Create the final dataframe
 dep_dff$Project_ID <- unique(prj_dff$Project_ID) # If more than one error for now
 dep_dff$Deployment_ID <- dep_temp$deployments
-dep_dff$Event
-dep_dff$Array_Name
 dep_dff$Deployment_Location__ID  <- dep_temp$Site.Name
 dep_dff$Longitude <- dep_temp$Camelot.GPS.Longitude
 dep_dff$Latitude <- dep_temp$Camelot.GPS.Latitude
 dep_dff$Camera_Deployment_Begin_Date <- dep_temp$Session.Start.Date
 dep_dff$Camera_Deployment_End_Date <- dep_temp$Session.End.Date
+dep_dff$Event
+dep_dff$Array_Name
 dep_dff$Bait_Type 
 dep_dff$Bait_Description
 dep_dff$Feature_Type
 dep_dff$Feature_Type_Methodology
 dep_dff$Camera_ID <- dep_temp$Camera.ID
 dep_dff$Quiet_Period_Setting
-dep_dff$Sensitivity_Setting
-#dep_dff$Restriction_on_access - Remove this
 dep_dff$Camera_Failure_Details
 dep_dff$Altitude
 dep_dff$Height
@@ -180,20 +175,19 @@ dep_dff$Angle_Other
 image_dff$Project_ID <- prj_dff$Project_ID
 image_dff$Deployment_ID <- ct_data$deploymentsc
 image_dff$Image_ID <- ct_data$Media.Filename
-image_dff$Location <- ct_data$Absolute.Path
-image_dff$Blank <- # Need some logic here
+image_dff$Location <- ct_data$Absolute.Path # Modify this to let user sub in new path.
+image_dff$Blank <- PrjBaitUse # Need some logic here.
 image_dff$Photo_Type_Identified_by <- image_identified_b
 image_dff$Genus_Species <- ct_data$Species # Lots of quality control to do here.
 image_dff$Species_Common_Name <- ct_data$Species.Common.Name  # Lots of quality control to do here.
 image_dff$Uncertainty
-image_dff$IUCN_Identification_Number # potentially delete
-image_dff$TSN_Identification_Number  # potentially delete
+image_dff$Taxonomic_Authority_or_Source  # potentially delete
 image_dff$Date_Time_Captured  <- ct_data$Date.Time
 image_dff$Age <- ct_data$Life.stage
 image_dff$Sex <- ct_data$Sex
-image_dff$Individual_ID
 image_dff$Count  # Is there a count column?  It looks like this file is normalized by animal per image
-image_dff$`Animal_recognizable_(Y/N)`
+image_dff$Animal_recognizable
+image_dff$Individual_ID
 image_dff$Individual_Animal_Notes
 image_dff$Image_Favorite
 image_dff$Color <- ct_data$Colour

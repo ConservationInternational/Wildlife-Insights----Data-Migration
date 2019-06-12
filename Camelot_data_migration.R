@@ -164,7 +164,7 @@ dep_dff$Angle_Other
 
 
 # Import the wi_taxonomy dataset.
-wi_taxa <- readRDS(file = "wi_taxonomy.rds")
+wi_taxa <- readRDS(file = "wi_datafiles/wi_taxonomy.rds")
 project_unique_species <- as.data.frame(unique(paste(ct_data$Species,ct_data$Species.Common.Name)))
 # Write out a .csv file that the data provider will use to map into the WI taxonomic authority.
 # Set number of rows to full dataset.

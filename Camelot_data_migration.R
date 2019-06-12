@@ -16,7 +16,7 @@ library(googlesheets)
 
 ######
 # Load your data and type in any information that cannot be captured from the dataset directly. 
-ct_data <- read.csv("data/South Chilcotins Wildlife Survey.csv")
+ct_data <- read.csv("data/South Chilcotins Wildlife Suvey.csv")
 # Establish any variables needed for each project (i.e. not found in the datafile)
 
 #PROJECT METADATA- UPDATE ALL INFORMATION HERE
@@ -27,31 +27,29 @@ PrjSpecies <-"Multiple" # Multiple or Single Species
 PrjSpeciesInd <- NA # If single list out the species (Genus species and comma separated)
 PrjSensorLayout <- "Systematic" # Options:Systematic, Randomized, Convenience,  Targeted 
 PrjSensorLayoutTarget <- NA
-PrjBaitUse <- "No"  #Options: Yes,Some, No
+PrjBaitUse <- "No"  #Was bait used? Options: Yes,Some,No
 PrjBaitUseType <- NA
 PrjStrata <- "No" #Options: Yes, No
 PrjStrataType <- NA
 PrjSensorMethod <- "Sensor detection"
 PrjIndAnimals <- "No" #Options: Yes, No
-PrjBlankRemovalMethod <- NA
-PrjBlankImages <- "Yes"
+PrjBlankImages <- "Yes" # Were blanks removed? Options: Yes, No
 PrjSensorCluster <- "No"
 PrjAdmin <- "Robin Naidoo"
 PrjAdminEmail <- "Robin.Naidoo@wwfus.org"
 PrjAdminOrg <- "WWF" # This should be pulled from WI database (if the organization is already registered)
-PrjCC <- "?" #unique(ct_data$Country.Primary.Location.Name) # Make this text input by user..otherwise need to build function to find three leter ISO country code
+PrjCC <- "CAN" #DEV OPTION: Enter in three letter ISO code.  Consider building a function to find three leter ISO country code
 PrjEmbargo <- 24
 
 # CAMERA QUESTIONS
-  # None
-  # For now we will assume we will get Make and Model information from EXIF reader upon data ingestion into WI.
-
+# For now we will assume we will get Make and Model information from EXIF reader upon data ingestion into WI.
+# DEV OPTION: Consider building into this with exifr.
 #DEPLOYMENT QUESTIONS
+DepBait <- PrjBaitUse # Was bait used? Options: Yes, some, No.  Connect this to PrjBait...need a way to assign this if answer = "some".
   # Dataset question: Trap station ID - what is it?
   # Dataset question: Trap Station Session Camera ID ..what is it?
   # Dataset question: Relationship of Camera Name with Camera ID?
-  # Dataset question: Bait Type - Was bait used in this project? 
-  # Dataset question: Quite Period and Camera Failure Details are required. Are these in the dataaset?
+  #Dataset question: Quite Period and Camera Failure Details are required. Are these in the dataaset?
 
 #IMAGE QUESTIONS
 # Change the file path names for your images. Supply what your original path (original_path) with a replacement string (sub_path)
@@ -60,10 +58,8 @@ PrjEmbargo <- 24
 # If all images were identified by one person, set this here. Otherwise comment this out.
 image_identified_by <- " Robin Naidoo"
   # Dataset question: Location - tell me what to limit the string and i'll include this into the script. It will be useful in other situations.
-  # Dataset question: Blanks - where are all the blank images?
   # Dataset question: Photo_Type_Identified_by - this is required. Can you find out this person(s)? Alternative is we make it not required.
-  # Count: Do we want this normalized to one row per image or one row per observation?
-  # Image_use_restrictions,IUCN_Identification_Numbe, TSN_Identification_Number: we will probably delete
+  # Count: This should be one record per species with counts of those animals.
   # Date: We will need to reformat this prior to upload.
 
 
@@ -87,7 +83,7 @@ cam_batch <- wi_batch %>% gs_read_csv(ws="Camerav1.0")
 cam_df_colnames <- cam_batch$`Form Value`
 cam_df_colnames <- gsub(" ","_",cam_df_colnames)
 # Make cam_df_length unique to the number of cameras in the project
-cam_df_length <- length(unique(ct_data$Camera.ID))
+cam_df_length <- length(unique(ct_data$Camera.ID)) # or use nrow
 cam_dff <- data.frame(matrix(ncol = length(cam_df_colnames),nrow=cam_df_length))
 colnames(cam_dff) <- cam_df_colnames 
 
@@ -125,7 +121,6 @@ prj_dff$Project_Stratification_Type <- PrjStrataType
 prj_dff$Project_Sensor_Method <- PrjSensorMethod
 prj_dff$Project_Individual_Animals <- PrjIndAnimals
 prj_dff$Project_Blank_Images <- PrjBlankImages
-prj_dff$Project_Blank_Removal_Method <- PrjBlankRemovalMethod
 prj_dff$Project_Sensor_Cluster <- PrjSensorCluster
 prj_dff$Project_Admin <- PrjAdmin
 prj_dff$Project_Admin_Email <- PrjAdminEmail 
@@ -154,7 +149,7 @@ dep_dff$Camera_Deployment_Begin_Date <- dep_temp$Session.Start.Date
 dep_dff$Camera_Deployment_End_Date <- dep_temp$Session.End.Date
 dep_dff$Event
 dep_dff$Array_Name
-dep_dff$Bait_Type 
+dep_dff$Bait_Type <- DepBait
 dep_dff$Bait_Description
 dep_dff$Feature_Type
 dep_dff$Feature_Type_Methodology
@@ -168,32 +163,36 @@ dep_dff$Angle
 dep_dff$Angle_Other
 
 
+# Import the wi_taxonomy dataset.
+wi_taxa <- readRDS(file = "wi_taxonomy.rds")
+project_unique_species <- as.data.frame(unique(paste(ct_data$Species,ct_data$Species.Common.Name)))
+# Write out a .csv file that the data provider will use to map into the WI taxonomic authority.
+# Set number of rows to full dataset.
+prj_species_df_length <- nrow(project_unique_species)
+#image_dff <- data.frame(matrix(ncol = 1,nrow=prj_species_df_length)) # Add in the colnames: lookup, Species, Common, WI Genus, WI Species, WI Common OR JUST WI TAXONOMY ID
+#colnames(image_dff) <- image_df_colnames 
+write.csv(project_unique_species,file = "WI_batch_species_lookup.csv")
 
 ######
 # Image .csv template
-# 1. Rename columns
 image_dff$Project_ID <- prj_dff$Project_ID
-image_dff$Deployment_ID <- ct_data$deploymentsc
+image_dff$Deployment_ID <- ct_data$deployments
 image_dff$Image_ID <- ct_data$Media.Filename
 image_dff$Location <- ct_data$Absolute.Path # Modify this to let user sub in new path.
-image_dff$Blank <- PrjBaitUse # Need some logic here.
-image_dff$Photo_Type_Identified_by <- image_identified_b
+image_dff$Blank[which(ct_data$Genus == "")] <-1 # Expand as needed as we look at more datasets from Camelot.
+image_dff$Photo_Type_Identified_by <- image_identified_by
 image_dff$Genus_Species <- ct_data$Species # Lots of quality control to do here.
 image_dff$Species_Common_Name <- ct_data$Species.Common.Name  # Lots of quality control to do here.
-image_dff$Uncertainty
-image_dff$Taxonomic_Authority_or_Source  # potentially delete
+image_dff$Uncertainty <- NA
+image_dff$Taxonomic_Authority_or_Source  <- NA # potentially delete
 image_dff$Date_Time_Captured  <- ct_data$Date.Time
 image_dff$Age <- ct_data$Life.stage
 image_dff$Sex <- ct_data$Sex
-image_dff$Count  # Is there a count column?  It looks like this file is normalized by animal per image
-image_dff$Animal_recognizable
-image_dff$Individual_ID
-image_dff$Individual_Animal_Notes
-image_dff$Image_Favorite
+image_dff$Animal_recognizable <- NA
+image_dff$Individual_ID <- NA
+image_dff$Individual_Animal_Notes <- NA
+image_dff$Image_Favorite <- NA
 image_dff$Color <- ct_data$Colour
-
-# Color: interesting attribute to consider adding to batch upload.
-# Altitude: Do we want to get this? or generate globally?
 
 
 ######

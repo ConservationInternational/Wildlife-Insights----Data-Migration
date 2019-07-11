@@ -11,5 +11,7 @@ A directory with the Source Name will be created for each camera trap data sourc
 1. Install R: You can download the latest version of R [here](https://cran.rstudio.com).
 2. Install Rstudio: [Rstudio Download link](https://www.rstudio.com/products/rstudio/download/)
 3. Install Git: [See these installation notes](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN)
-4. Get the URL for this repository and you are ready to go!
+4. Clone or download this directory
+5. Create a taxonomic mapping between your data and the Wildlife Inisghts Taxonomy. See the script wi_taxonomy_mapping.r.
+6. Utilize one of the R scripts as an example to transform your data into the Batch Upload Templates recognized by the Wildlife Insights Platform. If you need help with this please email info@wildlifeinsights.org describing your projects.
 

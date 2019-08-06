@@ -49,7 +49,7 @@ DepBait <- PrjBaitUse # Was bait used? Options: Yes, some, No.  Connect this to 
   # Dataset question: Trap station ID - what is it?
   # Dataset question: Trap Station Session Camera ID ..what is it?
   # Dataset question: Relationship of Camera Name with Camera ID?
-  #Dataset question: Quite Period and Camera Failure Details are required. Are these in the dataaset?
+  #Dataset question: Quiet Period and Camera Failure Details are required. Are these in the dataaset?
 
 #IMAGE QUESTIONS
 # Change the file path names for your images. Supply what your original path (original_path) with a replacement string (sub_path)
@@ -181,6 +181,7 @@ image_dff$Image_ID <- ct_data$Media.Filename
 image_dff$Location <- ct_data$Absolute.Path # Modify this to let user sub in new path.
 image_dff$Blank[which(ct_data$Genus == "")] <-1 # Expand as needed as we look at more datasets from Camelot.
 image_dff$Photo_Type_Identified_by <- image_identified_by
+# Build out more taxonomic information as needed here.
 image_dff$Genus_Species <- ct_data$Species # Lots of quality control to do here.
 image_dff$Species_Common_Name <- ct_data$Species.Common.Name  # Lots of quality control to do here.
 image_dff$Uncertainty <- NA

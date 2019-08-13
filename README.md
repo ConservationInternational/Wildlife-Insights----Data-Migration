@@ -12,6 +12,8 @@ A directory with the Source Name will be created for each camera trap data sourc
 2. Install Rstudio: [Rstudio Download link](https://www.rstudio.com/products/rstudio/download/)
 3. Install Git: [See these installation notes](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN)
 4. Clone or download this directory
-5. Create a taxonomic mapping between your data and the Wildlife Inisghts Global Taxonomy. Use the script WI_Taxonomy.R. We will be building this out more to add in additional tools to help identify scientific name issues, better handle situations where identification was done using common names and ultimately help you make a mapping between your data and the WI Global Taxonomy.
-6. Utilize one of the R scripts as an example to transform your data into the Batch Upload Templates recognized by the Wildlife Insights Platform. If you need help with this please email info@wildlifeinsights.org describing your projects.
+
+# Getting Started
+1. Create a taxonomic mapping between your data and the Wildlife Inisghts Global Taxonomy. Use the script WI_Taxonomy.R. We will be building this out more to add in additional tools to help identify scientific name issues, better handle situations where identification was done using common names and ultimately help you make a mapping between your data and the WI Global Taxonomy.
+2. Utilize one of the R scripts as an example to transform your data into the Batch Upload Templates recognized by the Wildlife Insights Platform. If you need help with this please email info@wildlifeinsights.org describing your projects.
 

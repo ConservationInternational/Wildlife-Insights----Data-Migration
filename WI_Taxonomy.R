@@ -25,12 +25,14 @@ library(dplyr)
 library(stringr)
 ########################
 # 1. Import the Wildife Insights Global Taxonomy dataset.
-wi_taxa <- fromJSON("https://staging.api.wildlifeinsights.org/api/v1/taxonomy?fields=class,order,family,genus,species,commonNameEnglish&taxon_level=species&page[size]=30000")
+
+#wi_taxa <- fromJSON("https://staging.api.wildlifeinsights.org/api/v1/taxonomy?page[size]=999999&includes=commonNames,iucnCategory")
+wi_taxa <- fromJSON("https://api.wildlifeinsights.org/api/v1/taxonomy?fields=class,order,family,genus,species,taxonomyType,uniqueIdentifier,commonNameEnglish&page[size]=30000")
 wi_taxa_data <- wi_taxa$data
 # Write out a .csv file for anyone wanting to look at this in Excel. Feel free to inspect this file and use it 
 # however you need to find what matches the taxonomy used in your datasets. We have some tools below to help do this but it is up to 
 # you. You can also refernece: https://www.iucnredlist.org/ 
-write.csv(wi_taxa_data,"WI_Taxonomy.csv",row.names = FALSE)
+write.csv(wi_taxa_data,"WI_Global_Taxonomy.csv",row.names = FALSE)
 
 
 ########################

@@ -7,11 +7,13 @@ We should aim to have software migration to function with all the software progr
 
 A directory with the Source Name will be created for each camera trap data source. Custom scripts for non-standardized data sources should be included in the Custom Sources Directory
 
-# Setting things up
+# Setting Up Your Environment
 1. Install R: You can download the latest version of R [here](https://cran.rstudio.com).
 2. Install Rstudio: [Rstudio Download link](https://www.rstudio.com/products/rstudio/download/)
 3. Install Git: [See these installation notes](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN)
 4. Clone or download this directory
-5. Create a taxonomic mapping between your data and the Wildlife Inisghts Taxonomy. See the script wi_taxonomy_mapping.r.
-6. Utilize one of the R scripts as an example to transform your data into the Batch Upload Templates recognized by the Wildlife Insights Platform. If you need help with this please email info@wildlifeinsights.org describing your projects.
+
+# Getting Started
+1. Create a taxonomic mapping between your data and the Wildlife Inisghts Global Taxonomy. Use the script WI_Taxonomy.R. We will be building this out more to add in additional tools to help identify scientific name issues, better handle situations where identification was done using common names and ultimately help you make a mapping between your data and the WI Global Taxonomy.
+2. Utilize one of the R scripts as an example to transform your data into the Batch Upload Templates recognized by the Wildlife Insights Platform. If you need help with this please email info@wildlifeinsights.org describing your projects.
 

@@ -4,4 +4,4 @@
 .Ruserdata
 data/*.csv
 data/*.zip
-*.Rproj
+

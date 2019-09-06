@@ -13,7 +13,7 @@ rm(list=ls())
 # Load Libraries
 library(dplyr)
 library(googlesheets)
-
+library(jsonlite)
 ######
 # Load your data and type in any information that cannot be captured from the dataset directly. 
 ct_data <- read.csv("data/South Chilcotins Wildlife Suvey.csv")
@@ -164,7 +164,15 @@ dep_dff$Angle_Other
 
 
 # Import the wi_taxonomy dataset.
+wi_taxa <- fromJSON("https://staging.api.wildlifeinsights.org/api/v1/taxonomy?fields=class,order,family,genus,species,commonNameEnglish&taxon_level=species&page[size]=3000")
+wi_taxa_data <- wi_taxa$data
 wi_taxa <- readRDS(file = "wi_datafiles/wi_taxonomy.rds")
+
+
+
+con <- curl("https://staging.api.wildlifeinsights.org/api/v1/taxonomy?fields=class,order,family,genus,species,commonNameEnglish&taxon_level=species&page[size]=3000")
+readLines(con)
+
 project_unique_species <- as.data.frame(unique(paste(ct_data$Species,ct_data$Species.Common.Name)))
 # Write out a .csv file that the data provider will use to map into the WI taxonomic authority.
 # Set number of rows to full dataset.

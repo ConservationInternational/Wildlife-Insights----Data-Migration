@@ -6,7 +6,7 @@
 # Clear workspace
 rm(list=ls())
 # Set your working directory 
-#setwd("~/ciwork/WI")
+setwd("~/work/WildlifeInsights/Wildlife-Insights----Data-Migration")
 # Load Libraries
 library(dplyr)
 library(googlesheets)
@@ -17,6 +17,12 @@ source('wi_functions.R')
 # Load your data and type in any information that cannot be captured from the dataset directly. 
 ct_data <- read.csv("data/South Chilcotins Wildlife Suvey.csv")
 # Establish any variables needed for each project (i.e. not found in the datafile)
+
+# Taxonomy
+# Load in your clean taxonomy. Clean taxononmy is created using the WI_Taxonomy.R file. 
+your_taxa <- read.csv("WWF cleaned taxonomy - wwf_tax.csv",colClasses = "character",strip.white = TRUE,na.strings="")
+ct_data_taxa <- left_join(ct_data,your_taxa,by="Species")
+
 
 ######
 # Project Batch Upload Template: Load in the project batch upload template and fill it out.
@@ -57,7 +63,7 @@ num_sensors <- length(unique(ct_data$Camera.ID))
 cam_bu <- wi_batch_function("Camera",num_sensors)
 # Fill out each Camera field
 cam_bu$project_id <- unique(prj_bu$project_id) # If more than one error for now
-cam_info <- distinct(ct_data,Camera.ID,Make,Model)
+cam_info <- distinct(ct_data_taxa,Camera.ID,Make,Model)
 cam_bu$camera_id <- cam_info$Camera.ID
 cam_bu$make <- cam_info$Make
 cam_bu$model <- cam_info$Model
@@ -71,9 +77,9 @@ cam_bu$year_purchased <- NA
 # observing wildlife for some amount of time in a specific location. 
 # 
 # 1. Establish unique deployments - Should be Site.Name + pair(SessionStart.Date--> Session.End.Date)
-ct_data$deployments <- paste(ct_data$Site.Name,ct_data$Session.Start.Date,ct_data$Session.End.Date,sep="-")
+ct_data_taxa$deployments <- paste(ct_data_taxa$Site.Name,ct_data_taxa$Session.Start.Date,ct_data_taxa$Session.End.Date,sep="-")
 # 2. Create a distinct dataframe based on deployments
-dep_temp<-distinct(ct_data,deployments,.keep_all = TRUE )
+dep_temp<-distinct(ct_data_taxa,deployments,.keep_all = TRUE )
 # 3. Get the empty deployement dataframe
 dep_bu <- wi_batch_function("Deployment",nrow(dep_temp))
 # 4. Fill it in
@@ -85,7 +91,7 @@ dep_bu$latitude <- dep_temp$Camelot.GPS.Latitude
 dep_bu$start_date <- dep_temp$Session.Start.Date
 dep_bu$end_date <- dep_temp$Session.End.Date
 dep_bu$event <- NA
-dep_bu$array <- NA
+dep_bu$array_name <- NA
 dep_bu$bait_type <- "No" # Note that if bait was ussed but it was not consisten across all deployments, this is where you enter it. 
     # Logic may be needed to figure out which deployments had bait and which didn't. Similar thing if bait type was vaired in deployments.
     # Options: Yes, some, No.  We may need a way to assign this if answer = "some".
@@ -108,47 +114,57 @@ dep_bu$recorded_by <- NA
 # 1. Do data modifications if needed here.
 # Change the file path names for your images. Supply what your original path (original_path) with a replacement string (sub_path)
 # original_path <- dQuote(D:\N\personal\investments\3909 Gun Creek Road\research\Camelot_DB\Media)
-#  sub_path <- "D:/BritishColumbia-CT"
+ct_data_taxa$wi_path <- paste("gs://cameratraprepo-vcm/wwf-bc1",ct_data_taxa$Relative.Path,sep="")
+
 # If all images were identified by one person, set this here. Otherwise comment this out.
 image_identified_by <- " Robin Naidoo"
   
-# 2. Load in the Image batch upload template
-image_bu <- wi_batch_function("Image",nrow(ct_data))
+
+
+# 3. Load in the Image batch upload template
+image_bu <- wi_batch_function("Image",nrow(ct_data_taxa))
 
 ######
 # Image .csv template
 image_bu$project_id<- prj_bu$project_id
-image_bu$deployment_id <- ct_data$deployments
-image_bu$image_id <- ct_data$Media.Filename
-image_bu$location <- ct_data$Absolute.Path # Modify this to let user sub in new path.
-image_bu$is_blank[which(ct_data$Genus == "")] <-1 # Expand as needed as we look at more datasets from Camelot.
+image_bu$deployment_id <- ct_data_taxa$deployments
+image_bu$image_id <- ct_data_taxa$Media.Filename
+image_bu$location <- ct_data_taxa$wi_path  # Modify this to let user sub in new path.
+image_bu$is_blank[which(ct_data_taxa$wi_common_name== "Blank")] <-1 # Expand as needed as we look at more datasets from Camelot.
 image_bu$identified_by <- image_identified_by
 # Build out more taxonomic information as needed here ASAP. Will be done the week of September 9
-image_bu$wi_taxon_id
-image_bu$class
-image_bu$order
-iamge_bu$family
-image_bu$genus
-image_bu$species
-image_bu$common_name
-image_bu$uncertainty
-image_bu$timestamp <- ct_data$Date.Time
-image_bu$age <- ct_data$Life.stage
-image_bu$sex <- ct_data$Sex
+image_bu$wi_taxon_id <- ct_data_taxa$wi_taxon_id
+image_bu$class <- ct_data_taxa$wi_class
+image_bu$order <- ct_data_taxa$wi_order
+iamge_bu$family <- ct_data_taxa$wi_family
+image_bu$genus <- ct_data_taxa$wi_genus
+image_bu$species <- ct_data_taxa$wi_species
+image_bu$common_name <- ct_data_taxa$wi_common_name
+image_bu$uncertainty <- NA
+image_bu$timestamp <- ct_data_taxa$Date.Time
+image_bu$age <- ct_data_taxa$Life.stage
+image_bu$sex <- ct_data_taxa$Sex
 image_bu$animal_recognizable <- NA
-image_bu$number_of_animals <- 1
+image_bu$number_of_animals <- ct_data_taxa$Sighting.Quantity
 image_bu$individual_animal_notes <- NA
 image_bu$highlighted <- NA
-image_bu$color <- ct_data$Colour
+image_bu$color <- ct_data_taxa$Colour
 
-# Write out the 4 csv files for required for Batch Upload
 # Get a clean site name first - no whitespaces
 site_name_clean <- gsub(" ","_",prj_bu$project_name)
 
-write.csv(prj_bu,file=paste(site_name_clean,"_project.csv",sep=""))
-write.csv(cam_bu,file=paste(site_name_clean,"_camera.csv",sep=""))
-write.csv(dep_bu,file=paste(site_name_clean,"_deployment.csv",sep=""))
-write.csv(image_bu,file=paste(site_name_clean,"_image.csv",sep=""))
+# Change any NAs to emptyp values
+prj_bu <- prj_bu %>% replace(., is.na(.), "")
+cam_bu <- cam_bu %>% replace(., is.na(.), "")
+dep_bu <- dep_bu %>% replace(., is.na(.), "")
+image_bu <- image_bu %>% replace(., is.na(.), "")
+
+# Write out the 4 csv files for required for Batch Upload
+
+write.csv(prj_bu,file=paste(site_name_clean,"_project.csv",sep=""), row.names = FALSE)
+write.csv(cam_bu,file=paste(site_name_clean,"_camera.csv",sep=""),row.names = FALSE)
+write.csv(dep_bu,file=paste(site_name_clean,"_deployment.csv",sep=""),row.names = FALSE)
+write.csv(image_bu,file=paste(site_name_clean,"_image.csv",sep=""),row.names = FALSE)
 
 ###########
 # Misc things we are considering.
@@ -164,8 +180,8 @@ write.csv(image_bu,file=paste(site_name_clean,"_image.csv",sep=""))
 # project_unique_species <- as.data.frame(unique(paste(ct_data$Species,ct_data$Species.Common.Name)))
 # # Write out a .csv file that the data provider will use to map into the WI taxonomic authority.
 
-taxa_data <- distinct(ct_data,Class,Order,Family,Genus,Species.ID,Species,Species.1)
-write.csv(taxa_data,"taxa_data.csv")
+#taxa_data <- distinct(ct_data_taxa,Class,Order,Family,Genus,Species.ID,Species,Species.1)
+#write.csv(taxa_data,"taxa_data.csv")
 #
 
 # # Set number of rows to full dataset.

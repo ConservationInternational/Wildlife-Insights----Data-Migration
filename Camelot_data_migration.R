@@ -92,7 +92,7 @@ dep_bu$start_date <- dep_temp$Session.Start.Date
 dep_bu$end_date <- dep_temp$Session.End.Date
 dep_bu$event <- NA
 dep_bu$array_name <- NA
-dep_bu$bait_type <- "No" # Note that if bait was ussed but it was not consisten across all deployments, this is where you enter it. 
+dep_bu$bait_type <- "No" # Note that if bait was ussed but it was not consistent across all deployments, this is where you enter it. 
     # Logic may be needed to figure out which deployments had bait and which didn't. Similar thing if bait type was vaired in deployments.
     # Options: Yes, some, No.  We may need a way to assign this if answer = "some".
 dep_bu$bait_description <- NA

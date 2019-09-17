@@ -22,7 +22,9 @@ ct_data <- read.csv("data/South Chilcotins Wildlife Suvey.csv")
 # Load in your clean taxonomy. Clean taxononmy is created using the WI_Taxonomy.R file. 
 your_taxa <- read.csv("WWF cleaned taxonomy - wwf_tax.csv",colClasses = "character",strip.white = TRUE,na.strings="")
 ct_data_taxa <- left_join(ct_data,your_taxa,by="Species")
-
+# Custom for this dataset
+ct_data_taxa$wi_common_name[which(is.na(ct_data_taxa$wi_common_name))] <- "Blank"
+ct_data_taxa$wi_taxon_id[which(is.na(ct_data_taxa$wi_taxon_id))] <- "f1856211-cfb7-4a5b-9158-c0f72fd09ee6"
 
 ######
 # Project Batch Upload Template: Load in the project batch upload template and fill it out.
@@ -39,8 +41,8 @@ prj_bu$project_sensor_layout <- "Systematic" # Options:Systematic, Randomized, C
 prj_bu$project_sensor_layout_targeted_type <-  NA
 prj_bu$project_bait_use <- "No"  #Was bait used? Options: Yes,Some,No
 prj_bu$project_bait_type <- NA
-prj_bu$projection_stratification <- "No" #Options: Yes, No
-prj_bu$projection_stratification_type <- NA
+prj_bu$project_stratification <- "No" #Options: Yes, No
+prj_bu$project_stratification_type <- NA
 prj_bu$project_sensor_method <- "Sensor detection"
 prj_bu$project_individual_animals <- "No" #Options: Yes, No
 prj_bu$project_blank_images <- "Yes" # Were blanks removed? Options: Yes, No
@@ -92,18 +94,18 @@ dep_bu$start_date <- dep_temp$Session.Start.Date
 dep_bu$end_date <- dep_temp$Session.End.Date
 dep_bu$event <- NA
 dep_bu$array_name <- NA
-dep_bu$bait_type <- "No" # Note that if bait was ussed but it was not consistent across all deployments, this is where you enter it. 
-    # Logic may be needed to figure out which deployments had bait and which didn't. Similar thing if bait type was vaired in deployments.
+dep_bu$bait_type <- "None" # Note that if bait was ussed but it was not consistent across all deployments, this is where you enter it. 
+    # Logic may be needed to figure out which deployments had bait and which didn't. Similar thing if "bait type" was vaired in deployments.
     # Options: Yes, some, No.  We may need a way to assign this if answer = "some".
 dep_bu$bait_description <- NA
-dep_bu$feature_type <- NA
+dep_bu$feature_type <- "None" # Road paved, Road dirt, Trail hiking, Trail game, Road underpass, Road overpass, Road bridge, Culvert, Burrow, Nest site, Carcass, Water source, Fruiting tree, Other 
 dep_bu$feature_type_methodology <- NA
 dep_bu$camera_id <- dep_temp$Camera.ID
 dep_bu$quiet_period  <- NA
-dep_bu$camera_functioning  <- NA
-dep_bu$sensor_height  <- NA
+dep_bu$camera_functioning  <- "Camera Functioning"  # Required: Camera Functioning,Unknown Failure,Vandalism,Theft,Memory Card,Film Failure,Camera Hardware Failure,Wildlife Damage
+dep_bu$sensor_height  <- "None"
 dep_bu$height_other  <- NA
-dep_bu$sensor_orientation  <- NA
+dep_bu$sensor_orientation  <- "Parallel"
 dep_bu$orientation_other  <- NA
 dep_bu$recorded_by <- NA
 
@@ -119,8 +121,6 @@ ct_data_taxa$wi_path <- paste("gs://cameratraprepo-vcm/wwf-bc1",ct_data_taxa$Rel
 # If all images were identified by one person, set this here. Otherwise comment this out.
 image_identified_by <- " Robin Naidoo"
   
-
-
 # 3. Load in the Image batch upload template
 image_bu <- wi_batch_function("Image",nrow(ct_data_taxa))
 
@@ -130,13 +130,14 @@ image_bu$project_id<- prj_bu$project_id
 image_bu$deployment_id <- ct_data_taxa$deployments
 image_bu$image_id <- ct_data_taxa$Media.Filename
 image_bu$location <- ct_data_taxa$wi_path  # Modify this to let user sub in new path.
-image_bu$is_blank[which(ct_data_taxa$wi_common_name== "Blank")] <-1 # Expand as needed as we look at more datasets from Camelot.
+image_bu$is_blank[which(ct_data_taxa$wi_common_name== "Blank")] <- "Yes" # Set Blanks to Yes, 
+image_bu$is_blank[which(ct_data_taxa$wi_common_name != "Blank")] <- "No"
 image_bu$identified_by <- image_identified_by
 # Build out more taxonomic information as needed here ASAP. Will be done the week of September 9
 image_bu$wi_taxon_id <- ct_data_taxa$wi_taxon_id
 image_bu$class <- ct_data_taxa$wi_class
 image_bu$order <- ct_data_taxa$wi_order
-iamge_bu$family <- ct_data_taxa$wi_family
+image_bu$family <- ct_data_taxa$wi_family
 image_bu$genus <- ct_data_taxa$wi_genus
 image_bu$species <- ct_data_taxa$wi_species
 image_bu$common_name <- ct_data_taxa$wi_common_name
@@ -152,7 +153,8 @@ image_bu$color <- ct_data_taxa$Colour
 
 # Get a clean site name first - no whitespaces
 site_name_clean <- gsub(" ","_",prj_bu$project_name)
-
+# Creater the directory
+dir.create(path = site_name_clean)
 # Change any NAs to emptyp values
 prj_bu <- prj_bu %>% replace(., is.na(.), "")
 cam_bu <- cam_bu %>% replace(., is.na(.), "")
@@ -161,10 +163,10 @@ image_bu <- image_bu %>% replace(., is.na(.), "")
 
 # Write out the 4 csv files for required for Batch Upload
 
-write.csv(prj_bu,file=paste(site_name_clean,"_project.csv",sep=""), row.names = FALSE)
-write.csv(cam_bu,file=paste(site_name_clean,"_camera.csv",sep=""),row.names = FALSE)
-write.csv(dep_bu,file=paste(site_name_clean,"_deployment.csv",sep=""),row.names = FALSE)
-write.csv(image_bu,file=paste(site_name_clean,"_image.csv",sep=""),row.names = FALSE)
+write.csv(prj_bu,file=paste(site_name_clean,"/","projects.csv",sep=""), row.names = FALSE)
+write.csv(cam_bu,file=paste(site_name_clean,"/","cameras.csv",sep=""),row.names = FALSE)
+write.csv(dep_bu,file=paste(site_name_clean,"/","deployments.csv",sep=""),row.names = FALSE)
+write.csv(image_bu,file=paste(site_name_clean,"/","images.csv",sep=""),row.names = FALSE)
 
 ###########
 # Misc things we are considering.

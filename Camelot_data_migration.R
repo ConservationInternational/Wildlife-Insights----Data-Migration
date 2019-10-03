@@ -103,7 +103,7 @@ dep_bu$feature_type_methodology <- NA
 dep_bu$camera_id <- dep_temp$Camera.ID
 dep_bu$quiet_period  <- NA
 dep_bu$camera_functioning  <- "Camera Functioning"  # Required: Camera Functioning,Unknown Failure,Vandalism,Theft,Memory Card,Film Failure,Camera Hardware Failure,Wildlife Damage
-dep_bu$sensor_height  <- "None"
+dep_bu$sensor_height  <- "Unknown"
 dep_bu$height_other  <- NA
 dep_bu$sensor_orientation  <- "Parallel"
 dep_bu$orientation_other  <- NA

@@ -16,7 +16,8 @@ wi_batch_function <- function(wi_batch_type,df_length) {
     project_batch <- wi_batch %>% gs_read_csv(ws="Projectv1.0")
     prj_df_colnames <- project_batch$`Validator Name`
     prj_df_colnames <- gsub(" ","_",prj_df_colnames)
-    prj_dff <- data.frame(matrix(ncol = length(prj_df_colnames),nrow=1))
+    prj_df_length <- df_length
+    prj_dff <- data.frame(matrix(ncol = length(prj_df_colnames),nrow=df_length))
     colnames(prj_dff) <- prj_df_colnames 
     return(prj_dff) # Return prj_dff as data frame
   } else if (wi_batch_type == "Camera") {

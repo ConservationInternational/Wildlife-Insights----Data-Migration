@@ -5,16 +5,17 @@
 # into Wildlife Insights must map into the WIGT. Without doing this there will be no practival way 
 # to perform analytics across WI projects and initiatives. If you have questions on your taxonomy,
 # how to map them into the WIGT, questions on this script or anything else please email info@wildlifeinsights.org.
-#
+# We only have #1 working below but will be building this out more soon.
+
 # Things that this script can do:
 # 1. WIGT: Import and share the Wildlife Insights Global Taxonomy
-# 2. Your Taxomonic Data: Analyze your taxonomic data to look for simple mistakes that frequently happen with
+# 2. Coming Soon: Your Taxomonic Data: Analyze your taxonomic data to look for simple mistakes that frequently happen with
 #    scientific and common names.
-# 3. Identify differeces between your scientific taxonomy and the WIGT.
-# 4. For consideration - Common names - If you used common names to identify animals, use this tool to find the correct scientific names.
-# 4. For consideration - Consider building a way for the data provider to load their entire datasets and then do global find
+# 3. Coming Soon: Identify differeces between your scientific taxonomy and the WIGT.
+# 4. For consideration: Common names - If you used common names to identify animals, use this tool to find the correct scientific names.
+# 5. For consideration: Consider building a way for the data provider to load their entire datasets and then do global find
 #    and replaces from their taxonomy to WIGT.
-# 5. For consideration - Use rredlist.R project to provide synonnyms to data providers. 
+# 6. For consideration: Use redlist.R project to provide synonnyms to data providers. 
 
 ########################
 # Clear your R environmnet
@@ -34,7 +35,7 @@ wi_taxa_data <- wi_taxa_data %>% replace(., is.na(.), "")
 # Check out the data
 View(wi_taxa_data)
 # Write a.csv file if you want to look at it in Excel or a text editor. 
-#write.csv(wi_taxa_data,"WI_Global_Taxonomy.csv",row.names = FALSE)
+write.csv(wi_taxa_data,"WI_Global_Taxonomy.csv",row.names = FALSE)
 
 
 ########################
@@ -45,7 +46,7 @@ View(wi_taxa_data)
 # Load a file that has all the names you have used to identify animals in your images or video
 #your_taxa <- read.csv("../team_data_migration/team_taxa_match_output.csv",colClasses = "character",strip.white = TRUE,na.strings="") # Replace with the path to your file and your data file name.
 #your_taxa <- read.csv("wcs_taxonomy_map_20190911.csv",colClasses = "character",strip.white = TRUE,na.strings="")
-your_taxa <- read.csv("WWF cleaned taxonomy - wwf_tax.csv",colClasses = "character",strip.white = TRUE,na.strings="")
+#your_taxa <- read.csv("WWF cleaned taxonomy - wwf_tax.csv",colClasses = "character",strip.white = TRUE,na.strings="")
 
 # To Do: Add in some search tools to look for spelling mistakes
 
@@ -54,32 +55,32 @@ your_taxa <- read.csv("WWF cleaned taxonomy - wwf_tax.csv",colClasses = "charact
 # your_taxa must have at least  two columns for Genus and Species. If they are in one column then you can split them apart into two columns. Most datasets have taxonomy for higher taxons (ex. Birds equals Class{Aves}). 
 # Some datasets may also have names for things that are not animals (ex. car). Wildlife Insights uses 6 attributes (columns in a datafile) to describe anything that can be observed
 # in an image. These are: class, order, family, genus, species, common_name.  Together these make up the compound primary key (i.e. they make them unique) in the WI database. 
-your_taxa$class <- your_taxa$wi_class
-your_taxa$order <- your_taxa$wi_order
-your_taxa$family <- your_taxa$wi_family
-your_taxa$genus<- your_taxa$wi_genus
-your_taxa$species <- your_taxa$wi_species
-your_taxa$commonNameEnglish <- your_taxa$wi_common_name
-your_taxa$uniqueIdentifier <- your_taxa$wi_taxon_id
+#your_taxa$class <- your_taxa$wi_class
+#your_taxa$order <- your_taxa$wi_order
+#your_taxa$family <- your_taxa$wi_family
+#your_taxa$genus<- your_taxa$wi_genus
+#your_taxa$species <- your_taxa$wi_species
+#your_taxa$commonNameEnglish <- your_taxa$wi_common_name
+#your_taxa$uniqueIdentifier <- your_taxa$wi_taxon_id
 
 # Clean NAs
-your_taxa <- your_taxa %>% replace(., is.na(.), "")
+#your_taxa <- your_taxa %>% replace(., is.na(.), "")
 # Double check to make sure this is a unique list or if not, make it a unique list of taxonomic names. 
 # The columns names must also match between your dataset and the WIGT dataset. 
-your_unique_taxa <- distinct(your_taxa,class,order,family,genus,species,commonNameEnglish,uniqueIdentifier) 
-your_unique_taxa$taxon <- paste(your_unique_taxa$class,your_unique_taxa$order,your_unique_taxa$family,your_unique_taxa$genus,your_unique_taxa$species,your_unique_taxa$commonNameEnglish,your_unique_taxa$uniqueIdentifier,sep="-")
+#your_unique_taxa <- distinct(your_taxa,class,order,family,genus,species,commonNameEnglish,uniqueIdentifier) 
+#your_unique_taxa$taxon <- paste(your_unique_taxa$class,your_unique_taxa$order,your_unique_taxa$family,your_unique_taxa$genus,your_unique_taxa$species,your_unique_taxa$commonNameEnglish,your_unique_taxa$uniqueIdentifier,sep="-")
 # Make a unique key for easy comparison
-wi_taxa_data$taxon <- paste(wi_taxa_data$class,wi_taxa_data$order,wi_taxa_data$family,wi_taxa_data$genus,wi_taxa_data$species,wi_taxa_data$commonNameEnglish,wi_taxa_data$uniqueIdentifier,sep="-")
-wi_taxa_data_new <- select(wi_taxa_data,class,order,family,genus,species,commonNameEnglish,uniqueIdentifier,taxon)
+#wi_taxa_data$taxon <- paste(wi_taxa_data$class,wi_taxa_data$order,wi_taxa_data$family,wi_taxa_data$genus,wi_taxa_data$species,wi_taxa_data$commonNameEnglish,wi_taxa_data$uniqueIdentifier,sep="-")
+#wi_taxa_data_new <- select(wi_taxa_data,class,order,family,genus,species,commonNameEnglish,uniqueIdentifier,taxon)
 # Find records that don't match teh WI Taxonomy
-not_matching <- setdiff(your_unique_taxa,wi_taxa_data_new,by="taxon")
+#not_matching <- setdiff(your_unique_taxa,wi_taxa_data_new,by="taxon")
 
-if (nrow(not_matching) == 0) {
-  "Taxonomy looks great and maps into the Wildlife Insights Taxonomy"
-  write.csv(your_unique_taxa,file="final_taxonomy.csv",row.names = FALSE)
-} else {
-  paste("There are ",nrow(not_matching),"species that need to be mapped into the WI taxonomy")
-}
+#if (nrow(not_matching) == 0) {
+#  "Taxonomy looks great and maps into the Wildlife Insights Taxonomy"
+#  write.csv(your_unique_taxa,file="final_taxonomy.csv",row.names = FALSE)
+#} else {
+#  paste("There are ",nrow(not_matching),"species that need to be mapped into the WI taxonomy")
+#}
 
 
 #clean_taxonmy <- select(your_unique_taxa$class

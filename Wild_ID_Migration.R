@@ -1,9 +1,20 @@
-# Load Wild.ID export to excel option
+# Wild.ID Migration Script
+# Eric Fegraus. October 2019
+# Purpose: The goal of this script is to load the Wild.ID export and convert it 
+# into the Batch Upload Templates needed to ingest into Wildlife Insights.
 # Note that within Wild.ID there are several options for exporting metadata.
 # Selecting the .csv or .xls option in Export-->Export Data and Image --> CSV Format 
 # or Export --> Export Data and Image --> Excel Format will result in a different file structure. 
 # The format expected here comes from selecting Export --> Export Data and Image --> Wildlife Insights Format
-# In the project below data there were two expors
+# This code uses a real dataset collected in Peru. You will need to slightly modify
+# this code to meet the needs and objectives of your camera trapping project.
+# Key Steps:
+# 1. Read in your data
+# 2. Starting filling out the Batch Upload Template dataframes
+# 3. Do the taxonomic mapping between your data and Wildlife Insights.  See the
+#      wi_taxonomy.R code to download a dataframe of all WI taxonomy and the unique identifiers.
+# 4. Validate your batch upload files by contacty info@wildlifeinsights.org.
+
 rm(list = ls())
 # Load libraries
 library(dplyr)
@@ -24,7 +35,8 @@ deployments_2 <- read_excel("WI_raw_exports/CafeFaunaAMPeru_Wild_ID_ALM2_Wild_ID
 cameras_2 <- read_excel("WI_raw_exports/CafeFaunaAMPeru_Wild_ID_ALM2_Wild_ID_ALM2.xlsx",sheet="Cameras")
 projects_2 <- read_excel("WI_raw_exports/CafeFaunaAMPeru_Wild_ID_ALM2_Wild_ID_ALM2.xlsx",sheet="Project")
 
-# Merge these exports together because they are one project.  
+# Merge these exports together because they are one project. Many camera trapping
+# projects may be just one project in Wild.iD
 projects_1 <- projects_1[1,]
 projects <- projects_1
 images <- rbind(images_1,images_2)

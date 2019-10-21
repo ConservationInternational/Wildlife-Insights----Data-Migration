@@ -40,6 +40,7 @@ deployments$new_end <- ymd(deployments$`Camera Deployment End Date`)
 
 ######
 # Project Batch Upload Template: Load in the project batch upload template and fill it out.
+dep_length <-1
 prj_bu <- wi_batch_function("Project",dep_length)
 
 # Many of the project variables may not be found in your dataset. If you can get them from your
@@ -102,7 +103,7 @@ dep_bu$project_id <- unique(prj_bu$project_id) # If more than one error for now
 dep_bu$deployment_id <- dep_temp$`Deployment ID`
 dep_bu$placename <- dep_temp$`Depolyment Location ID`
 dep_bu$longitude <- dep_temp$`Longitude Resolution`
-dep_bu$latitude <- dep_temp$`Longitude Resolution`
+dep_bu$latitude <- dep_temp$`Latitude Resolution`
 dep_bu$start_date <- dep_temp$new_begin
 dep_bu$end_date <- dep_temp$new_end
 dep_bu$event <- dep_temp$`Event Name`
@@ -141,7 +142,13 @@ images$join_taxa <- images$`Genus Species`
 images$join_taxa[which(is.na(images$join_taxa))] <- images$`Photo Type`[which(is.na(images$join_taxa))]
 # Join the WI taxonomy back into the images dataframe.
 images_taxa <- left_join(images,your_taxa,by="join_taxa")
+# Check the taxa
+check <- distinct(images_taxa,class,order,family,genus,species,commonNameEnglish,uniqueIdentifier)
+no_wi <- filter(images_taxa, is.na(uniqueIdentifier))
+# Pulling out records that don't have unique identifier (this is a result of a photo.Type is NA)
+# Create a check. If Photo.Type is.na there is an error with these or they have not bee identified.
 
+images_taxa <- filter(images_taxa, !is.na(uniqueIdentifier))
 # 2. Image file path adjustments
 # Change the file path names for your images. Supply what your original path (original_path) with a replacement string (sub_path)
 # Once your images are in GCP they will have an address like:
@@ -154,7 +161,7 @@ images_taxa$wi_path <- paste("gs://cameratraprepo-vcm/CafeFaunaAMPeru/Wild_ID_",
 #image_identified_by <- Someone's name"
 
 # 3. Load in the Image batch upload template
-image_bu <- wi_batch_function("Image",nrow(images))
+image_bu <- wi_batch_function("Image",nrow(images_taxa))
 
 ######
 # Image .csv template
@@ -171,7 +178,7 @@ image_bu$family <- images_taxa$family
 image_bu$genus <- images_taxa$genus
 image_bu$species <- images_taxa$species
 image_bu$common_name <- images_taxa$commonNameEnglish
-image_bu$uncertainty <- images$Uncertainty
+image_bu$uncertainty <- images_taxa$Uncertainty
 image_bu$timestamp <- images_taxa$`Date_Time Captured`
 image_bu$age <- images_taxa$Age
 image_bu$sex <- images_taxa$Sex

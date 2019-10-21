@@ -1,0 +1,71 @@
+original_gs,Your_genus,Your_species,Your_nonspecies,class,order,family,genus,species,commonNameEnglish,uniqueIdentifier
+,,,Blank,,,,,,Blank,f1856211-cfb7-4a5b-9158-c0f72fd09ee6
+,,,Setup/Pickup,,,,,,Setup_Pickup,c47b0c62-3d30-493f-8196-d362cf119cbf
+,,,Unidentifiable,Unknown,Unknown,Unknown,Unknown,Unknown,Unknown species,1f689929-883d-4dae-958c-3d57ab5b6c16
+,,,Unknown,Unknown,Unknown,Unknown,Unknown,Unknown,Unknown species,1f689929-883d-4dae-958c-3d57ab5b6c16
+,,,End,,,,,,Setup_Pickup,c47b0c62-3d30-493f-8196-d362cf119cbf
+,,,Start,,,,,,Setup_Pickup,c47b0c62-3d30-493f-8196-d362cf119cbf
+,,,Misfired,,,,,,Misfire,9999ab1f-bea0-436c-8f52-1d45c7063ff7
+Cuniculus paca,Cuniculus,paca,,Mammalia,Rodentia,Cuniculidae,Cuniculus,paca,Spotted Paca,32c0147f-1967-4644-b107-8133ae1f020a
+Nasua nasua,Nasua,nasua,,Mammalia,Carnivora,Procyonidae,Nasua,nasua,South American Coati,1d3bbcaa-f81a-41d9-8904-5cc8a505af32
+Dasyprocta fuliginosa,Dasyprocta,fuliginosa,,Mammalia,Rodentia,Dasyproctidae,Dasyprocta,fuliginosa,Black Agouti,d62cd43d-a519-4cd5-aef2-b76ae4bd16c1
+Homo sapiens,Homo,sapiens,,Mammalia,Primates,Hominidae,Homo,sapiens,Human,990ae9dd-7a59-4344-afcb-1b7b21368000
+Homo sapiens - Unknown,Homo,sapiens,,Mammalia,Primates,Hominidae,Homo,sapiens,Human-Camera Trapper,066c4187-4a03-4531-9f62-ac585ad0a138
+Homo sapiens - Researcher,Homo,sapiens,,Mammalia,Primates,Hominidae,Homo,sapiens,Human-Researcher,e6f88ed1-c305-4e94-b53d-8eec1b1d980a
+Homo sapiens - Resident,Homo,sapiens,,Mammalia,Primates,Hominidae,Homo,sapiens,Human-Resident,128d0fac-f96d-4a98-af18-2903dbbe1568
+Sciurus igniventris,Sciurus,igniventris,,Mammalia,Rodentia,Sciuridae,Sciurus,igniventris,Northern Amazon Red Squirrel,46bbb254-6a97-40f0-b07b-d229b211e6db
+Cebus albifrons,Cebus,albifrons,,Mammalia,Primates,Cebidae,Cebus,albifrons,Humboldt's White-fronted Capuchin,2cc1ffd0-cf54-45ec-b99a-65c121c6760e
+Didelphis marsupialis,Didelphis,marsupialis,,Mammalia,Didelphimorphia,Didelphidae,Didelphis,marsupialis,Common Opossum,4ac36fff-912b-467a-8dab-95ee49d26787
+Taraba major,Taraba,major,,Aves,Passeriformes,Thamnophilidae,Taraba,major,Great Antshrike,05a9817a-60ad-460f-8448-018a38090858
+Canis lupus familiaris,Canis,lupus,,Mammalia,Carnivora,Canidae,Canis,lupus,Grey Wolf,ee8d5a89-f82e-4323-80e2-0ffc9487ebaf
+Leopardus wiedii,Leopardus,wiedii,,Mammalia,Carnivora,Felidae,Leopardus,wiedii,Margay,442208b3-d712-412e-bfd3-430688698aa0
+Leopardus pardalis,Leopardus,pardalis,,Mammalia,Carnivora,Felidae,Leopardus,pardalis,Ocelot,22976d14-d424-4f18-a67a-d8e1689cefcc
+Odontophorus speciosus,Odontophorus,speciosus,,Aves,Galliformes,Odontophoridae,Odontophorus,speciosus,Rufous-breasted Wood-quail,a7ac236e-bf9c-4582-ac0e-01dcbd244240
+Sciurus spadiceus,Sciurus,spadiceus,,Mammalia,Rodentia,Sciuridae,Sciurus,spadiceus,Southern Amazon Red Squirrel,e89c255c-dcc9-4459-be88-b6e9128503e4
+Dasypus novemcinctus,Dasypus,novemcinctus,,Mammalia,Cingulata,Dasypodidae,Dasypus,novemcinctus,Nine-banded Armadillo,07843615-e1fc-49d8-9821-fd1d7ff2e773
+Bos primigenius,Bos,primigenius,,Mammalia,Cetartiodactyla,Bovidae,Bos,primigenius,Aurochs,cea64201-1df2-425c-b1e3-ceb05e13aafc
+Equus africanus,Equus,africanus,,Mammalia,Perissodactyla,Equidae,Equus,africanus,African Wild Ass,bf4af16d-d079-4d7c-af7a-be9c9c7cceab
+Sylvilagus brasiliensis,Sylvilagus,brasiliensis,,Mammalia,Lagomorpha,Leporidae,Sylvilagus,brasiliensis,Tapeti,4834ffc5-1556-4ed5-8134-8f1fc5308252
+Gallus gallus,Gallus,gallus,,Aves,Galliformes,Phasianidae,Gallus,gallus,Red Junglefowl,89851bea-765b-431a-bb03-6f821931ebdc
+Sus scrofa,Sus,scrofa,,Mammalia,Cetartiodactyla,Suidae,Sus,scrofa,Wild Boar,d372cda5-a8ca-4b7b-97ed-4e4fab9c9b4b
+Numida meleagris,Numida,meleagris,,Aves,Galliformes,Numididae,Numida,meleagris,Helmeted Guineafowl,83133617-8358-4910-82ee-4c23e40ba3dc
+Felis silvestris,Felis,silvestris,,Mammalia,Carnivora,Felidae,Felis,silvestris,Wild Cat,96debe9f-7452-42c9-87ae-2e6b37f78025
+Meleagris gallopavo,Meleagris,gallopavo,,Aves,Galliformes,Phasianidae,Meleagris,gallopavo,Wild Turkey,94d8284e-6193-43b5-b80c-9029cf951675
+Aramides cajaneus,Aramides,cajaneus,,Aves,Gruiformes,Rallidae,Aramides,cajaneus,Grey-necked Wood-rail,033f2ecb-bf36-4ce1-bf3f-7efcd71fe374
+Equus ferus,Equus,ferus,,Mammalia,Perissodactyla,Equidae,Equus,ferus,Przewalski's Horse,19fd235e-d808-4e22-bfae-42491045b763
+Leopardus tigrinus,Leopardus,tigrinus,,Mammalia,Carnivora,Felidae,Leopardus,tigrinus,Northern Tiger Cat,c5ae795b-300f-4cc7-99f7-e2c2d2810a87
+Leopardus colocolo,Leopardus,colocolo,,Mammalia,Carnivora,Felidae,Leopardus,colocolo,Pampas Cat,d72cc2b1-90a7-4585-98d7-772312176e5c
+Ortalis guttata,Ortalis,guttata,,Aves,Galliformes,Cracidae,Ortalis,guttata,Speckled Chachalaca,1d142c89-bc4e-4314-a638-18bbdfb51359
+Zonotrichia capensis,Zonotrichia,capensis,,Aves,Passeriformes,Passerellidae,Zonotrichia,capensis,Rufous-collared Sparrow,27f96ebc-1fff-40e3-8bc8-af1715325695
+Catharus ustulatus,Catharus,ustulatus,,Aves,Passeriformes,Turdidae,Catharus,ustulatus,Russet-backed Thrush,6acc4360-3b6c-4b7e-9d77-3c266e17255b
+Eira barbara,Eira,barbara,,Mammalia,Carnivora,Mustelidae,Eira,barbara,Tayra,6d0d096e-79b8-4fbe-90e1-044e41e24c2c
+Cacicus cela,Cacicus,cela,,Aves,Passeriformes,Icteridae,Cacicus,cela,Yellow-rumped Cacique,572b9efb-5e2b-4703-93ce-57b29793bd7b
+Cyanocorax yncas,Cyanocorax,yncas,,Aves,Passeriformes,Corvidae,Cyanocorax,yncas,Green Jay,d668b142-a012-4c44-b837-7b4e92a89119
+Cabassous unicinctus,Cabassous,unicinctus,,Mammalia,Cingulata,Chlamyphoridae,Cabassous,unicinctus,Southern Naked-Tailed Armadillo,1ccdb5c3-88b4-498a-b8c8-0ff9fc5484c6
+Procyon cancrivorus,Procyon,cancrivorus,,Mammalia,Carnivora,Procyonidae,Procyon,cancrivorus,Crab-eating Raccoon,c56031a6-f8ce-4929-b6eb-b5253d4e1cdc
+Colaptes punctigula,Colaptes,punctigula,,Aves,Piciformes,Picidae,Colaptes,punctigula,Spot-breasted Woodpecker,91a5507d-70a4-404a-8d28-841998762547
+Nasua narica,Nasua,narica,,Mammalia,Carnivora,Procyonidae,Nasua,narica,White-nosed Coati,1df7d5e4-16ac-4533-81f7-b2e6c8a0ff00
+Leptotila unknown,Leptotila,unknown,,Aves,Columbiformes,Columbidae,Leptotila,,Leptotila Species,c9a63279-494a-4c82-9cc7-e500ed7a96c9
+Marmosops unknown,Marmosops,unknown,,Mammalia,Didelphimorphia,Didelphidae,Marmosops,,Marmosops Species,9e91158b-2f70-4f3f-8bbb-962d5b5fcf4d
+Microsciurus unknown,Microsciurus,unknown,,Mammalia,Rodentia,Sciuridae,Microsciurus,,Microsciurus Species,bc402390-cad2-4bd9-93b1-a3a7aef7adb4
+Cebus unknown,Cebus,unknown,,Mammalia,Primates,Cebidae,Cebus,,Cebus Species,c36a1356-00ec-4b63-b0ab-555543ad6c14
+Sylvilagus unknown,Sylvilagus,unknown,,Mammalia,Lagomorpha,Leporidae,Sylvilagus,,Sylvilagus Species,cacc63d7-b949-4731-abce-a403ba76ee34
+Sciurus unknown,Sciurus,unknown,,Mammalia,Rodentia,Sciuridae,Sciurus,,Sciurus Species,88a54afe-71de-4833-b420-86630f9dfd86
+Leopardus unknown,Leopardus,unknown,,Mammalia,Carnivora,Felidae,Leopardus,,Leopardus Species,05afbf7e-f878-4534-b08f-c97a02435474
+Aramides unknown,Aramides,unknown,,Aves,Gruiformes,Rallidae,Aramides,,Aramides Species,bd53c080-cdd8-4fb9-b5f3-fe921fa44dd5
+Didelphis unknown,Didelphis,unknown,,Mammalia,Didelphimorphia,Didelphidae,Didelphis,,Didelphis Species,b59e826f-4cdc-4173-a278-8381cac17d78
+Metachirus unknown,Metachirus,unknown,,Mammalia,Didelphimorphia,Didelphidae,Metachirus,,Metachirus Species,acc23bfa-c1f0-4d88-85e7-66527b927416
+Caluromys unknown,Caluromys,unknown,,Mammalia,Didelphimorphia,Didelphidae,Caluromys,,Caluromys Species,bab83cdb-9bcc-4364-9bd1-c9e21b654a42
+Equus unknown,Equus,unknown,,Mammalia,Perissodactyla,Equidae,Equus,,Equus Species,9d29c3e7-3233-4e2d-9926-ae21c8675c52
+Crotophaga unknown,Crotophaga,unknown,,Aves,Cuculiformes,Cuculidae,Crotophaga,,Crotophaga Species,2c3c21a0-ac78-4bbe-9ce2-b10cc314ab2e
+Philander unknown,Philander,unknown,,Mammalia,Didelphimorphia,Didelphidae,Philander,,Philander Species,b72e9e54-9d97-4267-a501-77484125496d
+Cebus apella,Cebus,apella,,Mammalia,Primates,Cebidae,Sapajus,apella,Margarita Island Capuchin,03c512a1-bfb6-4c47-8e1a-ace60d268b11
+Accipiter unknown,Accipiter,unknown,,Aves,Accipitriformes,Accipitridae,Accipiter,,Accipiter Species,f68f5d10-aaab-49b2-a774-6b7b5028cc17
+Puma yagouaroundi,Puma,yagouaroundi,,Mammalia,Carnivora,Felidae,Herpailurus,yagouaroundi,Jaguarundi,5bf1ea7e-141a-4cc2-92ac-5e20bf64b408
+Dasypus unknown,Dasypus,unknown,,Mammalia,Cingulata,Dasypodidae,Dasypus,,Dasypus Species,85872b21-8d35-4301-b76b-98e6383e7c87
+Crypturellus unknown,Crypturellus,unknown,,Aves,Struthioniformes,Tinamidae,Crypturellus,,Crypturellus Species,9dc6ae04-c92b-492f-a74c-429b9af45624
+Mormoops unknown,Mormoops,unknown,,Mammalia,Chiroptera,Mormoopidae,Mormoops,,Mormoops Species,d3898f71-8346-4480-a966-00b425ad2a70
+Conepatus unknown,Conepatus,unknown,,Mammalia,Carnivora,Mephitidae,Conepatus,,Conepatus Species,5ac2e012-b5e8-4ea9-ae54-7864ff65fb1c
+Ortalis unknown,Ortalis,unknown,,Aves,Galliformes,Cracidae,Ortalis,,Ortalis Species,eee30005-e818-479d-95a1-7d98d7bc12d0
+Picumnus unknown,Picumnus,unknown,,Aves,Piciformes,Picidae,Picumnus,,Picumnus Species,56503334-9637-4cb0-bc1d-90cd09e7f3ab
+Catharus unknown,Catharus,unknown,,Aves,Passeriformes,Turdidae,Catharus,,Catharus Species,7d8c9183-cabc-459b-8a6c-efec2ad7ca32

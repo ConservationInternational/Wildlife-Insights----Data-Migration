@@ -6,7 +6,7 @@ Use the R script WI_Taxonomy.R to download the most current version of the WI Ta
 
 **Birds** - We use [Birdlife International's taxonomy](http://datazone.birdlife.org/species/search).
 
-**Everything else** - We also have names for other taxa (reptiles,insects, etc). domestic species, non-animals (car, motorcycle,etc) and have various classes to describe types of humans (park ranger, tourist, etc). 
+**Everything else** - We also have names for other taxa (reptiles,insects, etc), domestic species, non-animals (car, motorcycle,etc) and have various classes to describe types of humans (park ranger, tourist, etc). 
 
 
 The WI taxonomy will continue to grow and evolve over time. If you have questions about the taxonomy please email us at info@wildlifeinsights.org.

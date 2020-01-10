@@ -4,6 +4,6 @@
 .Rhistory
 .RData
 .Ruserdata
-data/*
+/data/*
 /WI_Global_Taxonomy/WI_Global_Taxonomy.csv
 #!*data/README.md

@@ -1,0 +1,75 @@
+,Unnamed: 0,Class,Family,Genus,Species.ID,Species,Order,Species.1,wi_class,wi_order,wi_family,wi_genus,wi_species,wi_common_name,wi_taxon_id
+0,1,,,Mountain,10,Mountain  biker,,biker,,,,,,Bicycle,c491e45f-4440-4bac-8013-7037262df4ea
+1,2,,,Ursus,3,Ursus americanus,,americanus,Mammalia,Carnivora,Ursidae,Ursus,americanus,American Black Bear,436ddfdd-bc43-44c3-a25d-34671d3430a0
+2,3,,,Odocoileus,2,Odocoileus hemionus,,hemionus,Mammalia,Cetartiodactyla,Cervidae,Odocoileus,hemionus,Mule Deer,febff896-db40-4ac8-bcfe-5bb99a600950
+3,4,,,Equus,132,Equus caballus,,caballus,Mammalia,Perissodactyla,Equidae,Equus,caballus,Domestic Horse,5109acb4-e503-4147-a175-a3c6aa71f1e3
+4,5,,,Car,30,Car truck,,truck,,,,,,Truck,5b56ce2c-8534-40af-9af3-3b226152eb03
+5,6,,,Horseback,133,Horseback rider,,rider,Mammalia,Primates,Hominidae,Homo,sapiens,Human,990ae9dd-7a59-4344-afcb-1b7b21368000
+6,7,,,Lepus,1,Lepus  americanus,,americanus,Mammalia,Lagomorpha,Leporidae,Lepus,americanus,Snowshoe Hare,0f2e2c41-f1bb-4cdd-8e97-ba7cffba3e86
+7,8,,,Canis,9,Canis lupus,,lupus,Mammalia,Carnivora,Canidae,Canis,lupus,Grey Wolf,ee8d5a89-f82e-4323-80e2-0ffc9487ebaf
+8,9,,,Tamiascirus,13,Tamiascirus douglasii,,douglasii,Mammalia,Rodentia,Sciuridae,Tamiasciurus,douglasii,Douglas's Squirrel,f67c4346-bbbd-43d5-9b19-b541d493019b
+9,10,,,Quad,7,Quad side_by_side,,side_by_side,,,,,,ATV,6d2cb769-0553-450e-88a9-e95647dbac18
+10,11,,,Hiker,12,Hiker hiker,,hiker,Mammalia,Primates,Hominidae,Homo,sapiens,Human-Pedestrian,0de272bf-5eab-4198-a888-3a6e92f1460d
+11,12,,,Bos,137,Bos taurus,,taurus,Mammalia,Artiodactyla,Bovidae,Bos,taurus,Domestic Cattle,aca65aaa-8c6d-4b69-94de-842b08b13bd6
+12,13,,,Alces,6,Alces alces,,alces,Mammalia,Cetartiodactyla,Cervidae,Alces,alces,Moose,429257d4-3ef2-47fb-b849-66ee6c107346
+13,14,,,Colaptes,32,Colaptes auratus,,,Aves,Piciformes,Picidae,Colaptes,auratus,Yellow-shafted Flicker,02799ea2-fba0-4883-b27e-b41ae387e884
+14,15,,,Canis,20,Canis familiaris,,familiaris,Mammalia,Carnivora,Canidae,Canis,lupus familiaris,Domestic Dog,3d80f1d6-b1df-4966-9ff4-94053c7a902a
+15,16,,,Junco,139,Junco hyemalis,,hyemalis,Aves,Passeriformes,Passerellidae,Junco,hyemalis,Dark-eyed Junco,6395f8b8-1dd6-4887-9a57-b39923588d0e
+16,17,,,Canis,4,Canis latrans,,latrans,Mammalia,Carnivora,Canidae,Canis,latrans,Coyote,aaf3b049-36e6-46dd-9a07-8a580e9618b7
+17,18,,,Zonotrichia,145,Zonotrichia leucophrys,,leucophrys,Aves,Passeriformes,Passerellidae,Zonotrichia,leucophrys,White-crowned Sparrow,fd02a22d-cff0-40e3-98f5-8a7f77382463
+18,19,,,Dendragapus,11,Dendragapus fuliginosus,,fuliginosus,Aves,Galliformes,Phasianidae,Dendragapus,fuliginosus,Sooty Grouse,f7c1f421-53c8-4ff1-a53f-981ff4509709
+19,20,,,Tamias,34,Tamias EDIT,,EDIT,Mammalia,Rodentia,Sciuridae,Tamias,,Tamias Species,8a9cc0e5-2fe9-411a-a4f3-982f56a1e68a
+20,21,,,Lynx,28,Lynx canadensis,,canadensis,Mammalia,Carnivora,Felidae,Lynx,canadensis,Canada Lynx,11eaadc0-e38e-473f-be82-b97f0c0fc571
+21,22,,,Marmota,25,Marmota caligata,,caligata,Mammalia,Rodentia,Sciuridae,Marmota,caligata,Hoary Marmot,795fc464-9666-4839-a0b8-dd652662da7d
+22,23,,,Glaucomys,140,Glaucomys  sabrinus,,sabrinus,Mammalia,Rodentia,Sciuridae,Glaucomys,sabrinus,Carolina Flying Squirrel,9cb9136f-84fc-4fca-b8da-52401e3981d9
+23,24,,,Catharus,23,Catharus guttatus,,guttatus,Aves,Passeriformes,Turdidae,Catharus,guttatus,Hermit Thrush,200b1e14-8f71-4e34-a197-e5699dd3b8d2
+24,25,,,Peromyscus,16,Peromyscus spp,,spp,Mammalia,Rodentia,Cricetidae,Peromyscus,,Peromyscus Species,25540311-3902-4d4d-b40c-c6dbb5bb2665
+25,26,,,Mustela,247,Mustela  erminea,,erminea,Mammalia,Carnivora,Mustelidae,Mustela,erminea,Stoat,696f42f4-7eb9-491c-a1fe-b1d5c78ebcba
+26,27,,,Turdus,14,Turdus migratorius,,migratorius,Aves,Passeriformes,Turdidae,Turdus,migratorius,American Robin,23140944-2bd7-46ce-819a-c26508c53d62
+27,28,,,Motor,18,Motor bike,,bike,,,,,,Motorcycle,57ba5c74-ac84-4c1b-adc4-e7802ec8dc5c
+28,29,,,Puma,5,Puma concolor,,concolor,Mammalia,Carnivora,Felidae,Puma,concolor,Puma,9c564562-9429-405c-8529-04cff7752282
+29,30,,,Falcipennis,136,Falcipennis canadensis,,canadensis,Aves,Galliformes,Phasianidae,Falcipennis,canadensis,Spruce Grouse,f4a7c936-de6e-4b67-96d5-4b6ae3a2df36
+30,31,,,Ursus,27,Ursus arctos,,arctos,Mammalia,Carnivora,Ursidae,Ursus,arctos,Brown Bear,330bb1e9-84d6-4e41-afa9-938aee17ea29
+31,32,,,Corvux,141,Corvux corax,,corax,Aves,Passeriformes,Corvidae,Corvus,corax,Common Raven,9805e578-061a-49c0-8abc-ea135381c162
+32,33,,,Ixoreus,148,Ixoreus  naevius,,naevius,Aves,Passeriformes,Turdidae,Ixoreus,naevius,Varied Thrush,f211fc1f-79c7-4f5d-b359-26f2405dfa2e
+33,34,,,Martes,29,Martes americana,,americana,Mammalia,Carnivora,Mustelidae,Martes,americana,American Marten,819ea972-9d43-40f8-a47d-f415c816de94
+34,35,,,Myadestes,134,Myadestes townsendi,,townsendi,Aves,Passeriformes,Turdidae,Myadestes,townsendi,Townsend's Solitaire,529b1f5f-a72e-4a1f-813d-39b38ec5e702
+35,36,,,Setophaga,149,Setophaga  coronata,,coronata,Aves,Passeriformes,Parulidae,Setophaga,coronata,Myrtle Warbler,c12accc9-9a76-4d13-b9e3-6357f7412bc7
+36,37,,,Unidentified,21,Unidentified vehicle,,vehicle,,,,,,Car,e2895ed5-780b-48f6-8a11-9e27cb594511
+37,38,,,Bonasa,31,Bonasa umbellus,,umbellus,Aves,Galliformes,Phasianidae,Bonasa,umbellus,Ruffed Grouse,4a54bb5f-d951-4a96-8ae1-a6ab9bdfce5b
+38,39,,,Nucifraga,22,Nucifraga columbiana,,columbiana,Aves,Passeriformes,Corvidae,Nucifraga,columbiana,Clark's Nutcracker,13ba39f3-908b-49f9-a4e3-0ecb019d8afb
+39,40,,,Lynx,15,Lynx spp,,spp,Mammalia,Carnivora,Felidae,Lynx,,Lynx Species,a21c3699-864e-432c-a2e1-cbb016d81158
+40,41,,,Perisoreus,38,Perisoreus canadensis,,canadensis,Aves,Passeriformes,Corvidae,Perisoreus,canadensis,Grey Jay,0a4869c1-f645-4e76-9b30-5a1ff0ab9adf
+41,42,,,Passerine,24,Passerine spp,,spp,Aves,Passeriformes,,,,Passeriformes Order,0b62f436-aced-4b92-ad12-4700b7185c79
+42,43,,,Pipilo,35,Pipilo maculatus,,maculatus,Aves,Passeriformes,Passerellidae,Pipilo,maculatus,Spotted Towhee,9f97ef7d-beb4-4350-b6c3-2738872173ab
+43,44,,,Unknown,37,Unknown species,,species,Unknown,Unknown,Unknown,Unknown,Unknown,Unknown species,1f689929-883d-4dae-958c-3d57ab5b6c16
+44,45,,,Cyanocitta,254,Cyanocitta stelleri,,stelleri,Aves,Passeriformes,Corvidae,Cyanocitta,stelleri,Steller's Jay,68b01aa1-dfc1-46a6-bcac-87767647ad17
+45,46,,,Picoides,354,Picoides dorsalis,,dorsalis,Aves,Piciformes,Picidae,Picoides,dorsalis,American Three-toed Woodpecker,4202aba4-832d-4709-adf7-5f6c9d3e7673
+46,47,,,Lontra,355,Lontra  canadensis,,canadensis,Mammalia,Carnivora,Mustelidae,Lontra,canadensis,North American River Otter,a70c87e9-62bc-41c2-9e36-96fed9136046
+47,48,,,Sphyrapicus,135,Sphyrapicus nuchalis,,nuchalis,Aves,Piciformes,Picidae,Sphyrapicus,nuchalis,Red-naped Sapsucker,f8fb780f-44e3-4eb3-8637-0c9409319c1f
+48,49,,,Pekania,138,Pekania pennanti,,pennanti,Mammalia,Carnivora,Mustelidae,Martes,pennanti,Fisher,ae7d1bde-3d29-41fc-a52f-5c6e087143df
+49,50,,,Passerella,150,Passerella  iliaca,,iliaca,Aves,Passeriformes,Passerellidae,Passerella,iliaca,Red Fox-sparrow,56681b45-c922-4d50-a3c7-48a85795346b
+50,51,,,Spizella,142,Spizella  passerina,,passerina,Aves,Passeriformes,Passerellidae,Spizella,passerina,Chipping Sparrow,e694a321-d807-4c57-b53a-758d6df448ac
+51,52,,,Catharus,33,Catharus ustulatus,,ustulatus,Aves,Passeriformes,Turdidae,Catharus,ustulatus,Russet-backed Thrush,6acc4360-3b6c-4b7e-9d77-3c266e17255b
+52,53,,,Lynx,19,Lynx rufus,,rufus,Mammalia,Carnivora,Felidae,Lynx,rufus,Bobcat,ba76d46e-25de-45e2-90a8-bd279b650f7c
+53,54,,,Empidonax,144,Empidonax oberholseri,,oberholseri,Aves,Passeriformes,Tyrannidae,Empidonax,oberholseri,American Dusky Flycatcher,74ad9376-b86f-4c46-be31-eae5f582c2c4
+54,55,,,Neotoma,146,Neotoma cinerea,,cinerea,Mammalia,Rodentia,Cricetidae,Neotoma,cinerea,Bushy-tailed Woodrat,b8b9d6cf-88e7-42e8-8c94-669b7ab1486a
+55,56,,,Gulo,147,Gulo gulo,,gulo,Mammalia,Carnivora,Mustelidae,Gulo,gulo,Wolverine,33aebad1-08bd-4d07-a82e-bdc55dc9e8ef
+56,57,,,Spinus,255,Spinus pinus,,pinus,Aves,Passeriformes,Fringillidae,Spinus,pinus,Pine Siskin,c1a19322-8439-4e53-8ff9-4fcc1fa60da9
+57,58,,,Eremophila,26,Eremophila alpestris,,alpestris,Aves,Passeriformes,Alaudidae,Eremophila,alpestris,Horned Lark,e8f340d7-e6f9-4c66-bf54-65621e1e83db
+58,59,,,Erethizon,252,Erethizon dorsatum,,dorsatum,Mammalia,Rodentia,Erethizontidae,Erethizon,dorsatum,North American Porcupine,b34b243f-385d-4880-93b9-0c2526d012a7
+59,60,,,Vulpes,249,Vulpes vulpes,,vulpes,Mammalia,Carnivora,Canidae,Vulpes,vulpes,Red Fox,ac0e8ba7-7261-4d17-8645-11ed3d02165a
+60,61,,,Anaxyrus,17,Anaxyrus boreas,,boreas,Amphibia,Anura,Bufonidae,Anaxyrus,boreas,Western Toad,531f71ac-dd38-4d88-beff-45e782ea7be7
+61,62,,,Weasel,36,Weasel spp,,spp,Mammalia,Carnivora,Mustelidae,Mustela,,Mustela Species,7d6dbfa0-522c-4397-a59c-4b8439cad16b
+62,63,,,Melospiza,248,Melospiza melodia,,melodia,Aves,Passeriformes,Passerellidae,Melospiza,melodia,Song Sparrow,0f0ac612-8fd4-45fd-9afb-9628f4abb41b
+63,64,,,Dryobates,253,Dryobates villosus,,villosus,Aves,Piciformes,Picidae,Leuconotopicus,villosus,Hairy Woodpecker,798797e3-280c-44f0-8ce9-b191288fae78
+64,65,,,Regulus,251,Regulus satrapa,,satrapa,Aves,Passeriformes,Regulidae,Regulus,satrapa,Golden-crowned Kinglet,95ef7346-5611-4a19-9946-9a95366d72c5
+65,66,,,Setophaga,151,Setophaga ruticilla,,ruticilla,Aves,Passeriformes,Parulidae,Setophaga,ruticilla,American Redstart,ff31e033-1f44-4772-9317-c1236e27a635
+66,67,,,Martes,8,Martes spp,,spp,Mammalia,Carnivora,Mustelidae,Martes,,Martes Species,43d7217e-9bc8-42d2-934f-dfdbbbaaf998
+67,68,,,,,,,,,,,,,Blank,f1856211-cfb7-4a5b-9158-c0f72fd09ee6
+68,69,,,Contopus,454,Contopus sordidulus,,sordidulus,Aves,Passeriformes,Tyrannidae,Contopus,sordidulus,Western Wood-pewee,12b2a5ea-b9b9-48a6-8c45-ab32f9ff0468
+69,70,,,Molothrus,143,Molothrus ater,,ater,Aves,Passeriformes,Icteridae,Molothrus,ater,Brown-headed Cowbird,acda85bc-f4ae-43be-a1cf-77d8526207c4
+70,71,,,Poecile,353,Poecile gambeli,,gambeli,Aves,Passeriformes,Paridae,Poecile,gambeli,Mountain Chickadee,afb00c34-9ad0-4a3d-ae36-b828d4159afc
+71,72,,,Regulus,250,Regulus calendula,,calendula,Aves,Passeriformes,Regulidae,Regulus,calendula,Ruby-crowned Kinglet,64b49b97-2398-4643-acba-986aba56b303
+72,73,,,Mephitis,246,Mephitis mephitis,,mephitis,Mammalia,Carnivora,Mephitidae,Mephitis,mephitis,Striped Skunk,9282b7e4-f3b0-4ef3-9741-cae7f7bd346a
+73,74,,,Bat,453,Bat species,,species,Mammalia,Chiroptera,,,,Bat,a45906ce-5938-433a-bc82-4d0e60d2ebab

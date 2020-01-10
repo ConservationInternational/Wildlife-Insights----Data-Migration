@@ -4,7 +4,7 @@ Use the R script WI_Taxonomy.R to download the most current version of the WI Ta
 
 **Mammals** - The WI taxonomy	uses a combination of the [IUCN Red List of Endangered Species](https://www.iucnredlist.org) and the [American Society of Mammalogists Mammal Diversity Database](https://mammaldiversity.org/). 
 
-**Birds** - We use Birdlife International's taxonomy
+**Birds** - We use [Birdlife International's taxonomy](http://datazone.birdlife.org/species/search).
 
 **Everything else** - We have also have names for other taxa (reptiles,insects, etc). domestic species, non-animals (car, motorcycle,etc) and have various classes to describe types of humans (park ranger, tourist, etc). 
 

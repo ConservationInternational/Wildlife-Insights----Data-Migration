@@ -2,5 +2,5 @@
 .Rhistory
 .RData
 .Ruserdata
-/data/*
-!*/data/README.md
+data/*
+!*data/README.md

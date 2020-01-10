@@ -1,5 +1,5 @@
 # Dataset Transformations
- Store your original datasets (whatever format you have) here and have the transformation script
+ Store your original datasets here, in whatever format you have it in, and have the transformation script
  create the new batch upload files here as well. 
 
 # The typical directory structure can be:

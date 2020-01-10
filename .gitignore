@@ -2,6 +2,4 @@
 .Rhistory
 .RData
 .Ruserdata
-data/*.csv
-data/*.zip
-
+data/*

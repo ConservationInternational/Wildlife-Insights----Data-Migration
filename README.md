@@ -14,7 +14,7 @@ A directory with the Source Name will be created for each camera trap data sourc
 4. Clone or download this directory
 
 # Getting Started
-1. Create a taxonomic mapping between your data and the Wildlife Inisghts Global Taxonomy. Use the script WI_Taxonomy.R. We will be building this out more to add in additional tools to help identify scientific name issues, better handle situations where identification was done using common names and ultimately help you make a mapping between your data and the WI Global Taxonomy.
-2. Utilize one of the R scripts above as an example to transform your data into the Batch Upload Templates recognized by the Wildlife Insights Platform. If you need help with this please email info@wildlifeinsights.org describing your projects.
+1. Create a taxonomic mapping between your taxonomic data and the Wildlife Inisghts Global Taxonomy (WIGT). The WI_Global_Taxonomy directory contains tools to help you build a look up table that maps the names (i.e. the taxonomic or common names to describe wildlife and objects seen in your images) to our WIGT. We will be building this out more to add in additional tools to help identify scientific name issues, better handle situations where identification was done using common names and ultimately help you make a mapping between your data and the WI Global Taxonomy.
+2. Utilize one of the R scripts from the Dataset_Transformations or the Example_Transformation directory  above as an example to transform your data into the Batch Upload Templates recognized by the Wildlife Insights Platform. If you need help with this please email info@wildlifeinsights.org describing your projects.
 3. Upload your images into the Google Cloud Platform. Please create a [Google Cloud Account](https://console.cloud.google.com) and then contact info@wildlifeinsights.org for specific instructions on how to upload your images.
 

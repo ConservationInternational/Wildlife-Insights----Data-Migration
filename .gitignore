@@ -4,6 +4,7 @@
 .Rhistory
 .RData
 .Ruserdata
-!*/WI_Global_Taxonomy/WI_Global_Taxonomy.csv
+Datasets/*
 !*/Dataset/Example_Dataset/*
-#!*data/README.md
+!*/WI_Global_Taxonomy/WI_Global_Taxonomy.csv
+

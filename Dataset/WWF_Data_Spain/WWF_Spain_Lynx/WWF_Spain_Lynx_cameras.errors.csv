@@ -1,2 +1,0 @@
-project_id,camera_id,make,model,serial_number,year_purchased,NA,validated,validation_errors
-WI-WWFSPAIN-PILOT,1,Covert,,,,,False,"{""NA"": [""unknown field""]}"

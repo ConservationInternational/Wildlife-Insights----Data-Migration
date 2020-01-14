@@ -5,8 +5,8 @@
 .RData
 .Ruserdata
 
-!Datasets/
-Datasets/*
+!/Datasets/
+/Datasets/*
 !*/Datasets/Example_Dataset/*
 
 !*/WI_Global_Taxonomy/WI_Global_Taxonomy.csv

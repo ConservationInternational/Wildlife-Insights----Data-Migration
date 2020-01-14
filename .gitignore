@@ -3,7 +3,7 @@
 *
 # But descent into directories
 !*/
-
+**.DS_Store
 # But not these
 !.gitignore
 !.REAMDME.md

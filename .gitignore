@@ -5,7 +5,7 @@
 !.gitignore
 !.REAMDME.md
 !/Docs
-!/Transformation_Code
+!/Transformation_Code/**
 !/WI_Global_Taxonomy
 !/Datasets/README.md
 

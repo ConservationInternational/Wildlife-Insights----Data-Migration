@@ -1,15 +1,29 @@
 ######
-# General Information and R related files
-.DS_Store
-.RDataTmp
-.Rproj.user
-.Rhistory
-.RData
-.Ruserdata
-/Datasets
+#Ignore everything
+*
+# But note these
+!.gitignore
+!.REAMDME.md
+!/Docs
+!/Transformation_Code
+!/WI_Global_Taxonomy
 !/Datasets/README.md
+
+
+
+
+
+
+# General Information and R related files
+#.RDataTmp
+#.Rproj.user
+#.Rhistory
+#.RData
+#.Ruserdata
+#/Datasets
+#!/Datasets/README.md
 #/Datasets/Example_Dataset/*
-!/Datasets/Example_Dataset/*
+#!/Datasets/Example_Dataset/*
 #
 #!*/WI_Global_Taxonomy/WI_Global_Taxonomy.csv
 

@@ -1,0 +1,50 @@
+wi_taxon_identifier,Class,Order,Family,Genus,Species,Species.Common.Name
+f1856211-cfb7-4a5b-9158-c0f72fd09ee6,,,,,,Blank
+b1352069-a39c-4a84-a949-60044271c0c1,Aves,,,,,
+23e62872-cb91-43ec-b039-bcf0f78abec2,Mammalia,Rodentia,Echimyidae,Proechimys,semispinosus,Tome's Spiny Rat
+75760d64-d7a3-496e-b338-e14d97383ecf,Aves,Struthioniformes,Tinamidae,Tinamus,major,Great Tinamou
+4ac36fff-912b-467a-8dab-95ee49d26787,Mammalia,Didelphimorphia,Didelphidae,Didelphis,marsupialis,Common Opossum
+63ad26e1-ba3a-4a0b-8750-e9b0fcbf401c,Aves,Falconiformes,Falconidae,Micrastur,ruficollis,Barred Forest-falcon
+3d80f1d6-b1df-4966-9ff4-94053c7a902a,Mammalia,Carnivora,Canidae,Canis,lupus familiaris,Domestic Dog
+22976d14-d424-4f18-a67a-d8e1689cefcc,Mammalia,Carnivora,Felidae,Leopardus,pardalis,Ocelot
+07843615-e1fc-49d8-9821-fd1d7ff2e773,Mammalia,Cingulata,Dasypodidae,Dasypus,novemcinctus,Nine-banded Armadillo
+32c0147f-1967-4644-b107-8133ae1f020a,Mammalia,Rodentia,Cuniculidae,Cuniculus,paca,Spotted Paca
+1cba8403-375b-4719-8099-daa4712cf386,Mammalia,Rodentia,Sciuridae,Sciurus,granatensis,Red-tailed Squirrel
+f34fffc8-dd28-4d40-9781-290e2954e091,Aves,Columbiformes,Columbidae,Geotrygon,veraguensis,Paloma perdiz
+0af344ad-6657-42c4-85d8-03fd2106a22a,Reptilia,Squamata,,,,
+c56031a6-f8ce-4929-b6eb-b5253d4e1cdc,Mammalia,Carnivora,Procyonidae,Procyon,cancrivorus,Crab-eating Raccoon
+25248c94-2e54-4c9d-9939-0d8800296747,Mammalia,Pilosa,Myrmecophagidae,Tamandua,mexicana,Northern Tamandua
+5acf63fb-339d-42b1-af7e-95f6151ae5fb,Mammalia,Cetartiodactyla,Tayassuidae,Pecari,tajacu,Collared Peccary
+df1ec79b-6867-4737-9f73-17153f6c4e49,Aves,Galliformes,Cracidae,Crax,rubra,Great Curassow
+c9a63279-494a-4c82-9cc7-e500ed7a96c9,Aves,Columbiformes,Columbidae,Leptotila,,Paloma
+6d0d096e-79b8-4fbe-90e1-044e41e24c2c,Mammalia,Carnivora,Mustelidae,Eira,barbara,Tayra
+5bf1ea7e-141a-4cc2-92ac-5e20bf64b408,Mammalia,Carnivora,Felidae,Puma,yagouaroundi,Gato cervantes
+527c9d88-4d7d-4406-add9-c0a823697926,Mammalia,Rodentia,Dasyproctidae,Dasyprocta,punctata,Central American Agouti
+43a49926-46aa-4c98-bcfe-d5eeab431c3c,Aves,Galliformes,Odontophoridae,Rhynchortyx,cinctus,Tawny-faced Quail
+22f3d415-b3bc-4e37-a81a-504a69897974,Mammalia,Didelphimorphia,Didelphidae,,,
+96632fbc-d0d0-4880-9df7-f747f6f5ec11,Amphibia,,,,,
+ef45bca6-48fa-4b61-b1ac-497ca3286dd2,Mammalia,Cetartiodactyla,Cervidae,Mazama,temama,Central American Red Brocket
+e9f652b3-8be9-482c-8457-659ff40dda6e,Aves,Struthioniformes,Tinamidae,Crypturellus,berlepschi,Berlepsch's Tinamou
+90d950db-2106-4bd9-a4c1-777604c3eada,Mammalia,Rodentia,,,,
+ab1db1f1-56f2-4ae4-a521-26236736115e,Aves,Galliformes,Cracidae,Penelope,ortoni,Baudo Guan
+1110460b-7f99-405b-a9b0-65a09ecccca1,Aves,Pelecaniformes,Ardeidae,Tigrisoma,lineatum,Rufescent Tiger-heron
+0c6d29ce-41a3-4a49-b548-9f2fb340f3f0,Aves,Gruiformes,Rallidae,,,
+9696efc2-7fb4-48d7-838f-2b7b581dc4bb,Mammalia,Didelphimorphia,,,,
+f2d233e3-80e3-433d-9687-e29ecc7a467a,Mammalia, ,,,,
+a0d09a27-59c6-4a31-8b67-e0a6ec8c49f9,Mammalia,Carnivora,Canidae,Cerdocyon,thous,Crab-eating Fox
+a23759e7-93b3-4db2-90df-4346c7c5ec5c,Aves,Galliformes,Odontophoridae,Odontophorus,erythrops,Rufous-fronted Wood-quail
+9c564562-9429-405c-8529-04cff7752282,Mammalia,Carnivora,Felidae,Puma,concolor,Puma
+518013b1-6f89-4679-8523-73cb73cb2f1c,Aves,Columbiformes,Columbidae,Geotrygon,montana,Ruddy Quail-dove
+c685ddde-02d6-4714-8409-1501d0ef4a8a,Aves,Cuculiformes,Cuculidae,Neomorphus,geoffroyi,Rufous-vented Ground-Cuckoo
+becf3932-4ec8-4897-8d41-f9f248648794,Mammalia,Carnivora,Procyonidae,Potos,flavus,Kinkajou
+0f76d5eb-2c02-48ba-87e0-28f297e89e94,Mammalia,Cingulata,Chlamyphoridae,Cabassous,centralis,Northern Naked-tailed Armadillo
+9b7fea59-cfa3-499c-a420-bcf36277dcd8,Mammalia,Carnivora,Felidae,Panthera,onca,Jaguar
+90d950db-2106-4bd9-a4c1-777604c3eada,Mammalia,Rodentia,,,,
+cae9534f-f302-4229-9e11-b91138333d92,Aves,Galliformes,Phasianidae,Gallus,gallus domesticus,Domestic Chicken
+05afbf7e-f878-4534-b08f-c97a02435474,Mammalia,Carnivora,Felidae,Leopardus,,Tigrillo
+aa191c53-bf22-47d7-bad0-6bb76f43f934,Aves,Accipitriformes,Accipitridae,Buteogallus,anthracinus,Common Black-Hawk
+a396ddf1-16f5-44f2-bd24-963f8ed14ca6,Aves,Cuculiformes,Cuculidae,,,
+df8514b0-10a5-411f-8ed6-0f415e8153a3,Mammalia,Carnivora,Felidae,,,
+575008c3-8e3b-4efe-8da6-47631d60d5b7,Mammalia,Cetartiodactyla,Tayassuidae,Tayassu,pecari,White-lipped Peccary
+2b98dad0-1e0e-4488-9cbe-9c4777dd9eca,Mammalia,Pilosa,Myrmecophagidae,Myrmecophaga,tridactyla,Giant Anteater
+988b8b2d-6d3b-4c5f-899c-c76b6108b90b,Mammalia,Artiodactyla,Tayassuidae,,,

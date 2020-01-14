@@ -1,0 +1,24 @@
+﻿Species,class,order,family,genus,species,commonNameEnglish,taxonomyType,uniqueIdentifier
+Alectoris,Aves,Galliformes,Phasianidae,Alectoris,Unknown,Alectoris Species,biological,8b9e6e91-4626-42c3-a163-ad25f5380602
+bird,Aves,Unknown,Unknown,Unknown,Unknown,Bird,biological,b1352069-a39c-4a84-a949-60044271c0c1
+empty,NA,NA,NA,NA,NA,Blank,NA,f1856211-cfb7-4a5b-9158-c0f72fd09ee6
+Equus_caballus,Mammalia,Perissodactyla,Equidae,Equus,caballus,Domestic Horse,biological,5109acb4-e503-4147-a175-a3c6aa71f1e3
+Felis_silvestris,Mammalia,Carnivora,Felidae,Felis,silvestris,Wild Cat,biological,96debe9f-7452-42c9-87ae-2e6b37f78025
+Herpestes_ichneumon,Mammalia,Carnivora,Herpestidae,Herpestes,ichneumon,Egyptian Mongoose,biological,341cda2b-34df-4391-a61e-ba063bbe2f9a
+human,Mammalia,Primates,Hominidae,Homo,sapiens,Human,biological,990ae9dd-7a59-4344-afcb-1b7b21368000
+Lepus_granatensis,Mammalia,Lagomorpha,Leporidae,Lepus,granatensis,Granada Hare,biological,2ae71e77-7d1f-4192-b2f3-bca9fea14762
+lizard,Reptilia,Squamata,Unknown,Unknown,Unknown,Lizards and Snakes,biological,0af344ad-6657-42c4-85d8-03fd2106a22a
+Lynx_pardinus,Mammalia,Carnivora,Felidae,Lynx,pardinus,Iberian Lynx,biological,20fde0f4-b2ea-47b4-b5ab-372ac0508b13
+Meles_meles,Mammalia,Carnivora,Mustelidae,Meles,meles,Eurasian Badger,biological,73baf300-5592-4ab5-9da8-7da898477934
+micromammals,Mammalia,Unknown,Unknown,Unknown,Unknown,Mammalia Class,biological,f2d233e3-80e3-433d-9687-e29ecc7a467a
+NA,NA,NA,NA,NA,NA,Setup_Pickup,object,c47b0c62-3d30-493f-8196-d362cf119cbf
+NOID,NA,NA,NA,NA,NA,NA,Unknown species,1f689929-883d-4dae-958c-3d57ab5b6c16
+Oryctolagus_cuniculus,Mammalia,Lagomorpha,Leporidae,Oryctolagus,cuniculus,European Rabbit,biological,5a565886-156e-4b19-a017-6a5bbae4df0f
+Pica_pica,Aves,Passeriformes,Corvidae,Pica,pica,Common Magpie,biological,150ad16d-6c56-437e-9948-222a3967b6f7
+Sus_scofra,Mammalia,Artiodactyla,Suidae,Sus,scrofa,Wild Boar,biological,d372cda5-a8ca-4b7b-97ed-4e4fab9c9b4b
+Ungulata,Mammalia,Artiodactyla,Unknown,Unknown,Unknown,Even-toed ungulate,biological,a27d3983-76a1-4d2d-b080-18747cd77dcb
+official vehicle,NA,NA,NA,NA,NA,Official Vehicle,object,1a6d048a-28da-45bb-845d-a14cc5b7d61a
+vehicle,NA,NA,NA,NA,NA,Truck,object,5b56ce2c-8534-40af-9af3-3b226152eb03
+tractor,NA,NA,NA,NA,NA,Truck,object,5b56ce2c-8534-40af-9af3-3b226152eb03
+Vulpes_vulpes,Mammalia,Carnivora,Canidae,Vulpes,vulpes,Red Fox,biological,ac0e8ba7-7261-4d17-8645-11ed3d02165a
+,,,,,,,,

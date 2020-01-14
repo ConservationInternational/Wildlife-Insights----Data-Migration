@@ -6,7 +6,7 @@
 .Rhistory
 .RData
 .Ruserdata
-/Datasets/*
+/Datasets
 !/Datasets/README.md
 #!/Datasets/Example_Dataset/*
 #

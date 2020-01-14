@@ -1,18 +1,10 @@
-# Ignore everything
-*
-
-#!/WI_Global_Taxonomy/*
-
-
-
-
 .DS_Store
-#.RDataTmp
-#.Rproj.user
-#.Rhistory
-#.RData
-#.Ruserdata
-#/Datasets/*
+.RDataTmp
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+/Datasets/*
 #!/Datasets/
 #!/Datasets/Example_Dataset/*
 #

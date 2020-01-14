@@ -1,7 +1,10 @@
 ######
 #Ignore everything
 *
-# But note these
+# But descent into directories
+!*/
+
+# But not these
 !.gitignore
 !.REAMDME.md
 !/Docs

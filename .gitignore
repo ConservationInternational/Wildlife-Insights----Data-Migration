@@ -1,13 +1,20 @@
-.DS_Store
-.RDataTmp
-.Rproj.user
-.Rhistory
-.RData
-.Ruserdata
+# Ignore everything
+*/*
 
-/Datasets/*
-!/Datasets/
-!/Datasets/Example_Dataset/*
+!/WI_Global_Taxonomy/*
 
+
+
+
+#.DS_Store
+#.RDataTmp
+#.Rproj.user
+#.Rhistory
+#.RData
+#.Ruserdata
+#/Datasets/*
+#!/Datasets/
+#!/Datasets/Example_Dataset/*
+#
 #!*/WI_Global_Taxonomy/WI_Global_Taxonomy.csv
 

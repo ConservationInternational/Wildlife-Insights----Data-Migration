@@ -4,7 +4,7 @@ Overall tracking of software programs and related tools that may need transforma
 | Software      | Name of File  | Status  | Notes |
 | ------------- |:-------------:| -------:|------:|
 | Wild.ID       | WI | yes | API Sync Coming|
-| Camelot       |               | Initial discussion on API sync|
+| Camelot       |               | |Initial discussion on API sync |
 | ViXen |||
 |Aardwolf |||
 |Renamer & CamTrap |||
@@ -12,7 +12,7 @@ Overall tracking of software programs and related tools that may need transforma
 |Camera Base|||
 |CPW Photo Warehouse|||
 |camtrapR|||
-|eMammal|| Core partner and will eventually merge with Wildlife Insights|
+|eMammal||| WI Core partner and will eventually merge with Wildlife Insights|
 |TRAPPER|||
 |Agouti|||
 |Sanderson et al |||

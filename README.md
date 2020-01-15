@@ -1,5 +1,5 @@
 # Wildlife-Insights----Data-Migration
-This GitHub repository contains code that will assist current and future Wildlife Insights data providers to get their data into the format required to be uploaded into Wildlife Insights. The Wildlife Insights [Batch Upload Template Data Dictionaries](https://docs.google.com/spreadsheets/d/1PE5Zl-HUG4Zt0PwSfj-gJRJVbZ__LgH3VuiDW3-BKQg/edit#gid=807650760) contain the guidelines for creating these templates. All code examples in this repository end up producing these templates.
+This GitHub repository contains code that will assist current and future Wildlife Insights data providers to get their data into the format required to be uploaded into Wildlife Insights. The [Wildlife Insights Batch Upload Template Data Dictionaries](https://docs.google.com/spreadsheets/d/1PE5Zl-HUG4Zt0PwSfj-gJRJVbZ__LgH3VuiDW3-BKQg/edit#gid=807650760) contain the guidelines for creating these templates. All code examples in this repository end up producing these templates.
 
 Our goal is to have data migration code for all the software programs and standards mentioned in the [Young et al paper](https://github.com/ConservationInternational/Wildlife-Insights----Data-Migration/blob/master/Young%20et%20al%202018%20CT%20data%20mgmt%20review.pdf).  If your data is in another format contact us and let us know how we can help. 
 
@@ -8,7 +8,7 @@ Our goal is to have data migration code for all the software programs and standa
 
 ```Docs``` Miscellaneous documents and papers related to data migration and standard formats.
 
-```Transformation_Code``` Code (usually in R or Python) that has been used to migrate datasets from some format into the Wildlife Insights Batch Upload templates. All code is a in directory with the name of the: source software, program, format or organization that owned the datasets. The goal is to 1) identify the orginal format or source so that it will be useful to anyone starting from these formats and 2) archive this code so that is can be the basis for new code needed for new data formats. 
+```Transformation_Code``` Code (usually in R or Python) that has been used to migrate datasets from some format into the _Wildlife Insights Batch Upload_ templates. All code is a in directory with the name of the: source software, program, format or organization that owned the datasets. The goal is to 1) identify the orginal format or source so that it will be useful to anyone starting from these formats and 2) archive this code so that is can be the basis for new code needed for new data formats. 
 
 ```WI_Global_Taxonomy``` This directory contains tools that will help you map your taxonomy (the scientific taxonomy or common names you use in your dataset) to our Wildlife Insights Global Taxonomy.
 

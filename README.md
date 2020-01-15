@@ -19,7 +19,7 @@ Our goal is to have data migration code for all the software programs and standa
 4. Upload your images into the Google Cloud Platform. Please create a [Google Cloud Account](https://console.cloud.google.com) and then contact info@wildlifeinsights.org for specific instructions on how to upload your images.
 
 
-# Getting R Setup Locally
+# Setting up R Locally
 If you want to use R and haven't done this before initial instructions for installing R, RStudio and Git (if desired) are below.
 1. Install R: You can download the latest version of R [here](https://cran.rstudio.com).
 2. Install Rstudio: [Rstudio Download link](https://www.rstudio.com/products/rstudio/download/)

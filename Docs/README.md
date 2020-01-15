@@ -1,5 +1,5 @@
 # Wildlife Insights Data Migration
-Overall tracking of software programs and related tools that may need transformation code. The notes field will include whether a more sophisticated integration is possible and/or will be available.
+The table below keeps track of the software programs and related tools that may need transformation code and our status on writing the code. If you want to help out please let us know! The ```notes``` field will include whether a more sophisticated integration (such as sharing data via an API) is possible and/or will be available in the near future.
 
 | Software      | Name of File  | Status  | Notes |
 | ------------- |:-------------:| -------:|------:|

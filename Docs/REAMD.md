@@ -4,7 +4,7 @@ Overall tracking of software programs and related tools that may need transforma
 | Software      | Name of File  | Status  | Notes |
 | ------------- |:-------------:| -------:|------:|
 | Wild.ID       | WI | yes | API Sync Coming|
-| Camelot       |               | API Sync Coming|
+| Camelot       |               | Initial discussion on API sync|
 | ViXen |||
 |Aardwolf |||
 |Renamer & CamTrap |||

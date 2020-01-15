@@ -1,9 +1,7 @@
 # Wildlife-Insights----Data-Migration
-This repo contains code that will assist current or future Wildlife Insights data providers to get their data into the format required to be uploaded into Wildlife Insights. 
+This GitHub repository contains code that will assist current and future Wildlife Insights data providers to get their data into the format required to be uploaded into Wildlife Insights. The Wildlife Insights [Batch Upload Template Data Dictionaries](https://docs.google.com/spreadsheets/d/1PE5Zl-HUG4Zt0PwSfj-gJRJVbZ__LgH3VuiDW3-BKQg/edit#gid=807650760) contain the guidelines for creating these templates. All code examples in this repository end up producing these templates.
 
-Upload Format - [Batch Upload Template Data Dictionaries](https://docs.google.com/spreadsheets/d/1PE5Zl-HUG4Zt0PwSfj-gJRJVbZ__LgH3VuiDW3-BKQg/edit#gid=807650760)
-
-Our goal is to have software migration to function with all the software programs mentioned in the [Young et al paper](https://github.com/ConservationInternational/Wildlife-Insights----Data-Migration/blob/master/Young%20et%20al%202018%20CT%20data%20mgmt%20review.pdf)
+Our goal is to have data migration code for all the software programs and standards mentioned in the [Young et al paper](https://github.com/ConservationInternational/Wildlife-Insights----Data-Migration/blob/master/Young%20et%20al%202018%20CT%20data%20mgmt%20review.pdf).  If your data is in another format contact us and let us know how we can help. 
 
 ### GitHub Repository Description
 ```Datasets``` A place to store your dataset that neeeds to be transformed. This also contains an example dataset.
@@ -25,3 +23,5 @@ If you want to use R and haven't done this before initial instructions for insta
 3. Install Git: [See these installation notes](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN) _only needed if you want to share your code with this repository).
 4. Clone or download this directory
 
+# Contact Us
+If you have any questions or need help getting your data into the _WI Batch Upload Templates_  please contact us at <info@wildlifeinsights.org>.

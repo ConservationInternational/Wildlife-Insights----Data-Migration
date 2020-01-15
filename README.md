@@ -6,9 +6,10 @@ Upload Format - [Batch Upload Template Data Dictionaries](https://docs.google.co
 Our goal is to have software migration to function with all the software programs mentioned in the [Young et al paper](https://github.com/ConservationInternational/Wildlife-Insights----Data-Migration/blob/master/Young%20et%20al%202018%20CT%20data%20mgmt%20review.pdf)
 
 ### GitHub Repo Description
-####Datasets - A place to store your dataset that neeeds to be transformed. This also contains an example dataset.
-####Docs - Miscellaneous documents and papers related to data migration and standard format.s
-####Transformation_Code - Code (usually in R or Python) that has been used to migrate datasets from some format into the Wildlife Insights Batch Upload templates. All code is a in directory with the name of the: source software, program, format or organization that owned the datasets. The goal is to 1) identify the orginal format or source so that it will be useful to anyone starting from these formats and 2) archive this code so that is can be the basis for new code needed for new data formats. 
+#### Datasets
+- A place to store your dataset that neeeds to be transformed. This also contains an example dataset.
+#### Docs - Miscellaneous documents and papers related to data migration and standard format.s
+#### Transformation_Code - Code (usually in R or Python) that has been used to migrate datasets from some format into the Wildlife Insights Batch Upload templates. All code is a in directory with the name of the: source software, program, format or organization that owned the datasets. The goal is to 1) identify the orginal format or source so that it will be useful to anyone starting from these formats and 2) archive this code so that is can be the basis for new code needed for new data formats. 
 
 
 # Setting Up Your Environment

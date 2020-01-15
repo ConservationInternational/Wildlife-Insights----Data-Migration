@@ -7,12 +7,9 @@ Our goal is to have software migration to function with all the software program
 
 ### GitHub Repository Description
 ```Datasets``` A place to store your dataset that neeeds to be transformed. This also contains an example dataset.
-#### Docs 
-- Miscellaneous documents and papers related to data migration and standard format.s
-#### Transformation_Code 
-- Code (usually in R or Python) that has been used to migrate datasets from some format into the Wildlife Insights Batch Upload templates. All code is a in directory with the name of the: source software, program, format or organization that owned the datasets. The goal is to 1) identify the orginal format or source so that it will be useful to anyone starting from these formats and 2) archive this code so that is can be the basis for new code needed for new data formats. 
-#### WI_Global_Taxonomy
-- This directory contains tools that will help you map your taxonomy (the scientific taxonomy or common names you use in your dataset) to our Wildlife Insights Global Taxonomy.
+```Docs``` Miscellaneous documents and papers related to data migration and standard formats
+```Transformation_Code``` Code (usually in R or Python) that has been used to migrate datasets from some format into the Wildlife Insights Batch Upload templates. All code is a in directory with the name of the: source software, program, format or organization that owned the datasets. The goal is to 1) identify the orginal format or source so that it will be useful to anyone starting from these formats and 2) archive this code so that is can be the basis for new code needed for new data formats. 
+```WI_Global_Taxonomy``` This directory contains tools that will help you map your taxonomy (the scientific taxonomy or common names you use in your dataset) to our Wildlife Insights Global Taxonomy.
 
 # Getting Started 
 1. If you are going to use R, python or another language and want to use the code available here, modify it or use it as psuedo-code for what you want to write all you need to do is clone or download this repository. Do this by selecting the options in the  _top right of this page_. 
@@ -22,6 +19,7 @@ Our goal is to have software migration to function with all the software program
 
 
 # Getting R Setup Locally
+If you want to use R and haven't done this before initial instructions for installing R, RStudio and Git (if desired) are below.
 1. Install R: You can download the latest version of R [here](https://cran.rstudio.com).
 2. Install Rstudio: [Rstudio Download link](https://www.rstudio.com/products/rstudio/download/)
 3. Install Git: [See these installation notes](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN) _only needed if you want to share your code with this repository).

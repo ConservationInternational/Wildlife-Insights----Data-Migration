@@ -13,7 +13,7 @@ Our goal is to have software migration to function with all the software program
 #### Transformation_Code 
 - Code (usually in R or Python) that has been used to migrate datasets from some format into the Wildlife Insights Batch Upload templates. All code is a in directory with the name of the: source software, program, format or organization that owned the datasets. The goal is to 1) identify the orginal format or source so that it will be useful to anyone starting from these formats and 2) archive this code so that is can be the basis for new code needed for new data formats. 
 #### WI_Global_Taxonomy
-- This directory containts tools that will help you map your taxonomy (the scientific taxonomy or common names you use in your dataset) to our Wildlife Insights Global Taxonomy.
+- This directory contains tools that will help you map your taxonomy (the scientific taxonomy or common names you use in your dataset) to our Wildlife Insights Global Taxonomy.
 
 # Getting Started 
 1. If you are going to use R, python or another language and want to use the code available here, modify it or use it as psuedo-code for what you want to write all you need to do is clone or download this repository. Do this by selecting the options in the  _top right of this page_. 

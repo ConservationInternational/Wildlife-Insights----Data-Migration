@@ -5,8 +5,11 @@ Our goal is to have data migration code for all the software programs and standa
 
 ### GitHub Repository Description
 ```Datasets``` A place to store your dataset that neeeds to be transformed. This also contains an example dataset.
-```Docs``` Miscellaneous documents and papers related to data migration and standard formats
+
+```Docs``` Miscellaneous documents and papers related to data migration and standard formats.
+
 ```Transformation_Code``` Code (usually in R or Python) that has been used to migrate datasets from some format into the Wildlife Insights Batch Upload templates. All code is a in directory with the name of the: source software, program, format or organization that owned the datasets. The goal is to 1) identify the orginal format or source so that it will be useful to anyone starting from these formats and 2) archive this code so that is can be the basis for new code needed for new data formats. 
+
 ```WI_Global_Taxonomy``` This directory contains tools that will help you map your taxonomy (the scientific taxonomy or common names you use in your dataset) to our Wildlife Insights Global Taxonomy.
 
 # Getting Started 

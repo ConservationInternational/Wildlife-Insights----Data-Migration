@@ -6,12 +6,13 @@
 # Clear workspace
 rm(list=ls())
 # Set your working directory 
-setwd("~/work/WildlifeInsights/Wildlife-Insights----Data-Migration")
 # Load Libraries
 library(dplyr)
 library(googlesheets)
 library(jsonlite)
-source('wi_functions.R')
+source('Transformation_Code/Generic_Functions/wi_functions.R')
+
+dir_path <- "Datasets/South_Chilcotins_Wildlife_Survey_2018/"
 
 ######
 # Load your data and type in any information that cannot be captured from the dataset directly. 
@@ -153,6 +154,8 @@ image_bu$color <- ct_data_taxa$Colour
 
 # Get a clean site name first - no whitespaces
 site_name_clean <- gsub(" ","_",prj_bu$project_name)
+site_name_clean <- paste(site_name_clean,"_wi_batch_upload",sep="")
+
 # Creater the directory
 dir.create(path = site_name_clean)
 # Change any NAs to emptyp values
@@ -162,35 +165,11 @@ dep_bu <- dep_bu %>% replace(., is.na(.), "")
 image_bu <- image_bu %>% replace(., is.na(.), "")
 
 # Write out the 4 csv files for required for Batch Upload
-
-write.csv(prj_bu,file=paste(site_name_clean,"/","projects.csv",sep=""), row.names = FALSE)
-write.csv(cam_bu,file=paste(site_name_clean,"/","cameras.csv",sep=""),row.names = FALSE)
-write.csv(dep_bu,file=paste(site_name_clean,"/","deployments.csv",sep=""),row.names = FALSE)
-write.csv(image_bu,file=paste(site_name_clean,"/","images.csv",sep=""),row.names = FALSE)
-
-###########
-# Misc things we are considering.
-# Dataset question: Photo_Type_Identified_by - this is required. Can you find out this person(s)? Alternative is we make it not required.
-# Count: This should be one record per species with counts of those animals.
-# Date: Need to check WI validation on date types. 
-
-
-# Read in the Wildlfie Insights Global Taxonomy
-# wi_taxa <- fromJSON("https://api.wildlifeinsights.org/api/v1/taxonomy?fields=class,order,family,genus,species,taxonomyType,uniqueIdentifier,commonNameEnglish&page[size]=30000")
-# wi_taxa_data <- wi_taxa$data
-# wi_taxa_data <- wi_taxa_data %>% replace(., is.na(.), "")
-# project_unique_species <- as.data.frame(unique(paste(ct_data$Species,ct_data$Species.Common.Name)))
-# # Write out a .csv file that the data provider will use to map into the WI taxonomic authority.
-
-#taxa_data <- distinct(ct_data_taxa,Class,Order,Family,Genus,Species.ID,Species,Species.1)
-#write.csv(taxa_data,"taxa_data.csv")
-#
-
-# # Set number of rows to full dataset.
-# prj_species_df_length <- nrow(project_unique_species)
-# #image_dff <- data.frame(matrix(ncol = 1,nrow=prj_species_df_length)) # Add in the colnames: lookup, Species, Common, WI Genus, WI Species, WI Common OR JUST WI TAXONOMY ID
-# #colnames(image_dff) <- image_df_colnames 
-# write.csv(project_unique_species,file = "WI_batch_species_lookup.csv")
-#image_bu$Genus_Species <- ct_data$Species # Lots of quality control to do here.
-#image_bu$Species_Common_Name <- ct_data$Species.Common.Name  # Lots of quality control to do here.
+# Write out the 4 csv files for required for Batch Upload. 
+# This directory needs to be uploaded to the Google Cloud with the filenames named exactly
+# as written below. They have to be called: projects.csv, cameras.csv,deployments.csv,images.csv
+write.csv(prj_bu,file=paste(dir_path,site_name_clean,"/","projects.csv",sep=""), row.names = FALSE)
+write.csv(cam_bu,file=paste(dir_path,site_name_clean,"/","cameras.csv",sep=""),row.names = FALSE)
+write.csv(dep_bu,file=paste(dir_path,site_name_clean,"/","deployments.csv",sep=""),row.names = FALSE)
+write.csv(image_bu,file=paste(dir_path,site_name_clean,"/","images.csv",sep=""),row.names = FALSE)
 

@@ -13,27 +13,33 @@
 # 2. Starting filling out the Batch Upload Template dataframes
 # 3. Do the taxonomic mapping between your data and Wildlife Insights.  See the
 #      wi_taxonomy.R code to download a dataframe of all WI taxonomy and the unique identifiers.
-# 4. Validate your batch upload files by contacty info@wildlifeinsights.org.
+# 4. Validate your batch upload files by contacting info@wildlifeinsights.org.
 
+# Clear all variables
 rm(list = ls())
 # Load libraries
 library(dplyr)
 library(readxl)
 library(googlesheets)
 library(lubridate)
-source('wi_functions.R')
+source('Transformation_Code/Generic_Functions/wi_functions.R')
+
+# Set the directory path. This is relative to this Github repo. If you have cloned or 
+# downloaded the repo it should work. If used outside of the repo you will need to modify this.
+
+dir_path <- "Datasets/Example_Dataset/CafeFauna/"
 
 # Load Wild.ID export 1
-images_1 <- read_excel("WI_raw_exports/CafeFaunaAMPeru_Wild_ID_ALM_Wild_ID_ALM.xlsx",sheet="Image")
-deployments_1 <- read_excel("WI_raw_exports/CafeFaunaAMPeru_Wild_ID_ALM_Wild_ID_ALM.xlsx",sheet="Deployment")
-cameras_1 <- read_excel("WI_raw_exports/CafeFaunaAMPeru_Wild_ID_ALM_Wild_ID_ALM.xlsx",sheet="Cameras")
-projects_1 <- read_excel("WI_raw_exports/CafeFaunaAMPeru_Wild_ID_ALM_Wild_ID_ALM.xlsx",sheet="Project")
+images_1 <- read_excel(paste(dir_path,"original_dataset/CafeFaunaAMPeru_Wild_ID_ALM_Wild_ID_ALM.xlsx",sep=""),sheet="Image")
+deployments_1 <- read_excel(paste(dir_path,"original_dataset/CafeFaunaAMPeru_Wild_ID_ALM_Wild_ID_ALM.xlsx",sep=""),sheet="Deployment")
+cameras_1 <- read_excel(paste(dir_path,"original_dataset/CafeFaunaAMPeru_Wild_ID_ALM_Wild_ID_ALM.xlsx",sep=""),sheet="Cameras")
+projects_1 <- read_excel(paste(dir_path,"original_dataset/CafeFaunaAMPeru_Wild_ID_ALM_Wild_ID_ALM.xlsx",sep=""),sheet="Project")
 ####
 # Load Wild.ID export 2
-images_2 <- read_excel("WI_raw_exports/CafeFaunaAMPeru_Wild_ID_ALM2_Wild_ID_ALM2.xlsx",sheet="Image")
-deployments_2 <- read_excel("WI_raw_exports/CafeFaunaAMPeru_Wild_ID_ALM2_Wild_ID_ALM2.xlsx",sheet="Deployment")
-cameras_2 <- read_excel("WI_raw_exports/CafeFaunaAMPeru_Wild_ID_ALM2_Wild_ID_ALM2.xlsx",sheet="Cameras")
-projects_2 <- read_excel("WI_raw_exports/CafeFaunaAMPeru_Wild_ID_ALM2_Wild_ID_ALM2.xlsx",sheet="Project")
+images_2 <- read_excel(paste(dir_path,"original_dataset/CafeFaunaAMPeru_Wild_ID_ALM2_Wild_ID_ALM2.xlsx",sep=""),sheet="Image")
+deployments_2 <- read_excel(paste(dir_path,"original_dataset/CafeFaunaAMPeru_Wild_ID_ALM2_Wild_ID_ALM2.xlsx",sep=""),sheet="Deployment")
+cameras_2 <- read_excel(paste(dir_path,"original_dataset/CafeFaunaAMPeru_Wild_ID_ALM2_Wild_ID_ALM2.xlsx",sep=""),sheet="Cameras")
+projects_2 <- read_excel(paste(dir_path,"original_dataset/CafeFaunaAMPeru_Wild_ID_ALM2_Wild_ID_ALM2.xlsx",sep=""),sheet="Project")
 
 # Merge these exports together because they are one project. Many camera trapping
 # projects may be just one project in Wild.iD
@@ -44,7 +50,7 @@ deployments <- rbind(deployments_1,deployments_2)
 cameras <- rbind(cameras_1,cameras_2)
 ####
 # Handle any data irregularities
-
+#
 # Adjust datetime stamp format
 deployments$new_begin <- ymd(deployments$`Camera Deployment Begin Date`)
 deployments$new_end <- ymd(deployments$`Camera Deployment End Date`)
@@ -144,7 +150,7 @@ dep_bu$recorded_by <- NA
 # 1. Import clean taxonomy and joing with the images worksheet.
 # Taxonomy
 # Load in your clean taxonomy. Clean taxononmy is created using the WI_Taxonomy.R file.
-your_taxa <- read.csv("WI_raw_exports/taxonomic_mapping_template_ALM.csv",colClasses = "character",strip.white = TRUE,na.strings="")
+your_taxa <- read.csv(paste(dir_path,"taxonomic_mapping_template_ALM.csv",sep=""),colClasses = "character",strip.white = TRUE,na.strings="")
 #Create a join column that accounts for both species and non-species labels from your 
 your_taxa$join_taxa <- your_taxa$original_gs
 # Add in the non-species original names
@@ -203,19 +209,21 @@ image_bu$color <- NA
 image_bu$identified_by <- images_taxa$`Photo Type Identified by`
 # Get a clean site name first - no whitespaces
 site_name_clean <- gsub(" ","_",prj_bu$project_name)
+site_name_clean <- paste(site_name_clean,"_wi_batch_upload",sep="")
 
 # Create the directory
-dir.create(path = site_name_clean)
+dir.create(path = paste(dir_path,site_name_clean, sep=""))
 # Change any NAs to emptyp values
 prj_bu <- prj_bu %>% replace(., is.na(.), "")
 cam_bu <- cam_bu %>% replace(., is.na(.), "")
 dep_bu <- dep_bu %>% replace(., is.na(.), "")
 image_bu <- image_bu %>% replace(., is.na(.), "")
 
-# Write out the 4 csv files for required for Batch Upload
-
-write.csv(prj_bu,file=paste(site_name_clean,"/","projects.csv",sep=""), row.names = FALSE)
-write.csv(cam_bu,file=paste(site_name_clean,"/","cameras.csv",sep=""),row.names = FALSE)
-write.csv(dep_bu,file=paste(site_name_clean,"/","deployments.csv",sep=""),row.names = FALSE)
-write.csv(image_bu,file=paste(site_name_clean,"/","images.csv",sep=""),row.names = FALSE)
+# Write out the 4 csv files for required for Batch Upload. 
+# This directory needs to be uploaded to the Google Cloud with the filenames named exactly
+# as written below. They have to be called: projects.csv, cameras.csv,deployments.csv,images.csv
+write.csv(prj_bu,file=paste(dir_path,site_name_clean,"/","projects.csv",sep=""), row.names = FALSE)
+write.csv(cam_bu,file=paste(dir_path,site_name_clean,"/","cameras.csv",sep=""),row.names = FALSE)
+write.csv(dep_bu,file=paste(dir_path,site_name_clean,"/","deployments.csv",sep=""),row.names = FALSE)
+write.csv(image_bu,file=paste(dir_path,site_name_clean,"/","images.csv",sep=""),row.names = FALSE)
 

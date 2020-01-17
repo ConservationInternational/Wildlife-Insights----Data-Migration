@@ -2,7 +2,7 @@
 This GitHub repository contains code that will assist current and future Wildlife Insights data providers to get their data into the format required to be uploaded into Wildlife Insights. The [Wildlife Insights Batch Upload Template Data Dictionaries](https://docs.google.com/spreadsheets/d/1PE5Zl-HUG4Zt0PwSfj-gJRJVbZ__LgH3VuiDW3-BKQg/edit#gid=807650760) contain the guidelines for creating these templates. All code examples in this repository end up producing these templates.  If you need help with any of this please contact us. We definitely _do not_ want data transformation to be a barrier to getting your data into Wildlife Insights. 
 
 ### Description
-```Datasets``` A place to store your dataset that neeeds to be transformed. This also contains an example dataset.
+```Datasets``` A place to store your dataset that needs to be transformed. This also contains an example dataset.
 
 ```Docs``` Overall tracking of migration code from existing camera trap software programs and tools. Our goal is to have data migration code for all the software programs and standards mentioned in the [Young et al paper](https://github.com/ConservationInternational/Wildlife-Insights----Data-Migration/blob/master/Young%20et%20al%202018%20CT%20data%20mgmt%20review.pdf). 
 

@@ -21,8 +21,8 @@ This GitHub repository contains code that will assist current and future Wildlif
 If you want to use R and haven't done so before, initial instructions for installing R, RStudio and Git (if desired) are below.
 1. Install R: You can download the latest version of R [here](https://cran.rstudio.com).
 2. Install Rstudio: [Rstudio Download link](https://www.rstudio.com/products/rstudio/download/)
-3. Install Git: [See these installation notes](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN) _only needed if you want to share your code with this repository_.
-4. Clone or download this directory
+3. Install Git: [See these installation notes](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN) -  _only needed if you want to share your code with this repository and/or would like your local copy to stay updated as we add and improve code here_.
+4. Clone or download this repository - _green button in top-right of this page_.
 
 # Contact Us
 If you have any questions or need help getting your data into the _WI Batch Upload Templates_  please contact us at <info@wildlifeinsights.org>.

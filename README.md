@@ -4,7 +4,7 @@ This GitHub repository contains code that will assist current and future Wildlif
 ### Description
 ```Datasets``` A place to store your dataset that needs to be transformed. This also contains an example dataset.
 
-```Docs``` Overall tracking of migration code from existing camera trap software programs and tools. Our goal is to have data migration code for all the software programs and standards mentioned in the [Young et al paper](https://github.com/ConservationInternational/Wildlife-Insights----Data-Migration/blob/master/docs/Young%20et%20al%202018%20CT%20data%20mgmt%20review.pdf). 
+```Docs``` Overall tracking of migration code from existing camera trap software programs and tools. Our goal is to have data migration code for all the software programs and standards mentioned in the [Young et al paper](https://github.com/ConservationInternational/Wildlife-Insights----Data-Migration/blob/master/Docs/Young%20et%20al%202018%20CT%20data%20mgmt%20review.pdf). 
 
 ```Transformation_Code``` Code (usually in R or Python) that has been used to migrate datasets from some format into the _Wildlife Insights Batch Upload_ templates. All code is in a directory with the name of the: source software, program, format or organization that owned the datasets. The goal is to 1) identify the orginal format or source so that it will be useful to anyone starting from these formats and 2) archive this code so that it can be the basis for new code needed for new data formats. 
 

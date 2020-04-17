@@ -16,7 +16,7 @@ library(dplyr)
 library(googlesheets)
 library(lubridate)
 library(stringr)
-source('wi_functions.R')
+source('Transformation_Code/Generic_Functions/wi_functions.R')
 
 
 # TASKS
@@ -24,9 +24,9 @@ source('wi_functions.R')
 ######
 # Load your data
 ######
-ct_data <- read.csv("WWF_Data_Spain/WI_WWFSpain_PnImages_EN.csv", fileEncoding="UTF-8-BOM")
+ct_data <- read.csv("Datasets/WWF_Data_Spain/WI_WWFSpain_PnImages_EN.csv", fileEncoding="UTF-8-BOM")
 # Load in the new deployment information by WWF. C
-new_deployments <- read.csv("WWF_Data_Spain/new_deployments.csv", stringsAsFactors = FALSE)
+new_deployments <- read.csv("Datasets/WWF_Data_Spain/new_deployments.csv", stringsAsFactors = FALSE)
 # Conver to ISO DateStandard
 new_deployments$Setup_ymd <- mdy(new_deployments$Setup_Date)
 new_deployments$Retrieval_ymd <- mdy(new_deployments$Retrieval_Date)
@@ -131,7 +131,7 @@ dep_bu$recorded_by <- NA
 # 1. Import clean taxonomy and joing with the images worksheet.
 # Taxonomy
 # Load in your clean taxonomy. Clean taxononmy is created using the WI_Taxonomy.R file.
-your_taxa <- read.csv("WWF_Data_Spain/WWF-SPAIN-Matching_Taxonomy.csv",colClasses = "character",strip.white = TRUE,na.strings="")
+your_taxa <- read.csv("Datasets/WWF_Data_Spain/WWF-SPAIN-Matching_Taxonomy.csv",colClasses = "character",strip.white = TRUE,na.strings="")
 #Create a join column that accounts for both species and non-species labels from your 
 ct_data_join <- left_join(ct_data_dep,your_taxa,by="Species")
 
@@ -152,7 +152,8 @@ image_bu$project_id<- prj_bu$project_id
 image_bu$deployment_id <- ct_data_join$deployment
 image_bu$image_id <- as.character(ct_data_join$FileName)
 #gs://cameratraprepo-vcm/wwf-spain_lynx/Media/L1.zip
-image_bu$location <- paste("gs://cameratraprepo-vcm/wwf-spain_lynx/Media/",str_extract(ct_data_join$Directory,"[A-Za-z0-9]{2}$"),"/",ct_data_join$FileName,".JPG",sep="")
+image_bu$location <- paste("gs://cameratraprepo-vcm/wwf-spain_lynx/Media/",str_extract(ct_data_join$Directory,"[A-Za-z0-9]{2}$"),"/",ct_data_join$FileName,sep="")
+
 image_bu$is_blank[which(ct_data_join$commonNameEnglish == "Blank")] <- "Yes" # Set Blanks to Yes, 
 image_bu$is_blank[which(ct_data_join$commonNameEnglish != "Blank")] <- "No"
 image_bu$wi_taxon_id <- ct_data_join$uniqueIdentifier
@@ -176,11 +177,9 @@ image_bu$identified_by <- NA
 
 # Get a clean site name first - no whitespaces
 site_name_clean <- gsub(" ","_",prj_bu$project_name)
-# Creater the directory
-dir.create(path = paste("WWF_Data_Spain/",site_name_clean,sep=""))
-
 # Create the directory
-#dir.create(path = site_name_clean)
+dir.create(path = paste("Datasets/WWF_Data_Spain/",site_name_clean,sep=""))
+
 # Change any NAs to emptyp values
 prj_bu <- prj_bu %>% replace(., is.na(.), "")
 cam_bu <- cam_bu %>% replace(., is.na(.), "")
@@ -188,9 +187,9 @@ dep_bu <- dep_bu %>% replace(., is.na(.), "")
 image_bu <- image_bu %>% replace(., is.na(.), "")
 
 # Write out the 4 csv files for required for Batch Upload
-write.csv(prj_bu,file=paste("WWF_Data_Spain/",site_name_clean,"/","projects.csv",sep=""), row.names = FALSE)
-write.csv(cam_bu,file=paste("WWF_Data_Spain/",site_name_clean,"/","cameras.csv",sep=""),row.names = FALSE)
-write.csv(dep_bu,file=paste("WWF_Data_Spain/",site_name_clean,"/","deployments.csv",sep=""),row.names = FALSE)
-write.csv(image_bu,file=paste("WWF_Data_Spain/",site_name_clean,"/","images.csv",sep=""),row.names = FALSE)
+write.csv(prj_bu,file=paste("Datasets/WWF_Data_Spain/",site_name_clean,"/","projects.csv",sep=""), row.names = FALSE)
+write.csv(cam_bu,file=paste("Datasets/WWF_Data_Spain/",site_name_clean,"/","cameras.csv",sep=""),row.names = FALSE)
+write.csv(dep_bu,file=paste("Datasets/WWF_Data_Spain/",site_name_clean,"/","deployments.csv",sep=""),row.names = FALSE)
+write.csv(image_bu,file=paste("Datasets/WWF_Data_Spain/",site_name_clean,"/","images.csv",sep=""),row.names = FALSE)
 
 

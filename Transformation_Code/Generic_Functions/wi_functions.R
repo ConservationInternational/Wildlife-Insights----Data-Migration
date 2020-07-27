@@ -11,7 +11,7 @@
 #
 
 wi_batch_function <- function(wi_batch_type,df_length) {
-  wi_batch<- gs_url("https://docs.google.com/spreadsheets/d/1PE5Zl-HUG4Zt0PwSfj-gJRJVbZ__LgH3VuiDW3-BKQg", visibility = "public")
+  wi_batch<- gs_url("https://docs.google.com/spreadsheets/d/1iEcHs0Y49W5hx7aoMSFge_1-Q_VfMdl8d56x27heuNY/edit?usp=sharing", visibility = "public")
   if (wi_batch_type == "Project") {
     project_batch <- wi_batch %>% gs_read_csv(ws="Projectv1.0")
     prj_df_colnames <- project_batch$`Validator Name`

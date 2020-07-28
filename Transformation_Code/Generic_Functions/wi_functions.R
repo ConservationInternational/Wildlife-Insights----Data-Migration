@@ -9,7 +9,6 @@
 # This works best going project by project. If an organization is trying to load many projects
 # we have code that will dynamically create the four .csv files for as many projects as needed.
 #
-
 wi_batch_function <- function(wi_batch_type,df_length) {
   wi_batch<- gs_url("https://docs.google.com/spreadsheets/d/1iEcHs0Y49W5hx7aoMSFge_1-Q_VfMdl8d56x27heuNY/edit?usp=sharing", visibility = "public")
   if (wi_batch_type == "Project") {

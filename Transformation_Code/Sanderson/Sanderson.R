@@ -236,7 +236,7 @@ dep_bu$sensor_height <- sensor_height_list
 dep_bu$sensor_orientation <- sensor_orientation_list
 
 #####
-# Fillng the Project Batch Upload
+# Filling the Project Batch Upload
 coords = select(dep_bu, "longitude", "latitude")
 
 # Finding the Country ISO3 Code using Project Longitudes and Latitudes
@@ -297,7 +297,7 @@ species_encoding = raw_species_encoding[!duplicated(raw_species_encoding$photoco
 rm(raw_species_encoding)
 species_encoding$common_name = species_encoding$photocode
 img_test = left_join(img_bu, species_encoding, "common_name")
-img_bu$common_name <-  tolower(img_test$ï..Common.Name)
+img_bu$common_name <-  tolower(img_test$?..Common.Name)
 
 rm(species_encoding, img_test)
 

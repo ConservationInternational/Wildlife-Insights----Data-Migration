@@ -10,6 +10,7 @@ rm(list=ls())
 library(dplyr)
 library(googlesheets)
 library(jsonlite)
+library(stringr)
 source('Transformation_Code/Generic_Functions/wi_functions.R')
 
 dir_path <- "Datasets/South_Chilcotins_Wildlife_Survey_2018/"
@@ -35,6 +36,7 @@ prj_bu <- wi_batch_function("Project",dep_length)
 # data great! Otherwise type them in here. 
 prj_bu$project_id <- unique(ct_data$Survey.ID)
 prj_bu$project_name <- "South Chilcotins Wildlife Survey 2018"
+prj_bu$project_short_name <- str_trunc(unique(prj_bu$project_name),43,"right")
 prj_bu$project_objectives <- "Comparison of camera trapping vs. eDNA mammal abundance estimates"
 prj_bu$project_species <- "Multiple" # Multiple or Single Species
 prj_bu$project_species_individual  <- NA # If single list out the species (Genus species and comma separated)
@@ -44,7 +46,7 @@ prj_bu$project_bait_use <- "No"  #Was bait used? Options: Yes,Some,No
 prj_bu$project_bait_type <- NA
 prj_bu$project_stratification <- "No" #Options: Yes, No
 prj_bu$project_stratification_type <- NA
-prj_bu$project_sensor_method <- "Sensor detection"
+prj_bu$project_sensor_method <- "Sensor Detection"
 prj_bu$project_individual_animals <- "No" #Options: Yes, No
 prj_bu$project_blank_images <- "Yes" # Were blanks removed? Options: Yes, No
 prj_bu$project_sensor_cluster <- "No"

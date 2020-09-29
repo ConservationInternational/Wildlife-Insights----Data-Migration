@@ -88,12 +88,13 @@ dep_bu <- wi_batch_function("Deployment",nrow(dep_temp))
 dep_bu$project_id <- unique(prj_bu$project_id) # If more than one error for now
 dep_bu$deployment_id <- dep_temp$deployments
 dep_bu$placename <- dep_temp$Site.Name
-dep_bu$longitude <- dep_temp$Camelot.GPS.Longitude
-dep_bu$latitude <- dep_temp$Camelot.GPS.Latitude
+dep_bu$longitude <- round(dep_temp$Camelot.GPS.Longitude,8)
+dep_bu$latitude <- round(dep_temp$Camelot.GPS.Latitude,8)
 dep_bu$start_date <- dep_temp$Session.Start.Date
 dep_bu$end_date <- dep_temp$Session.End.Date
-dep_bu$event <- NA
-dep_bu$array_name <- NA
+dep_dff$event_name <- NA
+dep_dff$event_description <- NA
+dep_dff$event_type <- NA
 dep_bu$bait_type <- "None" # Note that if bait was ussed but it was not consistent across all deployments, this is where you enter it. 
     # Logic may be needed to figure out which deployments had bait and which didn't. Similar thing if "bait type" was vaired in deployments.
     # Options: Yes, some, No.  We may need a way to assign this if answer = "some".
@@ -130,8 +131,8 @@ image_bu$project_id<- prj_bu$project_id
 image_bu$deployment_id <- ct_data_taxa$deployments
 image_bu$image_id <- ct_data_taxa$Media.Filename
 image_bu$location <- ct_data_taxa$wi_path  # Modify this to let user sub in new path.
-image_bu$is_blank[which(ct_data_taxa$wi_common_name== "Blank")] <- "Yes" # Set Blanks to Yes, 
-image_bu$is_blank[which(ct_data_taxa$wi_common_name != "Blank")] <- "No"
+#image_bu$is_blank[which(ct_data_taxa$wi_common_name== "Blank")] <- "Yes" # Set Blanks to Yes, 
+#image_bu$is_blank[which(ct_data_taxa$wi_common_name != "Blank")] <- "No"
 image_bu$identified_by <- image_identified_by
 # Build out more taxonomic information as needed here ASAP. Will be done the week of September 9
 image_bu$wi_taxon_id <- ct_data_taxa$wi_taxon_id
@@ -143,13 +144,14 @@ image_bu$species <- ct_data_taxa$wi_species
 image_bu$common_name <- ct_data_taxa$wi_common_name
 image_bu$uncertainty <- NA
 image_bu$timestamp <- ct_data_taxa$Date.Time
+image_bu$number_of_objects <- ct_data_taxa$Sighting.Quantity
+image_bu$highlighted <- NA
 image_bu$age <- ct_data_taxa$Life.stage
 image_bu$sex <- ct_data_taxa$Sex
 image_bu$animal_recognizable <- NA
-image_bu$number_of_animals <- ct_data_taxa$Sighting.Quantity
+image_dff$individual_id <- NA
 image_bu$individual_animal_notes <- NA
-image_bu$highlighted <- NA
-image_bu$color <- ct_data_taxa$Colour
+image_bu$markings <- ct_data_taxa$Colour
 
 # Get a clean site name first - no whitespaces
 site_name_clean <- gsub(" ","_",prj_bu$project_name)

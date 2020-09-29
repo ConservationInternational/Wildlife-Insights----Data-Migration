@@ -50,7 +50,6 @@ prj_bu$project_blank_images <- "Yes" # Were blanks removed? Options: Yes, No
 prj_bu$project_sensor_cluster <- "No"
 prj_bu$project_admin <- "Robin Naidoo"
 prj_bu$project_admin_email <- "Robin.Naidoo@wwfus.org"
-prj_bu$project_admin_organization <- "WWF" # 
 prj_bu$country_code <- "CAN"
 prj_bu$embargo <- 0 # 0-24 months
 prj_bu$metadata_license <- "CC-BY" # Two options: CC0,CC-BY

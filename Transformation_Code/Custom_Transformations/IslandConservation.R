@@ -56,8 +56,8 @@ dep_bu$deployment_id <- deployments$deployment_id
 # deployments_coord = select(deployments_coord, "deployment_id", "longitude", "latitude")
 
 dep_bu$placename <- deployments$placename
-dep_bu$longitude <- deployments_coord$longitude
-dep_bu$latitude <- deployments_coord$latitude
+dep_bu$longitude <- substr(deployments_coord$longitude, 0, 11)
+dep_bu$latitude <- substr(deployments_coord$latitude, 0, 11)
 dep_bu$start_date <- deployments$start_date
 dep_bu$end_date <- deployments$end_date
 dep_bu$bait_type <- deployments$bait_type
@@ -97,6 +97,8 @@ images_t=left_join(images_t, wi_taxa, by="id")
 image_bu$project_id<- vapply(strsplit(images$folder,"/"), FUN = function(x){
   if(x[1]=="Ngeruktabel_Camera_Study"){
     "Palau"
+  } else  if (x[1]=="SantaCruz_Petrel" || x[1]=="Floreana_Petrel") {
+    "Floreana"
   } else {
     x[1]
   }
@@ -122,8 +124,8 @@ image_bu$deployment_id <- vapply(strsplit(images$filename,"_"), FUN=function(x){
   }
 }, FUN.VALUE=character(1))
 image_bu$image_id <- images$filename
-image_bu$location <- paste("gs:/", images$folder, images$filename, sep="/")
-image_bu$wi_taxon_id <- images_t$id
+image_bu$location <- paste("gs://anthony_upload", images$folder, images$filename, sep="/")
+image_bu$wi_taxon_id <- images_t$uniqueIdentifier
 image_bu$class <- images_t$class.y
 image_bu$order <- images_t$order
 image_bu$family <- images_t$family
@@ -133,7 +135,6 @@ image_bu$common_name <- images_t$commonNameEnglish
 
 image_bu$identified_by <- images$reviewer
 image_bu$number_of_objects <- images$Freq
-image_bu_test <- left_join()
 image_bu$timestamp <- vapply(strsplit(images$filename, "_"),  FUN=function(x){
   # if (x[1]=="Cabritos" || x[1]=="Ulithi" || x[1]=="Mona" || x[1]=="Floreana_Petrel"){
     if (x[1]!="JFI" && x[1]!="ULITHI"){
@@ -222,6 +223,12 @@ cams = deployments %>%  select("project_id", "camera_id") %>% unique()
 cam_bu <- wi_batch_function("Camera", nrow(cams))
 cam_bu$project_id <- cams$project_id
 cam_bu$camera_id <- cams$camera_id
+
+# Change any NAs to empty values
+prj_bu <- prj_bu %>% replace(., is.na(.), "")
+cam_bu <- cam_bu %>% replace(., is.na(.), "")
+dep_bu <- dep_bu %>% replace(., is.na(.), "")
+image_bu <- image_bu %>% replace(., is.na(.), "")
 
 #Splitting batch uploads by project id
 for (unique_proj in prj_bu$project_id){

@@ -13,16 +13,16 @@ library(jsonlite)
 library(stringr)
 source('Transformation_Code/Generic_Functions/wi_functions.R')
 
-dir_path <- "Datasets/South_Chilcotins_Wildlife_Survey_2018/"
+dir_path <- "Datasets/"
 
 ######
 # Load your data and type in any information that cannot be captured from the dataset directly. 
-ct_data <- read.csv("data/South Chilcotins Wildlife Suvey.csv")
+ct_data <- read.csv("Datasets/Original_datasets/South Chilcotins Wildlife Suvey.csv")
 # Establish any variables needed for each project (i.e. not found in the datafile)
 
 # Taxonomy
 # Load in your clean taxonomy. Clean taxononmy is created using the WI_Taxonomy.R file. 
-your_taxa <- read.csv("WWF cleaned taxonomy - wwf_tax.csv",colClasses = "character",strip.white = TRUE,na.strings="")
+your_taxa <- read.csv("Datasets/Original_datasets/WWF cleaned taxonomy - wwf_tax.csv",colClasses = "character",strip.white = TRUE,na.strings="")
 ct_data_taxa <- left_join(ct_data,your_taxa,by="Species")
 # Custom for this dataset
 ct_data_taxa$wi_common_name[which(is.na(ct_data_taxa$wi_common_name))] <- "Blank"
@@ -30,6 +30,7 @@ ct_data_taxa$wi_taxon_id[which(is.na(ct_data_taxa$wi_taxon_id))] <- "f1856211-cf
 
 ######
 # Project Batch Upload Template: Load in the project batch upload template and fill it out.
+dep_length <-1
 prj_bu <- wi_batch_function("Project",dep_length)
 
 # Many of the project variables may not be found in your dataset. If you can get them from your
@@ -84,19 +85,21 @@ cam_bu$year_purchased <- NA
 ct_data_taxa$deployments <- paste(ct_data_taxa$Site.Name,ct_data_taxa$Session.Start.Date,ct_data_taxa$Session.End.Date,sep="-")
 # 2. Create a distinct dataframe based on deployments
 dep_temp<-distinct(ct_data_taxa,deployments,.keep_all = TRUE )
-# 3. Get the empty deployement dataframe
+# 3. Get the empty deployment dataframe
 dep_bu <- wi_batch_function("Deployment",nrow(dep_temp))
 # 4. Fill it in
 dep_bu$project_id <- unique(prj_bu$project_id) # If more than one error for now
 dep_bu$deployment_id <- dep_temp$deployments
+dep_bu$subproject_name <- NA
+dep_bu$subproject_design <- NA
 dep_bu$placename <- dep_temp$Site.Name
 dep_bu$longitude <- round(dep_temp$Camelot.GPS.Longitude,8)
 dep_bu$latitude <- round(dep_temp$Camelot.GPS.Latitude,8)
 dep_bu$start_date <- dep_temp$Session.Start.Date
 dep_bu$end_date <- dep_temp$Session.End.Date
-dep_dff$event_name <- NA
-dep_dff$event_description <- NA
-dep_dff$event_type <- NA
+dep_bu$event_name <- NA
+dep_bu$event_description <- NA
+dep_bu$event_type <- NA
 dep_bu$bait_type <- "None" # Note that if bait was ussed but it was not consistent across all deployments, this is where you enter it. 
     # Logic may be needed to figure out which deployments had bait and which didn't. Similar thing if "bait type" was vaired in deployments.
     # Options: Yes, some, No.  We may need a way to assign this if answer = "some".
@@ -133,8 +136,6 @@ image_bu$project_id<- prj_bu$project_id
 image_bu$deployment_id <- ct_data_taxa$deployments
 image_bu$image_id <- ct_data_taxa$Media.Filename
 image_bu$location <- ct_data_taxa$wi_path  # Modify this to let user sub in new path.
-#image_bu$is_blank[which(ct_data_taxa$wi_common_name== "Blank")] <- "Yes" # Set Blanks to Yes, 
-#image_bu$is_blank[which(ct_data_taxa$wi_common_name != "Blank")] <- "No"
 image_bu$identified_by <- image_identified_by
 # Build out more taxonomic information as needed here ASAP. Will be done the week of September 9
 image_bu$wi_taxon_id <- ct_data_taxa$wi_taxon_id
@@ -151,7 +152,7 @@ image_bu$highlighted <- NA
 image_bu$age <- ct_data_taxa$Life.stage
 image_bu$sex <- ct_data_taxa$Sex
 image_bu$animal_recognizable <- NA
-image_dff$individual_id <- NA
+image_bu$individual_id <- NA
 image_bu$individual_animal_notes <- NA
 image_bu$markings <- ct_data_taxa$Colour
 
@@ -159,8 +160,8 @@ image_bu$markings <- ct_data_taxa$Colour
 site_name_clean <- gsub(" ","_",prj_bu$project_name)
 site_name_clean <- paste(site_name_clean,"_wi_batch_upload",sep="")
 
-# Creater the directory
-dir.create(path = site_name_clean)
+# Create the directory
+dir.create(path = paste(dir_path,site_name_clean,sep = ""))
 # Change any NAs to emptyp values
 prj_bu <- prj_bu %>% replace(., is.na(.), "")
 cam_bu <- cam_bu %>% replace(., is.na(.), "")

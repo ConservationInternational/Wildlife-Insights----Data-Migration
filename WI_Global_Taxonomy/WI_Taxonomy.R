@@ -9,6 +9,7 @@
 rm(list = ls())
 # Use the following libraries. 
 library(jsonlite)
+library(dplyr)
 ########################
 # 1. Import the Wildife Insights Global Taxonomy dataset.
 wi_taxa <- fromJSON("https://api.wildlifeinsights.org/api/v1/taxonomy?fields=class,order,family,genus,species,authority,taxonomyType,uniqueIdentifier,commonNameEnglish&page[size]=30000")

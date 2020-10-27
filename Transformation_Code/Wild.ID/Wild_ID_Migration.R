@@ -22,6 +22,7 @@ library(dplyr)
 library(readxl)
 library(googlesheets)
 library(lubridate)
+library(stringr)
 source('Transformation_Code/Generic_Functions/wi_functions.R')
 
 # Set the directory path. This is relative to this Github repo. If you have cloned or 
@@ -65,6 +66,7 @@ prj_bu <- wi_batch_function("Project",dep_length)
 # data great! Otherwise type them in here. 
 prj_bu$project_id <- projects$`Project ID`
 prj_bu$project_name <- projects$`Project Name`
+prj_bu$project_short_name <-  str_trunc(projects$`Project Name`,43,"right")
 prj_bu$project_objectives <- "Evaluate the effects of coffee conservation agreements on wildlife and biodiversity co-benefits in the Alto Mayo landscape in San Martin, Peru."
 prj_bu$project_species <- "Multiple" # Multiple or Single Species
 prj_bu$project_species_individual  <- NA # If single list out the species (Genus species and comma separated)
@@ -80,9 +82,9 @@ prj_bu$project_blank_images <- "No" # Were blanks removed? Options: Yes, No
 prj_bu$project_sensor_cluster <- "No"
 prj_bu$project_admin <- "Jorge Ahumada" #projects$`Principal Investigator`
 prj_bu$project_admin_email <- "jahumada@conservation.org" #projects$`Principal Investigator Email`
-prj_bu$project_admin_organization <- "Conservation International" #projects$`Project Owner (Organization or Individual)`
 prj_bu$country_code <- projects$`Country Code`
 prj_bu$embargo <- 0 # 0-24 months
+prj_bu$initiative_id <- NA
 prj_bu$metadata_license <- "CC-BY" # Two options: CC0,CC-BY
 prj_bu$image_license <- "CC-BY-NC" # Three options: CC0,CC-BY,CC-BY-NC
 
@@ -118,14 +120,17 @@ dep_temp<-distinct(deployments,`Deployment ID`,.keep_all = TRUE )
 dep_bu <- wi_batch_function("Deployment",nrow(dep_temp))
 # 4. Fill in the deployment batch upload template
 dep_bu$project_id <- unique(prj_bu$project_id) # If more than one error for now
+dep_bu$subproject_name <- NA
+dep_bu$subproject_design <- NA
 dep_bu$deployment_id <- dep_temp$`Deployment ID`
 dep_bu$placename <- dep_temp$`Depolyment Location ID`
-dep_bu$longitude <- dep_temp$`Longitude Resolution`
-dep_bu$latitude <- dep_temp$`Latitude Resolution`
+dep_bu$longitude <- round(as.numeric(dep_temp$`Longitude Resolution`),8)
+dep_bu$latitude <- round(as.numeric(dep_temp$`Latitude Resolution`),8)
 dep_bu$start_date <- dep_temp$new_begin
 dep_bu$end_date <- dep_temp$new_end
-dep_bu$event <- dep_temp$`Event Name`
-dep_bu$array_name <- dep_temp$`Array Name (Optional)`
+dep_bu$event_name <- dep_temp$`Array Name (Optional)`
+dep_bu$event_description <- "A Sampling Unit name"
+dep_bu$event_type <- "None"
 dep_bu$bait_type <- "None" # Note that if bait was ussed but it was not consistent across all deployments, this is where you enter it. 
 # Logic may be needed to figure out which deployments had bait and which didn't. Similar thing if "bait type" was vaired in deployments.
 # Options: Yes, some, No.  We may need a way to assign this if answer = "some".
@@ -186,9 +191,8 @@ image_bu <- wi_batch_function("Image",nrow(images_taxa))
 image_bu$project_id<- unique(prj_bu$project_id)
 image_bu$deployment_id <- images_taxa$`Deployment ID`
 image_bu$image_id <- images_taxa$`Image ID`
-image_bu$location <- images_taxa$wi_path  
-image_bu$is_blank[which(images_taxa$commonNameEnglish == "Blank")] <- "Yes" # Set Blanks to Yes, 
-image_bu$is_blank[which(images_taxa$commonNameEnglish != "Blank")] <- "No"
+image_bu$location <- images_taxa$wi_path
+image_bu$identified_by <- images_taxa$`Photo Type Identified by`
 image_bu$wi_taxon_id <- images_taxa$uniqueIdentifier
 image_bu$class <- images_taxa$class
 image_bu$order <- images_taxa$order
@@ -198,15 +202,16 @@ image_bu$species <- images_taxa$species
 image_bu$common_name <- images_taxa$commonNameEnglish
 image_bu$uncertainty <- images_taxa$Uncertainty
 image_bu$timestamp <- images_taxa$`Date_Time Captured`
+image_bu$number_of_objects <- images_taxa$Count
+image_bu$highlighted <- NA
 image_bu$age <- images_taxa$Age
 image_bu$sex <- images_taxa$Sex
 image_bu$animal_recognizable <- images_taxa$`Animal recognizable (Y/N)`
-image_bu$number_of_animals <- images_taxa$Count
 image_bu$individual_id <- images_taxa$`Individual ID`
 image_bu$individual_animal_notes <- images_taxa$`Individual Animal Notes`
-image_bu$highlighted <- NA
-image_bu$color <- NA
-image_bu$identified_by <- images_taxa$`Photo Type Identified by`
+image_bu$markings <- NA
+
+
 # Get a clean site name first - no whitespaces
 site_name_clean <- gsub(" ","_",prj_bu$project_name)
 site_name_clean <- paste(site_name_clean,"_wi_batch_upload",sep="")

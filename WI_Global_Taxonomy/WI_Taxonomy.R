@@ -1,7 +1,7 @@
 # WI_Taxonomy.R
-# Purpose- This script will query the Wildlife Insights API and make a copy of hte full
-# Wildlife Inisghts Global Taxonomy (WTGT).  All data being uploaded 
-# into Wildlife Insights must map into the WIGT. Without doing this there will be no practival way 
+# Purpose- This script will query the Wildlife Insights API and make a copy of the full
+# Wildlife Insights Global Taxonomy (WIGT).  All data being uploaded 
+# into Wildlife Insights must map into the WIGT. Without doing this there will be no practical way 
 # to perform analytics across WI projects and initiatives. 
 
 ########################

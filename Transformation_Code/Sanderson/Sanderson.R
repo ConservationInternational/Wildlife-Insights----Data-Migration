@@ -21,11 +21,11 @@ source('Transformation_Code/Generic_Functions/wi_functions.R')
 # Set the following variables to the appropriate values for your project
 # See README.md in the Sanderson directory for descriptions of each variable
 
-output_path = NA
-project_path = NA
-encoding_path = NA
+output_path = "/Users/anthonyngo/Documents/Wildlife_Insights/output/Chile"
+project_path = "/Users/anthonyngo/Documents/Wildlife_Insights/Chile"
+encoding_path = "/Users/anthonyngo/Documents/Wildlife_Insights/Chile/Taxonomy translations.xlsx"
 
-blank_name = NA 
+blank_name = NA
 identifier_name= NA
 
 project_id= NA
@@ -58,7 +58,7 @@ initiative_id = NA # Optional
 # Initializing Batch Uploads
 img_count = length(list.files(project_path, recursive=TRUE))
 
-locations <- list.files(path=project_path)
+locations <- list.dirs(path=project_path, full.names = FALSE, recursive=FALSE)
 
 proj_bu <- wi_batch_function("Project", 1)
 dep_bu <- wi_batch_function("Deployment", length(locations))
@@ -236,7 +236,7 @@ dep_bu$sensor_height <- sensor_height_list
 dep_bu$sensor_orientation <- sensor_orientation_list
 
 #####
-# Fillng the Project Batch Upload
+# Filling the Project Batch Upload
 coords = select(dep_bu, "longitude", "latitude")
 
 # Finding the Country ISO3 Code using Project Longitudes and Latitudes
@@ -297,7 +297,7 @@ species_encoding = raw_species_encoding[!duplicated(raw_species_encoding$photoco
 rm(raw_species_encoding)
 species_encoding$common_name = species_encoding$photocode
 img_test = left_join(img_bu, species_encoding, "common_name")
-img_bu$common_name <-  tolower(img_test$ï..Common.Name)
+img_bu$common_name <-  tolower(img_test$?..Common.Name)
 
 rm(species_encoding, img_test)
 

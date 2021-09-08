@@ -13,6 +13,5 @@ The WI taxonomy will continue to grow and evolve over time. If you have question
 
 # Taxonomy Tools!
 1. WI_Taxonomy.R enables you to download the most current version of the WI Taxonomy. It will create an R dataframe and also write out a .csv file.
-2. The [Wildlife Insights Taxonomy Bulk Search](https://data.naturalsciences.org/wildlife-insights/taxonomy/search) is also a really nice GUI that lets you enter the taxonomy you used and find the matching WIGT information.
-3.  _More tools are coming but also please let us know what would make this easier for you!_
+2.  _More tools are coming but also please let us know what would make this easier for you!_
 

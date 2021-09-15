@@ -18,7 +18,7 @@ wi_batch_function <- function(wi_batch_type,df_length) {
   sheet = sheet_map[wi_batch_type,]
   if(!is.na(sheet)){
     template <- read_sheet("1iEcHs0Y49W5hx7aoMSFge_1-Q_VfMdl8d56x27heuNY", sheet)
-    colnames <- gsub(" ","_", template$`Validator Name`)
+    colnames <- gsub(" ","_", template$`Column name`)
     df <- data.frame(matrix(ncol = length(colnames),nrow=df_length))
     colnames(df) <- colnames 
     return(df)

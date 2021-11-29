@@ -12,6 +12,6 @@ We created the WI Taxonomy because we needed a global standard of what we call t
 The WI taxonomy will continue to grow and evolve over time. If you have questions about the taxonomy please email us at info@wildlifeinsights.org.
 
 # Taxonomy Tools!
-1. WI_Taxonomy.R enables you to download the most current version of the WI Taxonomy. It will create an R dataframe and also write out a .csv file.
-2.  _More tools are coming but also please let us know what would make this easier for you!_
-
+1. The Wildlife Insights [Taxonomy Search Tool](https://wildlifeinsights-taxonomy-ewutmovdfa-uc.a.run.app/).
+2. [WI_Taxonomy.R](https://github.com/ConservationInternational/Wildlife-Insights----Data-Migration/blob/master/WI_Global_Taxonomy/WI_Taxonomy.R) enables you to download the most current version of the WI Taxonomy. It will create an R dataframe and also write out a .csv file.
+3.  _More tools are coming but also please let us know what would make this easier for you!_

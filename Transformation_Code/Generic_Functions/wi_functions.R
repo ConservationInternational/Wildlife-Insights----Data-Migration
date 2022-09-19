@@ -11,7 +11,6 @@
 
 # TODO: Update the googlesheets library to googlesheets4 in the R script you are calling this function from. 
 library(googlesheets4)
-<<<<<<< HEAD
 library(dplyr)
 library(readr)
 gs4_deauth()
@@ -27,8 +26,8 @@ wi_batch_function <- function(wi_batch_type, df_length) {
     return(df)
   }
   else{ return("Incorrect function parameter used.")
-=======
-gs4_deauth()
+  }
+}
 
 wi_batch_function <- function(wi_batch_type,df_length) {
   sheet_map = data.frame(row.names=c("Project", "Camera", "Deployment", "Image"), val=c(2,3,4,5))
@@ -41,7 +40,6 @@ wi_batch_function <- function(wi_batch_type,df_length) {
     return(df)
   }
   else{ return("Incorrect function parameter used")
->>>>>>> c2701e480502962e3fc8fee9e9a685302b8f60e5
   }
 }
 
@@ -76,7 +74,6 @@ join_taxon_id_by_sci_name <- function(img_df){
   return(left_join(img_df, taxons, by = c("genus", "species")))
 }
 
-<<<<<<< HEAD
 # Add missing fields to a batch upload template.
 add_missing_fields <- function(df, type){
   dictionary <- wi_batch_function(type,1)
@@ -126,8 +123,6 @@ flag_extra_fields <- function(df, type){
   } 
 }
 
-=======
->>>>>>> c2701e480502962e3fc8fee9e9a685302b8f60e5
 # Creates an 'upload' folder in the current working directory.
 # and prints batch upload templates as CSVs. 
 prep_upload <- function(img_bu, cam_bu, dep_bu, prj_bu){
@@ -139,7 +134,6 @@ prep_upload <- function(img_bu, cam_bu, dep_bu, prj_bu){
   write_csv(prj_bu,paste(folder_name, "/projects.csv", sep=""), na ="")
   write_csv(cam_bu,paste(folder_name, "/cameras.csv", sep=""), na ="")
 }
-<<<<<<< HEAD
 
 # For large batch uploads (upwards of 1 million images), the batch uploads must
 # be split to create smaller uploads. This is done by deployments.  
@@ -165,5 +159,3 @@ prep_split_upload <- function(img_bu, cam_bu, dep_bu, prj_bu, parts, folder){
     i = i + 1
   }
 }
-=======
->>>>>>> c2701e480502962e3fc8fee9e9a685302b8f60e5

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # This script contains functions to validate batch upload templates at 
 # a basic level.
 
@@ -132,9 +131,10 @@ images_in_dep_dt_range <- function(img_bu, dep_bu){
   img_bu_outr = filter(img_dep_comb, in_range == 'FALSE')
 
   if(nrow(img_bu_outr)> 0){
-  print(paste(nrow(img_bu_outr),"out of" , nrow(img_bu), "images are not in range."))
-  print(paste("Number of images by deployment not in deployment date range: ", table(img_bu_outr$deployment_id)))
-  } 
+  print(paste(nrow(img_bu_outr),"out of" , nrow(img_bu), "images are not in deployment date range."))
+  print("Number of images not in deployment date range(by deployment id): ")
+        print(table(img_bu_outr$deployment_id))
+  }
 }
 
 # Verify if dates are in the the YYYY-MM-DD hh:mm:ss format.
@@ -153,7 +153,7 @@ date_format_check <- function(dates, type){
 # Verify if all images have unique ids.
 unique_imageids <- function(img_bu){
   errors = nrow(img_bu) - length(unique(img_bu$image_id))
-  if(errors == 0 ){
+  if(errors == 0){
     print("Images.csv has unique image ids.")
   }
   else {
@@ -217,51 +217,7 @@ basic_validation <- function(img_bu, cam_bu, dep_bu, prj_bu){
   
   validate_dep_dates(dep_bu)
   images_in_dep_dt_range(img_bu, dep_bu)
-=======
-# This script contains functions to validate batch upload templates at 
-# a basic level.
 
-library(tidyverse)
-library(googlesheets4)
-library(jsonlite)
-library(dplyr)
-library(lubridate)
-source('~/Wildlife-Insights----Data-Migration/Transformation_Code/Generic_Functions/wi_functions.R')
-
-# Add missing fields to a batch upload template.
-add_missing_fields <- function(df, type){
-  dictionary <- wi_batch_function(type,1)
-  all_equal(dictionary, df, ignore_col_order = TRUE, ignore_row_order = TRUE)
-  missed_fields = setdiff(colnames(dictionary), colnames(df))
-  
-  if(is_empty(missed_fields)){
-    print("No missing fields found.")
-    return(df)
-  }
-  else{ 
-    print("The following missing fields have been added:")
-    print(missed_fields)
-    return(cbind(df, 
-                 setNames(lapply(missed_fields, function(x) x=NA), 
-                 missed_fields)))
-  }
-}
-
-# Remove additional fields from a batch upload template. 
-remove_extra_fields <- function(df, type){
-  dictionary <- wi_batch_function(type,1)
-  all_equal(dictionary, df, ignore_col_order = TRUE, ignore_row_order = TRUE)
-  extra_fields = setdiff(colnames(df), colnames(dictionary))
-  if(is_empty(extra_fields)){
-    print("No extra fields found.")
-    return(df)
-    }
-  else {
-    print("The following fields are extra and have been removed:")
-    print(extra_fields)
-    return(select(df, -extra_fields))
-  } 
-}
 
 # Flag missing fields. 
 missing_fields <- function(df, type){
@@ -387,6 +343,5 @@ basic_validation <- function(img_bu, cam_bu, dep_bu, prj_bu){
   date_format_check(img_bu$timestamp)
 
   validate_dep_dates(dep_bu)
-  images_in_dep_dt_range(img_bu, dep_bu)
->>>>>>> c2701e480502962e3fc8fee9e9a685302b8f60e5
+  images_in_dep_dt_range(img_bu, dep_bu)}
 }

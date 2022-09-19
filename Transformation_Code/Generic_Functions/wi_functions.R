@@ -11,6 +11,23 @@
 
 # TODO: Update the googlesheets library to googlesheets4 in the R script you are calling this function from. 
 library(googlesheets4)
+<<<<<<< HEAD
+library(dplyr)
+library(readr)
+gs4_deauth()
+
+wi_batch_function <- function(wi_batch_type, df_length) {
+  sheet_map = data.frame(row.names=c("Project", "Camera", "Deployment", "Image"), val=c(2,3,4,5))
+  sheet = sheet_map[wi_batch_type,]
+  if(!is.na(sheet)){
+    template = read_sheet("1iEcHs0Y49W5hx7aoMSFge_1-Q_VfMdl8d56x27heuNY", sheet)
+    colnames = gsub(" ","_", template$`Column name`)
+    df = data.frame(matrix(ncol = length(colnames),nrow=df_length))
+    colnames(df) <- colnames 
+    return(df)
+  }
+  else{ return("Incorrect function parameter used.")
+=======
 gs4_deauth()
 
 wi_batch_function <- function(wi_batch_type,df_length) {
@@ -24,6 +41,7 @@ wi_batch_function <- function(wi_batch_type,df_length) {
     return(df)
   }
   else{ return("Incorrect function parameter used")
+>>>>>>> c2701e480502962e3fc8fee9e9a685302b8f60e5
   }
 }
 
@@ -58,6 +76,58 @@ join_taxon_id_by_sci_name <- function(img_df){
   return(left_join(img_df, taxons, by = c("genus", "species")))
 }
 
+<<<<<<< HEAD
+# Add missing fields to a batch upload template.
+add_missing_fields <- function(df, type){
+  dictionary <- wi_batch_function(type,1)
+  all_equal(dictionary, df, ignore_col_order = TRUE, ignore_row_order = TRUE)
+  missed_fields = setdiff(colnames(dictionary), colnames(df))
+  
+  if(is_empty(missed_fields)){
+    print("No missing fields found.")
+    return(df)
+  }
+  else{ 
+    print("The following missing fields have been added:")
+    print(missed_fields)
+    return(cbind(df, 
+                 setNames(lapply(missed_fields, function(x) x=NA), 
+                 missed_fields)))
+  }
+}
+
+# Remove additional fields from a batch upload template. 
+remove_extra_fields <- function(df, type){
+  dictionary <- wi_batch_function(type,1)
+  all_equal(dictionary, df, ignore_col_order = TRUE, ignore_row_order = TRUE)
+  extra_fields = setdiff(colnames(df), colnames(dictionary))
+  if(is_empty(extra_fields)){
+    print("No extra fields found.")
+    return(df)
+    }
+  else {
+    print("The following fields are extra and have been removed:")
+    print(extra_fields)
+    return(select(df, -extra_fields))
+  } 
+}
+
+# Remove additional fields from a batch upload template. 
+flag_extra_fields <- function(df, type){
+  dictionary <- wi_batch_function(type,1)
+  all_equal(dictionary, df, ignore_col_order = TRUE, ignore_row_order = TRUE)
+  extra_fields = setdiff(colnames(df), colnames(dictionary))
+  if(is_empty(extra_fields)){
+    print("No extra fields found.")
+    }
+  else {
+    print("ERROR: Batch upload template has extra fields.")
+    print(extra_fields)
+  } 
+}
+
+=======
+>>>>>>> c2701e480502962e3fc8fee9e9a685302b8f60e5
 # Creates an 'upload' folder in the current working directory.
 # and prints batch upload templates as CSVs. 
 prep_upload <- function(img_bu, cam_bu, dep_bu, prj_bu){
@@ -69,3 +139,31 @@ prep_upload <- function(img_bu, cam_bu, dep_bu, prj_bu){
   write_csv(prj_bu,paste(folder_name, "/projects.csv", sep=""), na ="")
   write_csv(cam_bu,paste(folder_name, "/cameras.csv", sep=""), na ="")
 }
+<<<<<<< HEAD
+
+# For large batch uploads (upwards of 1 million images), the batch uploads must
+# be split to create smaller uploads. This is done by deployments.  
+prep_split_upload <- function(img_bu, cam_bu, dep_bu, prj_bu, parts, folder){
+
+  nr = nrow(dep_bu)
+  n = as.integer(ceiling(nr/parts))
+  dep_bu_sps = split(dep_bu, rep(1:ceiling(nr/n), each=n, length.out=nr))
+  
+  i = 1
+  for(dep_sp in dep_bu_sps){
+    print(i)
+    img_bu_split = filter(img_bu, deployment_id %in% dep_sp$deployment_id)
+    print(paste("Split size:", nrow(img_bu_split)))
+    # Create folders where you splits will be saved.
+    # i.e. caltest_1, caltest_2, etc., in this example.
+    folder_name = paste(folder, i, sep="_")
+    dir.create(folder_name, showWarnings = FALSE)
+    write_csv(img_bu_split,paste(folder_name,"/images.csv", sep=""), na ="")
+    write_csv(dep_sp,paste(folder_name, "/deployments.csv", sep=""), na ="")
+    write_csv(prj_bu,paste(folder_name,"/projects.csv", sep=""), na ="")
+    write_csv(cam_bu,paste(folder_name,"/cameras.csv", sep=""), na ="")
+    i = i + 1
+  }
+}
+=======
+>>>>>>> c2701e480502962e3fc8fee9e9a685302b8f60e5

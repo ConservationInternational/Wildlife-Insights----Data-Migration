@@ -61,7 +61,7 @@ wi_batch_function_req <- function(wi_batch_type, df_length) {
 
 # Return Wildlife Insights taxonomies as a data frame. 
 wi_get_taxons <- function(){
-  wi_taxa <- fromJSON("https://api.wildlifeinsights.org/api/v1/taxonomy?fields=class,order,family,genus,species,taxonomyType,iucnCategoryId,uniqueIdentifier,commonNameEnglish&page[size]=30000")
+  wi_taxa <- fromJSON("https://api.wildlifeinsights.org/api/v1/taxonomy/taxonomies-all?fields=class,order,family,genus,species,taxonomyType,iucnCategoryId,uniqueIdentifier,commonNameEnglish&page[size]=30000")
   wi_taxa_data <- wi_taxa$data %>% replace(., is.na(.), "") %>% 
                   rename(wi_taxon_id = uniqueIdentifier)
   wi_taxa_data = select(wi_taxa_data, class,order,family,genus,species,wi_taxon_id,commonNameEnglish)

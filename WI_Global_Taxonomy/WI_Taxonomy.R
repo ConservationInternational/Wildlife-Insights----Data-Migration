@@ -12,7 +12,7 @@ library(jsonlite)
 library(dplyr)
 ########################
 # 1. Import the Wildife Insights Global Taxonomy dataset.
-wi_taxa <- fromJSON("https://api.wildlifeinsights.org/api/v1/taxonomy?fields=class,order,family,genus,species,authority,taxonomyType,uniqueIdentifier,commonNameEnglish&page[size]=30000")
+wi_taxa <- fromJSON("https://api.wildlifeinsights.org/api/v1/taxonomy/taxonomies-all?fields=class,order,family,genus,species,authority,taxonomyType,uniqueIdentifier,commonNameEnglish&page[size]=30000")
 wi_taxa_data <- wi_taxa$data
 wi_taxa_data <- wi_taxa_data %>% replace(., is.na(.), "")
 # Write out a .csv file for anyone wanting to look at this in Excel. Feel free to inspect this file and use it 

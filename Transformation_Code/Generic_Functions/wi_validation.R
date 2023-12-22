@@ -6,6 +6,8 @@ library(googlesheets4)
 library(jsonlite)
 library(dplyr)
 library(lubridate)
+library(purrr)
+
 source('Wildlife-Insights----Data-Migration/Transformation_Code/Generic_Functions/wi_functions.R')
 
 # Flag missing fields. 
@@ -205,6 +207,30 @@ projectids_match <- function(img_bu, cam_bu, dep_bu, prj_bu){
   else{
     print("ERROR -- Project ids dont match.")
   }
+}
+
+#Test whether values in the required variables in the projects.csv file match the WI standard. Need to run the get_prj_values() function first and store the result in variable prj_vals
+
+test_prj_values <- function(df, prj_vals) {
+  prj_test <- df |> select(names(prj_vals))
+  results_test <- map2(prj_test, prj_vals, f_test)
+  if(length(which(results_test == FALSE)) == 0)
+    print("Values are ok.")
+  else
+    paste(names(which(results_test == FALSE)), "has an invalid value!")
+}
+
+#Test whether values in the required variables in the deployments.csv file match the WI standard. Need to run the get_dep_values() function first and store the result in variable dep_vals
+
+test_dep_values <- function(df, dep_vals) {
+  dep_test <- dep_bu|> select(names(dep_vals))
+  dep_test <- lapply(dep_test, unique)
+  results_test <- map2(dep_test, dep_vals, f_test)
+  results_test <- unlist(results_test)
+  if(length(which(results_test == FALSE)) == 0)
+    print("Values are ok.")
+  else
+    paste(names(which(results_test == FALSE)), "has an invalid value!")
 }
 
 # Runs all the validations in this script. 

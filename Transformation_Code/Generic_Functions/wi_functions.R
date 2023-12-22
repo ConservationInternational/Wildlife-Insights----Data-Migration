@@ -160,6 +160,36 @@ generate_copy_cmd <- function(folder){
   print(paste("gsutil -m cp -R ", w_dir,"/", folder, "/*.csv ", " gs://wildlife_insights_bulk_uploads/", folder, sep=""))
 }
 
+
+# Function to test whether the values in projects.csv or deployments csv match the values list from the template
+
+f_test <- function(x1, x2) {x1 %in% x2}
+
+# Function to get the valid values for required variables in the projects.csv file
+
+get_prj_values <- function() {
+  prj_std <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1iEcHs0Y49W5hx7aoMSFge_1-Q_VfMdl8d56x27heuNY", sheet = "Projectv1.0")
+  prj_std <- prj_std |> select(`Column name`, `Values List`)
+  prj_std <- prj_std |> filter(`Values List` != "None")
+  prj_std <- prj_std[-c(2,12,13,7),]
+  prj_vals <- str_split(prj_std$`Values List`, ",")
+  names(prj_vals) <- prj_std$`Column name`
+  prj_vals
+}
+
+# Function to get the valid values for required variables in the deployments.csv file
+
+get_dep_values <- function() {
+  dep_std <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1iEcHs0Y49W5hx7aoMSFge_1-Q_VfMdl8d56x27heuNY", sheet = "Deploymentv1.0")
+  dep_std <- dep_std |> select(`Column name`, `Values List`)
+  dep_std <- dep_std |> filter(`Values List` != "None")
+  dep_std <- dep_std[-c(1,6,8),]
+  dep_vals <- str_split(dep_std$`Values List`, ",")
+  names(dep_vals) <- dep_std$`Column name`
+  dep_vals
+}
+
+
 # wi_functions.R Eric Fegraus 09-05-2019
 # Purpose: Key functions used to help migrate data into the Wilidlife Insights
 # Batch Upload formats. 

@@ -233,6 +233,54 @@ test_dep_values <- function(df, dep_vals) {
     paste(names(which(results_test == FALSE)), "has an invalid value!")
 }
 
+#Test additional value compliance for img_bu files
+
+test_age <- function(df) {
+  standard_values <- c("Adult", "Juvenile", "Unknown", NA)
+  values <- unique(df$age)
+  condition <- values %in% standard_values
+  if(sum(condition) < length(values)){
+    indx <- which(condition == FALSE)
+    print(paste("Values are not standard;", values[indx], "is invalid."))
+  }
+  else
+    print("Age values are ok.")
+}
+
+test_sex <- function(df) {
+  standard_values <- c("Male", "Female", "Unknown", NA)
+  values <- unique(df$sex)
+  condition <- values %in% standard_values
+  if(sum(condition) < length(values)){
+    indx <- which(condition == FALSE)
+    print(paste("Values are not standard;", values[indx], "is invalid."))
+  }
+  else
+    print("Sex values are ok.")
+}
+
+test_number_of_objects <- function(df) {
+  standard <- c(1:175, NA)
+  values <- unique(df$number_of_objects)
+  if(sum(values %in% standard) < length(values))
+    print("Values need to be bigger than 0 and no text allowed.")
+  else
+    print("Values are Ok.")
+  
+}
+
+test_uncertainty <- function(df) {
+  standard <- c("Absolutely sure", "Pretty sure", "Not sure", "Don't know", "Other", NA)
+  values <- unique(df$uncertainty)
+  if(sum(values %in% standard) < length(values)) {
+    indx <- which(values %in% standard == FALSE)
+    print(paste("Values are not standard;", values[indx], "is invalid."))
+  }
+  else
+    print("Values are Ok.")
+  
+}
+
 # Runs all the validations in this script. 
 # Errors messages are printed to console.
 basic_validation <- function(img_bu, cam_bu, dep_bu, prj_bu){

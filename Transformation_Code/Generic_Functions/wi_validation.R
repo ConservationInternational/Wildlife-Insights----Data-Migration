@@ -155,10 +155,12 @@ images_in_dep_dt_range <- function(img_bu, dep_bu){
 # Verify if dates are in the the YYYY-MM-DD hh:mm:ss format.
 date_format_check <- function(dates, type){
   print(paste("Checking date formats for", type))
-  n_format_errors = sum(!grepl("\\d{4}\\-\\d{2}\\-\\d{2} \\d{2}\\:\\d{2}\\:\\d{2}", dates))
+  #n_format_errors = sum(!grepl("\\d{4}\\-\\d{2}\\-\\d{2} \\d{2}\\:\\d{2}\\:\\d{2}", dates))
+  date_integrity <- ymd_hms(dates, truncated = 3, quiet = TRUE)
+  n_errors <- sum(is.na(date_integrity))
   # n_format_errors = n_format_errors + sum(nchar(dates) != 19)
-  if(n_format_errors > 0){
-    print(paste("ERROR -- ", n_format_errors, "date(s) have errors."))
+  if(n_errors > 0){
+    print(paste("ERROR -- ", n_errors, "date(s) have errors."))
   }
   else {
     print("No errors in date format.")

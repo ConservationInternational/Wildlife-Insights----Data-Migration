@@ -104,7 +104,7 @@ validate_dep_dates <- function(dep_bu) {
 n_format_errors = sum(!grepl("\\d{4}\\-\\d{2}\\-\\d{2} \\d{2}\\:\\d{2}\\:\\d{2}", 
                              dep_bu$start_date))
                   + sum(!grepl("\\d{4}\\-\\d{2}\\-\\d{2} \\d{2}\\:\\d{2}\\:\\d{2}", 
-                             dep_bu$start_date))
+                             dep_bu$end_date))
   if(n_format_errors > 0){
     print("Please correct the date format of deployment start and end dates and then validate their date range.")
   }
@@ -149,14 +149,16 @@ images_in_dep_dt_range <- function(img_bu, dep_bu){
   print(by_img , n =nrow(by_img))
   write.csv(by_dep, "images out range by deployment.csv")
   write.csv(by_img, "images out of range.csv")
-  } 
+  }
+  else
+    print("Everything looks ok!")
 }
 
 # Verify if dates are in the the YYYY-MM-DD hh:mm:ss format.
 date_format_check <- function(dates, type){
   print(paste("Checking date formats for", type))
   #n_format_errors = sum(!grepl("\\d{4}\\-\\d{2}\\-\\d{2} \\d{2}\\:\\d{2}\\:\\d{2}", dates))
-  date_integrity <- ymd_hms(dates, truncated = 3, quiet = TRUE)
+  date_integrity <- ymd_hms(dates, quiet = TRUE)
   n_errors <- sum(is.na(date_integrity))
   # n_format_errors = n_format_errors + sum(nchar(dates) != 19)
   if(n_errors > 0){
@@ -169,7 +171,7 @@ date_format_check <- function(dates, type){
 
 # Verify if all images have unique ids.
 unique_imageids <- function(img_bu){
-  errors = nrow(img_bu) - nrow(distinct(img_bu, image_id, common_name))
+  errors = nrow(img_bu) - nrow(distinct(img_bu, image_id, deployment_id))
   if(errors == 0 ){
     print("Images.csv has unique image ids.")
   }
@@ -280,6 +282,24 @@ test_uncertainty <- function(df) {
   }
   else
     print("Values are Ok.")
+  
+}
+check_lat_lon <- function(df) {
+  range_lat <- range(df$latitude)
+  if(range_lat[1] < -90 | range_lat[2] > 90)
+    print("Latitude values are out of range!")
+  else if(sd(df$latitude) > 5)
+    print("Some latitude values might have the wrong sign!")
+  else
+    print("Latitude values seem ok.")
+  
+  range_lon <- range(df$longitude)
+  if(range_lon[1] < -180 | range_lon[2] > 180)
+    print("Latitude values are out of range!")
+  else if (sd(df$longitude) > 5)
+    print("Some longitude value might have the wrong sign!")
+  else
+    print("Longitude values seem ok.")
   
 }
 

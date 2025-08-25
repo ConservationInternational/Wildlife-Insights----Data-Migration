@@ -103,7 +103,7 @@ remove_extra_fields <- function(df, type){
 # Remove additional fields from a batch upload template. 
 flag_extra_fields <- function(df, type){
   dictionary <- wi_batch_function(type,1)
-  all_equal(dictionary, df, ignore_col_order = TRUE, ignore_row_order = TRUE)
+  all.equal(dictionary, df, ignore_col_order = TRUE, ignore_row_order = TRUE)
   extra_fields = setdiff(colnames(df), colnames(dictionary))
   if(is_empty(extra_fields)){
     print(paste("No extra fields found in ", type, " template."))

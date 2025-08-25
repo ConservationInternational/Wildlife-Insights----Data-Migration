@@ -8,7 +8,7 @@ library(dplyr)
 library(lubridate)
 library(purrr)
 
-source('Wildlife-Insights----Data-Migration/Transformation_Code/Generic_Functions/wi_functions.R')
+#source('Wildlife-Insights----Data-Migration/Transformation_Code/Generic_Functions/wi_functions.R')
 
 # Flag missing fields. 
 missing_fields <- function(df, type){

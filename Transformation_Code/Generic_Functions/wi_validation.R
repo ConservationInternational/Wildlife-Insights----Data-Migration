@@ -303,6 +303,14 @@ check_lat_lon <- function(df) {
   
 }
 
+check_country <- function(df) {
+  isoCodeLenght <- nchar(df$country_code)
+  if (isoCodeLenght > 3)
+    print("Incorrect country code. Please use three letter ISO country code")
+  else
+    print("Everything looks good")
+}
+
 # Runs all the validations in this script. 
 # Errors messages are printed to console.
 basic_validation <- function(img_bu, cam_bu, dep_bu, prj_bu){

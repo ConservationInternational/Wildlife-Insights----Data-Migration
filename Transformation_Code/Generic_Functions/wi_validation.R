@@ -7,6 +7,7 @@ library(jsonlite)
 library(dplyr)
 library(lubridate)
 library(purrr)
+library(stringr)
 
 #source('Wildlife-Insights----Data-Migration/Transformation_Code/Generic_Functions/wi_functions.R')
 
@@ -346,4 +347,130 @@ basic_validation <- function(img_bu, cam_bu, dep_bu, prj_bu){
   date_format_check(img_bu$sequence_start_time, "sequence start time...")}
   validate_dep_dates(dep_bu)
   images_in_dep_dt_range(img_bu, dep_bu)
+}
+
+
+
+# function to extract image_ids from path
+
+make_image_ids_mixed <- function(df,
+                                 location_col        = "location",
+                                 deployment_pos,
+                                 image_pos_no_sub,
+                                 subfolder_pos      = NULL,
+                                 image_pos_with_sub = NULL,
+                                 ext_pattern        = "\\.[Jj][Pp][Ee]?[Gg]$",
+                                 ensure_unique      = TRUE) {
+
+  loc_vec <- df[[location_col]]
+  split_paths <- str_split(loc_vec, "/", simplify = FALSE)
+
+  # deployment_id from a fixed position
+  deployment_id <- map_chr(split_paths, ~ {
+    parts <- .x
+    if (length(parts) < deployment_pos) {
+      NA_character_
+    } else {
+      str_remove(parts[deployment_pos], ext_pattern)
+    }
+  })
+
+  # image_id that adapts to "with subfolder" vs "no subfolder"
+  image_id <- map_chr(split_paths, ~ {
+    parts <- .x
+    n <- length(parts)
+
+    # 1) Case: there *is* a subfolder + image (path long enough)
+    if (!is.null(image_pos_with_sub) && n >= image_pos_with_sub) {
+
+      img_base <- str_remove(parts[image_pos_with_sub], ext_pattern)
+
+      if (!is.null(subfolder_pos)) {
+        valid_sub_pos <- subfolder_pos[subfolder_pos <= n]
+        sub_parts <- parts[valid_sub_pos]
+        return(paste(c(sub_parts, img_base), collapse = "_"))
+      } else {
+        return(img_base)
+      }
+    }
+
+    # 2) Case: no subfolder, image only
+    if (!is.null(image_pos_no_sub) && n >= image_pos_no_sub) {
+      img_base <- str_remove(parts[image_pos_no_sub], ext_pattern)
+      return(img_base)
+    }
+
+    # 3) Fallback: last component as filename
+    img_base <- str_remove(parts[n], ext_pattern)
+    img_base
+  })
+
+  df$deployment_id <- deployment_id
+  df$image_id      <- image_id
+
+  # Make image_id unique within deployment_id, if requested
+  if (ensure_unique) {
+    df <- df %>%
+      group_by(deployment_id, image_id) %>%
+      mutate(
+        .dup_n = n(),
+        .dup_i = row_number(),
+        image_id = if_else(.dup_n > 1,
+                           paste0(image_id, "_", .dup_i),
+                           image_id)
+      ) %>%
+      ungroup() %>%
+      select(-.dup_n, -.dup_i)
+  }
+
+  df
+}
+
+# Function to extract deployment_id from path
+
+make_deployment_ids <- function(df,
+                                location_col   = "location",
+                                deploy_pos,                 # single integer or vector of positions
+                                ext_pattern    = "\\.[Jj][Pp][Ee]?[Gg]$",
+                                ensure_unique  = TRUE) {
+
+  loc_vec <- df[[location_col]]
+  split_paths <- str_split(loc_vec, "/", simplify = FALSE)
+
+  deployment_id <- map_chr(split_paths, ~ {
+    parts <- .x
+    n <- length(parts)
+
+    # keep only positions that exist for this path
+    valid_pos <- deploy_pos[deploy_pos <= n]
+
+    if (length(valid_pos) == 0) {
+      return(NA_character_)
+    }
+
+    dep_parts <- parts[valid_pos]
+
+    # strip any extensions if someone did something weird
+    dep_parts <- str_remove(dep_parts, ext_pattern)
+
+    paste(dep_parts, collapse = "_")
+  })
+
+  df$deployment_id <- deployment_id
+
+  if (ensure_unique) {
+    df <- df %>%
+      group_by(deployment_id) %>%
+      mutate(
+        .dup_n = n(),
+        .dup_i = row_number(),
+        deployment_id = if_else(.dup_n > 1,
+                                paste0(deployment_id, "_", .dup_i),
+                                deployment_id)
+      ) %>%
+      ungroup() %>%
+      select(-.dup_n, -.dup_i)
+  }
+
+  df
 }
